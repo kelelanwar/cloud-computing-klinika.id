@@ -1,0 +1,857 @@
+<!doctype html>
+<html lang="id" class="scroll-smooth">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <!-- TAG WAJIB KEAMANAN & SEO -->
+    <meta name="robots" content="noindex, nofollow" />
+    <title>Klinika.id - Landing Page & Portal Hub Utama</title>
+    <link
+      rel="shortcut icon"
+      href="https://img.icons8.com/color/48/hospital-2.png"
+      type="image/x-icon"
+    />
+
+    <!-- GOOGLE FONTS (Roboto & Lato) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700;900&family=Roboto:wght@300;400;500;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- FONTAWESOME 6 CDN -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+
+    <!-- TAILWIND CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              "med-blue": "#1b68b3",
+              "med-dark": "#23356e",
+              "med-light": "#f8fafc",
+              "med-cyan": "#0ea5e9",
+              "med-border": "#e2e8f0",
+              "med-emerald": "#10b981",
+              "med-amber": "#f59e0b",
+              "med-rose": "#ef4444",
+            },
+            fontFamily: {
+              sans: ["Roboto", "sans-serif"],
+              heading: ["Lato", "sans-serif"],
+            },
+          },
+        },
+      };
+    </script>
+  </head>
+  <body
+    class="bg-med-light font-sans text-slate-700 antialiased flex flex-col min-h-screen"
+  >
+    <!-- 1. TOP HEADER STRIP (MedService Style) -->
+    <div
+      class="bg-med-dark text-slate-200 text-xs py-2 px-4 border-b border-slate-700"
+    >
+      <div
+        class="max-w-7xl mx-auto flex flex-wrap justify-between items-center gap-2"
+      >
+        <div class="flex flex-wrap items-center gap-4">
+          <span class="flex items-center gap-1.5">
+            <i class="fas fa-map-marker-alt text-med-cyan"></i>
+            Jl. Kesehatan No. 121, Gambir, Jakarta Pusat 10110
+          </span>
+          <span class="hidden md:flex items-center gap-1.5">
+            <i class="fas fa-clock text-med-cyan"></i>
+            UGD & Rawat Inap 24 Jam | Poliklinik: 08:00 - 20:00 WIB
+          </span>
+        </div>
+        <div class="flex items-center gap-4">
+          <a
+            href="tel:0218005546"
+            class="flex items-center gap-1.5 text-white font-medium hover:text-med-cyan transition"
+          >
+            <i class="fas fa-phone-alt text-med-rose"></i>
+            <span>Hotline: (021) 800-KLINIK</span>
+          </a>
+          <div
+            class="hidden sm:flex items-center gap-2 border-l border-slate-600 pl-3"
+          >
+            <a
+              href="#"
+              class="w-6 h-6 rounded-full bg-slate-800 flex items-center justify-center hover:bg-med-blue transition text-slate-300"
+              ><i class="fab fa-facebook-f text-[10px]"></i
+            ></a>
+            <a
+              href="#"
+              class="w-6 h-6 rounded-full bg-slate-800 flex items-center justify-center hover:bg-med-blue transition text-slate-300"
+              ><i class="fab fa-instagram text-[10px]"></i
+            ></a>
+            <a
+              href="#"
+              class="w-6 h-6 rounded-full bg-slate-800 flex items-center justify-center hover:bg-med-blue transition text-slate-300"
+              ><i class="fab fa-twitter text-[10px]"></i
+            ></a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 2. MAIN NAVIGATION BAR -->
+    <header
+      class="bg-white sticky top-0 z-50 shadow-sm border-b border-slate-100"
+    >
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex justify-between items-center h-20">
+          <!-- Brand Logo -->
+          <a href="index.html" class="flex items-center gap-3">
+            <div
+              class="w-12 h-12 rounded-xl bg-gradient-to-br from-med-blue to-med-dark flex items-center justify-center shadow-md shadow-blue-500/20 text-white text-2xl"
+            >
+              <i class="fas fa-hospital-alt"></i>
+            </div>
+            <div>
+              <div class="flex items-center gap-1">
+                <span
+                  class="font-heading font-black text-2xl tracking-tight text-med-dark"
+                  >Klinika</span
+                >
+                <span class="font-heading font-black text-2xl text-med-blue"
+                  >.id</span
+                >
+              </div>
+              <p
+                class="text-[10px] uppercase font-bold tracking-wider text-slate-400"
+              >
+                Hospital & Clinic System
+              </p>
+            </div>
+          </a>
+
+          <!-- Desktop Navigation Links -->
+          <nav class="hidden lg:flex items-center gap-1">
+            <a
+              href="index.html"
+              class="px-3.5 py-2 rounded-lg text-sm font-semibold text-med-blue bg-blue-50/80 transition flex items-center gap-1.5"
+            >
+              <i class="fas fa-home text-xs"></i> Beranda
+            </a>
+            <a
+              href="dashboard.html"
+              class="px-3.5 py-2 rounded-lg text-sm font-medium text-slate-600 hover:text-med-blue hover:bg-slate-50 transition flex items-center gap-1.5"
+            >
+              <i class="fas fa-chart-line text-xs"></i> Dashboard
+            </a>
+            <a
+              href="fitur-sistem.html"
+              class="px-3.5 py-2 rounded-lg text-sm font-medium text-slate-600 hover:text-med-blue hover:bg-slate-50 transition flex items-center gap-1.5"
+            >
+              <i class="fas fa-user-plus text-xs"></i> Pendaftaran & Antrean
+            </a>
+            <a
+              href="detail-layanan.html"
+              class="px-3.5 py-2 rounded-lg text-sm font-medium text-slate-600 hover:text-med-blue hover:bg-slate-50 transition flex items-center gap-1.5"
+            >
+              <i class="fas fa-calculator text-xs"></i> Layanan & Tarif
+            </a>
+            <a
+              href="laporan-data.html"
+              class="px-3.5 py-2 rounded-lg text-sm font-medium text-slate-600 hover:text-med-blue hover:bg-slate-50 transition flex items-center gap-1.5"
+            >
+              <i class="fas fa-file-invoice text-xs"></i> Rekapitulasi Laporan
+            </a>
+          </nav>
+
+          <!-- Right Action Button -->
+          <div class="hidden sm:flex items-center gap-3">
+            <a
+              href="fitur-sistem.html"
+              class="inline-flex items-center gap-2 px-5 py-2.5 rounded-lg text-sm font-semibold text-white bg-med-blue hover:bg-blue-700 shadow-md shadow-blue-500/20 transition transform active:scale-95"
+            >
+              <i class="fas fa-calendar-check"></i>
+              <span>Daftar Antrean</span>
+            </a>
+          </div>
+
+          <!-- Mobile Menu Toggle Button -->
+          <button
+            id="mobileMenuBtn"
+            class="lg:hidden p-2 rounded-lg text-slate-600 hover:bg-slate-100 transition focus:outline-none"
+          >
+            <i class="fas fa-bars text-xl"></i>
+          </button>
+        </div>
+      </div>
+
+      <!-- Mobile Dropdown Menu -->
+      <div
+        id="mobileMenu"
+        class="hidden lg:hidden border-t border-slate-100 bg-white px-4 pt-3 pb-5 space-y-1"
+      >
+        <a
+          href="index.html"
+          class="block px-3 py-2.5 rounded-lg text-base font-semibold text-med-blue bg-blue-50"
+        >
+          <i class="fas fa-home w-6"></i> Beranda
+        </a>
+        <a
+          href="dashboard.html"
+          class="block px-3 py-2.5 rounded-lg text-base font-medium text-slate-700 hover:bg-slate-50"
+        >
+          <i class="fas fa-chart-line w-6 text-slate-400"></i> Dashboard Sistem
+        </a>
+        <a
+          href="fitur-sistem.html"
+          class="block px-3 py-2.5 rounded-lg text-base font-medium text-slate-700 hover:bg-slate-50"
+        >
+          <i class="fas fa-user-plus w-6 text-slate-400"></i> Pendaftaran &
+          Antrean
+        </a>
+        <a
+          href="detail-layanan.html"
+          class="block px-3 py-2.5 rounded-lg text-base font-medium text-slate-700 hover:bg-slate-50"
+        >
+          <i class="fas fa-calculator w-6 text-slate-400"></i> Layanan & Tarif
+        </a>
+        <a
+          href="laporan-data.html"
+          class="block px-3 py-2.5 rounded-lg text-base font-medium text-slate-700 hover:bg-slate-50"
+        >
+          <i class="fas fa-file-invoice w-6 text-slate-400"></i> Rekapitulasi
+          Laporan
+        </a>
+        <div class="pt-3">
+          <a
+            href="fitur-sistem.html"
+            class="w-full flex items-center justify-center gap-2 py-3 rounded-lg text-sm font-semibold text-white bg-med-blue"
+          >
+            <i class="fas fa-calendar-check"></i> Ambil Antrean Online
+          </a>
+        </div>
+      </div>
+    </header>
+
+    <!-- 3. STUDENT IDENTITY & NETLIFY LIVE STATUS BANNER (Elemen Wajib Akademik) -->
+    <section
+      class="bg-gradient-to-r from-med-dark via-blue-900 to-med-dark text-white py-3.5 px-4 border-b border-blue-950 shadow-inner"
+    >
+      <div
+        class="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-3 text-xs sm:text-sm"
+      >
+        <!-- Info Mahasiswa -->
+        <div
+          class="flex flex-wrap items-center gap-2.5 text-center md:text-left justify-center md:justify-start"
+        >
+          <span
+            class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-blue-800/80 border border-blue-600/50 text-blue-200 text-xs font-semibold"
+          >
+            <i class="fas fa-user-graduate"></i> Identitas Pengembang
+          </span>
+          <span class="font-medium text-white"
+            >Nama:
+            <strong class="text-med-cyan">Mahasiswa Praktikum</strong></span
+          >
+          <span class="text-blue-400">|</span>
+          <span class="font-medium text-slate-200"
+            >NIM: <strong class="text-white">20240801001</strong></span
+          >
+          <span class="text-blue-400 hidden sm:inline">|</span>
+          <span class="font-medium text-slate-200 hidden sm:inline"
+            >Prodi: <strong class="text-white">Teknik Informatika</strong></span
+          >
+        </div>
+
+        <!-- Indikator Live Netlify -->
+        <div
+          class="flex items-center gap-2 bg-slate-900/60 backdrop-blur-sm px-3.5 py-1.5 rounded-full border border-slate-700"
+        >
+          <span class="relative flex h-2.5 w-2.5">
+            <span
+              class="animate-ping absolute inline-flex h-full w-full rounded-full bg-med-emerald opacity-75"
+            ></span>
+            <span
+              class="relative inline-flex rounded-full h-2.5 w-2.5 bg-med-emerald"
+            ></span>
+          </span>
+          <span class="text-xs font-semibold text-slate-200"
+            >Netlify Deployment:</span
+          >
+          <span
+            class="text-xs font-bold text-med-emerald uppercase tracking-wider"
+            >Live & Operational</span
+          >
+        </div>
+      </div>
+    </section>
+
+    <!-- MAIN CONTENT SHELL (Pondasi Tahap 1 - Siap Dikembangkan di Tahap 3-4) -->
+    <main class="flex-grow">
+      <!-- Hero Section Placeholder / Base Container -->
+      <section
+        class="relative bg-gradient-to-b from-blue-50/60 to-transparent py-16 lg:py-24"
+      >
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+            <div class="lg:col-span-7 space-y-6">
+              <div
+                class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-100 text-med-blue text-xs font-bold tracking-wide uppercase"
+              >
+                <i class="fas fa-shield-virus"></i> Standar Layanan Rumah Sakit
+                Terakreditasi
+              </div>
+              <h1
+                class="font-heading font-black text-3xl sm:text-4xl lg:text-5xl text-med-dark tracking-tight leading-tight"
+              >
+                Sistem Manajemen <br /><span class="text-med-blue"
+                  >Rumah Sakit & Klinik</span
+                >
+                Terpadu
+              </h1>
+              <p
+                class="text-slate-600 text-base sm:text-lg leading-relaxed max-w-2xl"
+              >
+                Selamat datang di <strong>Klinika.id</strong>. Platform
+                manajemen pelayanan kesehatan digital yang memadukan kemudahan
+                pendaftaran pasien, transparansi antrean cerdas, estimasi biaya
+                medis terpadu, dan dashboard operasional eksekutif.
+              </p>
+
+              <div class="flex flex-wrap items-center gap-4 pt-2">
+                <a
+                  href="dashboard.html"
+                  class="px-6 py-3.5 rounded-xl font-semibold text-white bg-med-blue hover:bg-blue-700 shadow-lg shadow-blue-500/25 transition transform active:scale-95 flex items-center gap-2"
+                >
+                  <i class="fas fa-chart-pie"></i> Buka Dashboard Sistem
+                </a>
+                <a
+                  href="fitur-sistem.html"
+                  class="px-6 py-3.5 rounded-xl font-semibold text-med-dark bg-white hover:bg-slate-50 border border-slate-200 shadow-sm transition flex items-center gap-2"
+                >
+                  <i class="fas fa-ticket-alt text-med-blue"></i> Ambil Nomor
+                  Antrean
+                </a>
+              </div>
+
+              <!-- Quick Trust Badges -->
+              <div
+                class="pt-6 grid grid-cols-3 gap-4 border-t border-slate-200/80 text-xs text-slate-500"
+              >
+                <div class="flex items-center gap-2">
+                  <i class="fas fa-user-md text-med-blue text-lg"></i>
+                  <span>45+ Dokter Spesialis</span>
+                </div>
+                <div class="flex items-center gap-2">
+                  <i class="fas fa-bed text-med-blue text-lg"></i>
+                  <span>120 Tempat Tidur</span>
+                </div>
+                <div class="flex items-center gap-2">
+                  <i class="fas fa-ambulance text-med-blue text-lg"></i>
+                  <span>UGD 24 Jam Siaga</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="lg:col-span-5 relative">
+              <div class="relative mx-auto max-w-md">
+                <div
+                  class="absolute -inset-2 bg-gradient-to-r from-med-blue to-med-cyan rounded-3xl blur-xl opacity-25"
+                ></div>
+                <div
+                  class="relative bg-white rounded-3xl overflow-hidden shadow-2xl border border-slate-100"
+                >
+                  <img
+                    src="https://images.unsplash.com/photo-1622253692010-333f2da6031d?auto=format&fit=crop&w=800&q=80"
+                    alt="Dokter Spesialis Klinika.id"
+                    class="w-full h-80 object-cover object-top"
+                  />
+                  <div class="p-6 bg-white space-y-3">
+                    <div class="flex items-center justify-between">
+                      <div>
+                        <h4
+                          class="font-heading font-bold text-med-dark text-lg"
+                        >
+                          dr. Jonathan Barnes, Sp.PD
+                        </h4>
+                        <p class="text-xs text-med-blue font-medium">
+                          Chief Medical Officer
+                        </p>
+                      </div>
+                      <span
+                        class="px-2.5 py-1 rounded-full bg-emerald-50 text-med-emerald text-xs font-bold flex items-center gap-1"
+                      >
+                        <span
+                          class="w-2 h-2 rounded-full bg-med-emerald"
+                        ></span>
+                        Praktik Hari Ini
+                      </span>
+                    </div>
+                    <p class="text-xs text-slate-500 leading-relaxed">
+                      "Klinika.id mengintegrasikan pelayanan rawat jalan, rawat
+                      inap, dan sistem antrean cerdas untuk efisiensi medis
+                      maksimal."
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 4 Quick Access Info Boxes (MedService Reference) -->
+      <section
+        class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 -mt-6 relative z-20"
+      >
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+          <!-- Box 1 -->
+          <div
+            class="bg-med-dark text-white rounded-2xl p-6 shadow-xl space-y-3 border-t-4 border-med-cyan"
+          >
+            <div
+              class="w-10 h-10 rounded-lg bg-white/10 flex items-center justify-center text-med-cyan text-lg"
+            >
+              <i class="fas fa-clock"></i>
+            </div>
+            <h3 class="font-heading font-bold text-lg">Jam Operasional</h3>
+            <p class="text-xs text-slate-300">
+              Senin - Jumat: 08:00 - 20:00 WIB<br />Sabtu: 08:00 - 16:00 WIB<br />UGD
+              & Rawat Inap: 24 Jam Siaga
+            </p>
+            <div class="pt-2 text-xs font-semibold text-med-cyan">
+              Pelayanan Setiap Hari &rarr;
+            </div>
+          </div>
+
+          <!-- Box 2 -->
+          <div
+            class="bg-white rounded-2xl p-6 shadow-lg shadow-slate-200/60 space-y-3 border-t-4 border-med-blue"
+          >
+            <div
+              class="w-10 h-10 rounded-lg bg-blue-50 flex items-center justify-center text-med-blue text-lg"
+            >
+              <i class="fas fa-calendar-alt"></i>
+            </div>
+            <h3 class="font-heading font-bold text-lg text-med-dark">
+              Jadwal Dokter
+            </h3>
+            <p class="text-xs text-slate-500">
+              Cek ketersediaan dan jadwal praktik dokter spesialis terpadu
+              secara realtime.
+            </p>
+            <a
+              href="detail-layanan.html"
+              class="inline-block pt-2 text-xs font-bold text-med-blue hover:underline"
+              >Lihat Jadwal Lengkap &rarr;</a
+            >
+          </div>
+
+          <!-- Box 3 -->
+          <div
+            class="bg-white rounded-2xl p-6 shadow-lg shadow-slate-200/60 space-y-3 border-t-4 border-med-emerald"
+          >
+            <div
+              class="w-10 h-10 rounded-lg bg-emerald-50 flex items-center justify-center text-med-emerald text-lg"
+            >
+              <i class="fas fa-ticket-alt"></i>
+            </div>
+            <h3 class="font-heading font-bold text-lg text-med-dark">
+              Pendaftaran Online
+            </h3>
+            <p class="text-xs text-slate-500">
+              Ambil nomor antrean poliklinik dari rumah tanpa perlu menunggu
+              lama di rumah sakit.
+            </p>
+            <a
+              href="fitur-sistem.html"
+              class="inline-block pt-2 text-xs font-bold text-med-emerald hover:underline"
+              >Ambil Nomor Antrean &rarr;</a
+            >
+          </div>
+
+          <!-- Box 4 -->
+          <div
+            class="bg-gradient-to-br from-red-600 to-rose-700 text-white rounded-2xl p-6 shadow-xl space-y-3"
+          >
+            <div
+              class="w-10 h-10 rounded-lg bg-white/20 flex items-center justify-center text-white text-lg"
+            >
+              <i class="fas fa-ambulance"></i>
+            </div>
+            <h3 class="font-heading font-bold text-lg">Kasus Darurat (UGD)</h3>
+            <p class="text-xs text-rose-100">
+              Layanan ambulans dan tindakan darurat 24 jam dengan respon cepat
+              medis.
+            </p>
+            <a
+              href="tel:0218005546"
+              class="inline-flex items-center gap-1.5 pt-2 text-xs font-extrabold text-white hover:underline"
+            >
+              <i class="fas fa-phone-alt"></i> (021) 800-123-4560
+            </a>
+          </div>
+        </div>
+      </section>
+
+      <!-- Hub Navigasi 5 Modul Sistem (Portal Navigation Hub) -->
+      <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
+        <div class="text-center max-w-3xl mx-auto mb-14">
+          <span
+            class="text-xs font-bold uppercase tracking-wider text-med-blue bg-blue-50 px-3 py-1 rounded-full"
+            >Arsitektur Terintegrasi</span
+          >
+          <h2
+            class="font-heading font-black text-3xl text-med-dark mt-2 tracking-tight"
+          >
+            Portal Hub Modul Aplikasi Klinika.id
+          </h2>
+          <p class="text-slate-500 text-sm mt-2">
+            Akses langsung ke seluruh modul sistem informasi manajemen rumah
+            sakit dan klinik melalui pintasan berikut:
+          </p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+          <!-- Hub Card 1 -->
+          <a
+            href="dashboard.html"
+            class="group bg-white rounded-2xl p-6 border border-slate-200 hover:border-med-blue hover:shadow-xl transition flex flex-col justify-between"
+          >
+            <div class="space-y-3">
+              <div
+                class="w-12 h-12 rounded-xl bg-blue-50 group-hover:bg-med-blue group-hover:text-white text-med-blue flex items-center justify-center text-xl transition"
+              >
+                <i class="fas fa-chart-line"></i>
+              </div>
+              <span
+                class="text-[11px] font-bold uppercase tracking-wider text-slate-400"
+                >Modul 2</span
+              >
+              <h3
+                class="font-heading font-bold text-lg text-med-dark group-hover:text-med-blue transition"
+              >
+                Dashboard Utama
+              </h3>
+              <p class="text-xs text-slate-500 leading-relaxed">
+                Tampilan antarmuka eksekutif memantau metrik kunjungan, BOR
+                tempat tidur, dan antrean live.
+              </p>
+            </div>
+            <div
+              class="mt-6 pt-4 border-t border-slate-100 flex items-center justify-between text-xs font-semibold text-med-blue"
+            >
+              <span>Buka Dashboard</span>
+              <i
+                class="fas fa-arrow-right transform group-hover:translate-x-1 transition"
+              ></i>
+            </div>
+          </a>
+
+          <!-- Hub Card 2 -->
+          <a
+            href="fitur-sistem.html"
+            class="group bg-white rounded-2xl p-6 border border-slate-200 hover:border-med-blue hover:shadow-xl transition flex flex-col justify-between"
+          >
+            <div class="space-y-3">
+              <div
+                class="w-12 h-12 rounded-xl bg-emerald-50 group-hover:bg-med-emerald group-hover:text-white text-med-emerald flex items-center justify-center text-xl transition"
+              >
+                <i class="fas fa-users-cog"></i>
+              </div>
+              <span
+                class="text-[11px] font-bold uppercase tracking-wider text-slate-400"
+                >Modul 3 (Interaktif)</span
+              >
+              <h3
+                class="font-heading font-bold text-lg text-med-dark group-hover:text-med-blue transition"
+              >
+                Pendaftaran & Antrean
+              </h3>
+              <p class="text-xs text-slate-500 leading-relaxed">
+                Simulasi pendaftaran pasien baru, cetak tiket antrean, dan
+                konsol pemanggil antrean bersuara.
+              </p>
+            </div>
+            <div
+              class="mt-6 pt-4 border-t border-slate-100 flex items-center justify-between text-xs font-semibold text-med-emerald"
+            >
+              <span>Buka Modul Antrean</span>
+              <i
+                class="fas fa-arrow-right transform group-hover:translate-x-1 transition"
+              ></i>
+            </div>
+          </a>
+
+          <!-- Hub Card 3 -->
+          <a
+            href="detail-layanan.html"
+            class="group bg-white rounded-2xl p-6 border border-slate-200 hover:border-med-blue hover:shadow-xl transition flex flex-col justify-between"
+          >
+            <div class="space-y-3">
+              <div
+                class="w-12 h-12 rounded-xl bg-cyan-50 group-hover:bg-med-cyan group-hover:text-white text-med-cyan flex items-center justify-center text-xl transition"
+              >
+                <i class="fas fa-calculator"></i>
+              </div>
+              <span
+                class="text-[11px] font-bold uppercase tracking-wider text-slate-400"
+                >Modul 4 (Katalog)</span
+              >
+              <h3
+                class="font-heading font-bold text-lg text-med-dark group-hover:text-med-blue transition"
+              >
+                Layanan & Kalkulator
+              </h3>
+              <p class="text-xs text-slate-500 leading-relaxed">
+                Katalog poliklinik, direktori jadwal dokter, dan kalkulator
+                estimasi biaya medis interaktif.
+              </p>
+            </div>
+            <div
+              class="mt-6 pt-4 border-t border-slate-100 flex items-center justify-between text-xs font-semibold text-med-cyan"
+            >
+              <span>Hitung Biaya Medis</span>
+              <i
+                class="fas fa-arrow-right transform group-hover:translate-x-1 transition"
+              ></i>
+            </div>
+          </a>
+
+          <!-- Hub Card 4 -->
+          <a
+            href="laporan-data.html"
+            class="group bg-white rounded-2xl p-6 border border-slate-200 hover:border-med-blue hover:shadow-xl transition flex flex-col justify-between"
+          >
+            <div class="space-y-3">
+              <div
+                class="w-12 h-12 rounded-xl bg-amber-50 group-hover:bg-med-amber group-hover:text-white text-med-amber flex items-center justify-center text-xl transition"
+              >
+                <i class="fas fa-file-invoice-dollar"></i>
+              </div>
+              <span
+                class="text-[11px] font-bold uppercase tracking-wider text-slate-400"
+                >Modul 5 (Rekapitulasi)</span
+              >
+              <h3
+                class="font-heading font-bold text-lg text-med-dark group-hover:text-med-blue transition"
+              >
+                Laporan & Rekapitulasi
+              </h3>
+              <p class="text-xs text-slate-500 leading-relaxed">
+                Tabel rekapitulasi data pasien, riwayat transaksi billing,
+                invoice kuitansi, dan ekspor CSV.
+              </p>
+            </div>
+            <div
+              class="mt-6 pt-4 border-t border-slate-100 flex items-center justify-between text-xs font-semibold text-med-amber"
+            >
+              <span>Buka Laporan Transaksi</span>
+              <i
+                class="fas fa-arrow-right transform group-hover:translate-x-1 transition"
+              ></i>
+            </div>
+          </a>
+        </div>
+      </section>
+    </main>
+
+    <!-- 4. MASTER HOSPITAL FOOTER (MedService Standard) -->
+    <footer
+      class="bg-slate-900 text-slate-300 pt-16 pb-8 border-t border-slate-800"
+    >
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div
+          class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10 pb-12 border-b border-slate-800"
+        >
+          <!-- Col 1: Brand & About -->
+          <div class="space-y-4">
+            <div class="flex items-center gap-3">
+              <div
+                class="w-10 h-10 rounded-xl bg-med-blue flex items-center justify-center text-white text-xl"
+              >
+                <i class="fas fa-hospital-alt"></i>
+              </div>
+              <div>
+                <span class="font-heading font-black text-2xl text-white"
+                  >Klinika</span
+                >
+                <span class="font-heading font-black text-2xl text-med-cyan"
+                  >.id</span
+                >
+              </div>
+            </div>
+            <p class="text-xs text-slate-400 leading-relaxed">
+              Sistem Informasi Manajemen Rumah Sakit & Klinik Terpadu.
+              Menghadirkan pelayanan medis berstandar tinggi dengan teknologi
+              manajemen digital mutakhir.
+            </p>
+            <div class="flex items-center gap-2 pt-2">
+              <a
+                href="#"
+                class="w-8 h-8 rounded-lg bg-slate-800 flex items-center justify-center hover:bg-med-blue transition text-slate-400 hover:text-white"
+                ><i class="fab fa-facebook-f text-xs"></i
+              ></a>
+              <a
+                href="#"
+                class="w-8 h-8 rounded-lg bg-slate-800 flex items-center justify-center hover:bg-med-blue transition text-slate-400 hover:text-white"
+                ><i class="fab fa-twitter text-xs"></i
+              ></a>
+              <a
+                href="#"
+                class="w-8 h-8 rounded-lg bg-slate-800 flex items-center justify-center hover:bg-med-blue transition text-slate-400 hover:text-white"
+                ><i class="fab fa-instagram text-xs"></i
+              ></a>
+              <a
+                href="#"
+                class="w-8 h-8 rounded-lg bg-slate-800 flex items-center justify-center hover:bg-med-blue transition text-slate-400 hover:text-white"
+                ><i class="fab fa-linkedin-in text-xs"></i
+              ></a>
+            </div>
+          </div>
+
+          <!-- Col 2: Quick Links -->
+          <div class="space-y-4">
+            <h4 class="font-heading font-bold text-white text-base">
+              Navigasi Modul
+            </h4>
+            <ul class="space-y-2 text-xs text-slate-400">
+              <li>
+                <a
+                  href="index.html"
+                  class="hover:text-med-cyan transition flex items-center gap-2"
+                  ><i
+                    class="fas fa-chevron-right text-[10px] text-med-blue"
+                  ></i>
+                  Beranda & Portal Hub</a
+                >
+              </li>
+              <li>
+                <a
+                  href="dashboard.html"
+                  class="hover:text-med-cyan transition flex items-center gap-2"
+                  ><i
+                    class="fas fa-chevron-right text-[10px] text-med-blue"
+                  ></i>
+                  Dashboard Eksekutif</a
+                >
+              </li>
+              <li>
+                <a
+                  href="fitur-sistem.html"
+                  class="hover:text-med-cyan transition flex items-center gap-2"
+                  ><i
+                    class="fas fa-chevron-right text-[10px] text-med-blue"
+                  ></i>
+                  Pendaftaran & Antrean</a
+                >
+              </li>
+              <li>
+                <a
+                  href="detail-layanan.html"
+                  class="hover:text-med-cyan transition flex items-center gap-2"
+                  ><i
+                    class="fas fa-chevron-right text-[10px] text-med-blue"
+                  ></i>
+                  Layanan & Kalkulator Biaya</a
+                >
+              </li>
+              <li>
+                <a
+                  href="laporan-data.html"
+                  class="hover:text-med-cyan transition flex items-center gap-2"
+                  ><i
+                    class="fas fa-chevron-right text-[10px] text-med-blue"
+                  ></i>
+                  Rekapitulasi Laporan Transaksi</a
+                >
+              </li>
+            </ul>
+          </div>
+
+          <!-- Col 3: Operating Hours -->
+          <div class="space-y-4">
+            <h4 class="font-heading font-bold text-white text-base">
+              Jam Pelayanan
+            </h4>
+            <ul class="space-y-2 text-xs text-slate-400">
+              <li class="flex justify-between pb-1.5 border-b border-slate-800">
+                <span>Instalasi Gawat Darurat (UGD):</span>
+                <strong class="text-med-emerald">24 Jam Siaga</strong>
+              </li>
+              <li class="flex justify-between pb-1.5 border-b border-slate-800">
+                <span>Poliklinik Spesialis:</span>
+                <span class="text-white">08:00 - 20:00 WIB</span>
+              </li>
+              <li class="flex justify-between pb-1.5 border-b border-slate-800">
+                <span>Farmasi & Laboratorium:</span>
+                <span class="text-white">24 Jam Setiap Hari</span>
+              </li>
+              <li class="flex justify-between">
+                <span>Pelayanan Rawat Inap:</span>
+                <strong class="text-med-cyan">24 Jam</strong>
+              </li>
+            </ul>
+          </div>
+
+          <!-- Col 4: Emergency Contacts -->
+          <div class="space-y-4">
+            <h4 class="font-heading font-bold text-white text-base">
+              Kontak Rumah Sakit
+            </h4>
+            <div
+              class="p-4 rounded-xl bg-slate-800/80 border border-slate-700/80 space-y-2 text-xs"
+            >
+              <p class="text-slate-400">Panggilan Ambulans & Kasus Kritis:</p>
+              <p
+                class="text-lg font-black text-med-rose flex items-center gap-2"
+              >
+                <i class="fas fa-phone-alt"></i> (021) 800-5546
+              </p>
+              <p class="text-slate-400 pt-1">
+                Email:
+                <a
+                  href="mailto:info@klinika.id"
+                  class="text-med-cyan hover:underline"
+                  >layanan@klinika.id</a
+                >
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Bottom Copyright -->
+        <div
+          class="pt-8 flex flex-col sm:flex-row items-center justify-between text-xs text-slate-500 gap-3"
+        >
+          <p>
+            &copy; 2026 <strong>Klinika.id</strong> — Hospital & Clinic
+            Management System. All Rights Reserved.
+          </p>
+          <p class="flex items-center gap-2">
+            <span>Keamanan:</span>
+            <span
+              class="px-2 py-0.5 rounded bg-slate-800 text-slate-400 text-[11px] font-mono"
+              >robots: noindex, nofollow</span
+            >
+          </p>
+        </div>
+      </div>
+    </footer>
+
+    <!-- Mobile Menu Script -->
+    <script>
+      const mobileMenuBtn = document.getElementById("mobileMenuBtn");
+      const mobileMenu = document.getElementById("mobileMenu");
+      if (mobileMenuBtn && mobileMenu) {
+        mobileMenuBtn.addEventListener("click", () => {
+          mobileMenu.classList.toggle("hidden");
+        });
+      }
+    </script>
+  </body>
+</html>

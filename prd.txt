@@ -1,0 +1,40 @@
+Hospital & Clinic Management System
+Fitur: Dashboard Layanan, Pendaftaran Pasien, Jadwal Dokter, Kalkulator Biaya, Antrean.
+
+index.html (Bobot: 4%) — Landing Page & Portal Hub Utama
+Fungsi: Halaman muka utama yang menjadi pusat navigasi ke seluruh modul.
+
+Konten Wajib: Identitas Mahasiswa (Nama, NIM, Prodi), Judul Projek & Tema yang dipilih, Indikator Status Deployment Cloud Netlify (Live Status), serta Navigasi Menu (Hyperlink) menuju 4 file HTML lainnya.
+
+2. dashboard.html — Tampilan Utama Sistem Berbasis Tema
+Fungsi: Tampilan antarmuka (dashboard)
+
+
+3. fitur-sistem.html (Bobot: 4%) — Modul Fitur Interaktif
+Fungsi: Halaman simulasi fitur kerja utama dari tema aplikasi.
+
+
+4. detail-layanan.html (Bobot: 4%) — Modul Fitur Pendukung / Katalog
+Fungsi: Halaman rincian layanan, katalog produk, atau modul materi tambahan.
+
+
+5. laporan-data.html (Bobot: 4%) — Modul Rekapitulasi & Riwayat Transaksi
+Fungsi: Halaman rekapitulasi data, laporan transaksi, atau riwayat antrean.
+
+ menggunakan CDN untuk CSS/Icon/Chart (contoh: <script src="[https://cdn.tailwindcss.com](https://cdn.tailwindcss.com)"></script>).
+
+Gunakan URL gambar dari Cloud Hosting / CDN (seperti Unsplash, Imgur, atau link public)
+
+
+
+Buat PRD untuk membuat Website Hospital & Clinic Management System dengan nama dan identitas website Klinika.id yang memiliki fitur Dashboard Layanan, Pendaftaran Pasien, Jadwal Dokter, Kalkulator Biaya, Antrean. dengan 5 file html yang mencakup semua fitur tersebut yang terbagi menjadi index.html, dashboard.html, fitur-sistem.html, detail-layanan.html, laporan-data.html dengan fungsi:
+1. index.html - Landing Page & Portal Hub Utama
+2. dashboard.html — Tampilan Utama Sistem Berbasis Tema, Fungsi: Tampilan antarmuka (dashboard)
+3. fitur-sistem.html - Modul Fitur Interaktif, Fungsi: Halaman simulasi fitur kerja utama dari tema aplikasi.
+4. detail-layanan.html - Modul Fitur Pendukung 
+5. laporan-data.html - Modul Rekapitulasi & Riwayat Transaksi, Fungsi: Halaman rekapitulasi data, laporan transaksi, atau riwayat antrean.
+
+website klinika.id dibuat menggunakan tailwind.css tetapi melalui metode sumber data CDN, begitupun juga Icon, Chart. Gunakan URL gambar dari Cloud Hosting / CDN (seperti Unsplash, Imgur, atau link public) dan juga menggunakan TAG WAJIB KEAMANAN SEO <meta name="robots" content="noindex, nofollow">. lalu bagi tahap development website klinika.id menjadi 10 tahapan development atau perintah untuk build dan buat dalam file markdown.
+
+gunakan contoh desain ataupun pemilihan warna pada file yang saya tautkan.
+

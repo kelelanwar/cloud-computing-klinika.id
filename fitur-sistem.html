@@ -1,0 +1,502 @@
+<!doctype html>
+<html lang="id" class="scroll-smooth">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <!-- TAG WAJIB KEAMANAN & SEO -->
+    <meta name="robots" content="noindex, nofollow" />
+    <title>Klinika.id - Modul Pendaftaran & Antrean Cerdas</title>
+    <link
+      rel="shortcut icon"
+      href="https://img.icons8.com/color/48/hospital-2.png"
+      type="image/x-icon"
+    />
+
+    <!-- GOOGLE FONTS (Roboto & Lato) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700;900&family=Roboto:wght@300;400;500;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- FONTAWESOME 6 CDN -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+
+    <!-- TAILWIND CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              "med-blue": "#1b68b3",
+              "med-dark": "#23356e",
+              "med-light": "#f8fafc",
+              "med-cyan": "#0ea5e9",
+              "med-border": "#e2e8f0",
+              "med-emerald": "#10b981",
+              "med-amber": "#f59e0b",
+              "med-rose": "#ef4444",
+            },
+            fontFamily: {
+              sans: ["Roboto", "sans-serif"],
+              heading: ["Lato", "sans-serif"],
+            },
+          },
+        },
+      };
+    </script>
+  </head>
+  <body
+    class="bg-slate-50 font-sans text-slate-700 antialiased flex flex-col min-h-screen"
+  >
+    <!-- TOP HEADER STRIP -->
+    <div
+      class="bg-med-dark text-slate-200 text-xs py-2 px-4 border-b border-slate-700"
+    >
+      <div
+        class="max-w-7xl mx-auto flex flex-wrap justify-between items-center gap-2"
+      >
+        <div class="flex items-center gap-3">
+          <span class="inline-flex items-center gap-1.5 font-medium">
+            <i class="fas fa-ticket-alt text-med-cyan"></i>
+            <strong>Loket Pendaftaran & Antrean Poliklinik Cerdas</strong> —
+            Klinika.id
+          </span>
+        </div>
+        <div class="flex items-center gap-4 text-slate-300">
+          <span class="flex items-center gap-1.5">
+            <i class="fas fa-volume-up text-med-emerald"></i>
+            Voice Synthesizer: <strong class="text-white">Siap</strong>
+          </span>
+          <span class="hidden sm:inline border-l border-slate-600 pl-3">
+            Hotline: <strong class="text-med-cyan">(021) 800-KLINIK</strong>
+          </span>
+        </div>
+      </div>
+    </div>
+
+    <!-- MAIN NAVIGATION BAR -->
+    <header
+      class="bg-white sticky top-0 z-50 shadow-sm border-b border-slate-100"
+    >
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex justify-between items-center h-20">
+          <!-- Brand Logo -->
+          <a href="index.html" class="flex items-center gap-3">
+            <div
+              class="w-12 h-12 rounded-xl bg-gradient-to-br from-med-blue to-med-dark flex items-center justify-center shadow-md shadow-blue-500/20 text-white text-2xl"
+            >
+              <i class="fas fa-hospital-alt"></i>
+            </div>
+            <div>
+              <div class="flex items-center gap-1">
+                <span
+                  class="font-heading font-black text-2xl tracking-tight text-med-dark"
+                  >Klinika</span
+                >
+                <span class="font-heading font-black text-2xl text-med-blue"
+                  >.id</span
+                >
+              </div>
+              <p
+                class="text-[10px] uppercase font-bold tracking-wider text-slate-400"
+              >
+                Hospital & Clinic System
+              </p>
+            </div>
+          </a>
+
+          <!-- Desktop Navigation Links -->
+          <nav class="hidden lg:flex items-center gap-1">
+            <a
+              href="index.html"
+              class="px-3.5 py-2 rounded-lg text-sm font-medium text-slate-600 hover:text-med-blue hover:bg-slate-50 transition flex items-center gap-1.5"
+            >
+              <i class="fas fa-home text-xs"></i> Beranda
+            </a>
+            <a
+              href="dashboard.html"
+              class="px-3.5 py-2 rounded-lg text-sm font-medium text-slate-600 hover:text-med-blue hover:bg-slate-50 transition flex items-center gap-1.5"
+            >
+              <i class="fas fa-chart-line text-xs"></i> Dashboard
+            </a>
+            <a
+              href="fitur-sistem.html"
+              class="px-3.5 py-2 rounded-lg text-sm font-semibold text-med-blue bg-blue-50/80 transition flex items-center gap-1.5"
+            >
+              <i class="fas fa-user-plus text-xs"></i> Pendaftaran & Antrean
+            </a>
+            <a
+              href="detail-layanan.html"
+              class="px-3.5 py-2 rounded-lg text-sm font-medium text-slate-600 hover:text-med-blue hover:bg-slate-50 transition flex items-center gap-1.5"
+            >
+              <i class="fas fa-calculator text-xs"></i> Layanan & Tarif
+            </a>
+            <a
+              href="laporan-data.html"
+              class="px-3.5 py-2 rounded-lg text-sm font-medium text-slate-600 hover:text-med-blue hover:bg-slate-50 transition flex items-center gap-1.5"
+            >
+              <i class="fas fa-file-invoice text-xs"></i> Rekapitulasi Laporan
+            </a>
+          </nav>
+
+          <!-- Right Quick Badge -->
+          <div class="hidden sm:flex items-center gap-2">
+            <span
+              class="px-3 py-1.5 rounded-full bg-emerald-50 text-med-emerald border border-emerald-200 text-xs font-bold flex items-center gap-1.5"
+            >
+              <span
+                class="w-2 h-2 rounded-full bg-med-emerald animate-pulse"
+              ></span>
+              Loket Online Aktif
+            </span>
+          </div>
+
+          <!-- Mobile Menu Toggle Button -->
+          <button
+            id="mobileMenuBtn"
+            class="lg:hidden p-2 rounded-lg text-slate-600 hover:bg-slate-100 transition focus:outline-none"
+          >
+            <i class="fas fa-bars text-xl"></i>
+          </button>
+        </div>
+      </div>
+
+      <!-- Mobile Dropdown Menu -->
+      <div
+        id="mobileMenu"
+        class="hidden lg:hidden border-t border-slate-100 bg-white px-4 pt-3 pb-5 space-y-1"
+      >
+        <a
+          href="index.html"
+          class="block px-3 py-2.5 rounded-lg text-base font-medium text-slate-700 hover:bg-slate-50"
+        >
+          <i class="fas fa-home w-6 text-slate-400"></i> Beranda
+        </a>
+        <a
+          href="dashboard.html"
+          class="block px-3 py-2.5 rounded-lg text-base font-medium text-slate-700 hover:bg-slate-50"
+        >
+          <i class="fas fa-chart-line w-6 text-slate-400"></i> Dashboard Sistem
+        </a>
+        <a
+          href="fitur-sistem.html"
+          class="block px-3 py-2.5 rounded-lg text-base font-semibold text-med-blue bg-blue-50"
+        >
+          <i class="fas fa-user-plus w-6"></i> Pendaftaran & Antrean
+        </a>
+        <a
+          href="detail-layanan.html"
+          class="block px-3 py-2.5 rounded-lg text-base font-medium text-slate-700 hover:bg-slate-50"
+        >
+          <i class="fas fa-calculator w-6 text-slate-400"></i> Layanan & Tarif
+        </a>
+        <a
+          href="laporan-data.html"
+          class="block px-3 py-2.5 rounded-lg text-base font-medium text-slate-700 hover:bg-slate-50"
+        >
+          <i class="fas fa-file-invoice w-6 text-slate-400"></i> Rekapitulasi
+          Laporan
+        </a>
+      </div>
+    </header>
+
+    <!-- SECTION HEADER & BREADCRUMBS -->
+    <section class="bg-white border-b border-slate-200 py-6">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div
+          class="flex flex-col md:flex-row md:items-center justify-between gap-4"
+        >
+          <div>
+            <div
+              class="flex items-center gap-2 text-xs font-semibold text-med-blue mb-1"
+            >
+              <a href="index.html" class="hover:underline">Beranda</a>
+              <span>/</span>
+              <span class="text-slate-400">Modul Fitur Interaktif</span>
+            </div>
+            <h1
+              class="font-heading font-black text-2xl sm:text-3xl text-med-dark tracking-tight"
+            >
+              Pendaftaran Pasien & Simulasi Antrean Cerdas
+            </h1>
+            <p class="text-xs sm:text-sm text-slate-500 mt-1">
+              Formulir pendaftaran pasien baru, penerbitan tiket antrean
+              otomatis, dan konsol pemanggil antrean bersuara interaktif.
+            </p>
+          </div>
+
+          <div
+            class="flex items-center gap-2 text-xs text-slate-500 bg-slate-50 px-3 py-2 rounded-xl border border-slate-200"
+          >
+            <i class="fas fa-info-circle text-med-blue"></i>
+            <span
+              >Data tersimpan otomatis di
+              <strong>localStorage</strong> browser</span
+            >
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- MAIN REGISTRATION & QUEUE SHELL (Pondasi Tahap 1 - Siap Dikembangkan di Tahap 7-8) -->
+    <main
+      class="flex-grow max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-8"
+    >
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-8">
+        <!-- KOLOM KIRI: FORM PENDAFTARAN PASIEN BARU (Placeholder Tahap 7) -->
+        <div
+          class="lg:col-span-6 bg-white rounded-2xl p-6 shadow-sm border border-slate-200 space-y-6"
+        >
+          <div
+            class="flex items-center justify-between border-b border-slate-100 pb-4"
+          >
+            <div class="flex items-center gap-3">
+              <div
+                class="w-10 h-10 rounded-xl bg-blue-50 text-med-blue flex items-center justify-center text-lg"
+              >
+                <i class="fas fa-id-card"></i>
+              </div>
+              <div>
+                <h2 class="font-heading font-bold text-lg text-med-dark">
+                  Formulir Registrasi Pasien
+                </h2>
+                <p class="text-xs text-slate-400">
+                  Lengkapi data diri pasien untuk mengambil tiket antrean
+                </p>
+              </div>
+            </div>
+            <span
+              class="px-2.5 py-1 rounded-full bg-blue-50 text-med-blue text-xs font-bold"
+              >Auto No. RM</span
+            >
+          </div>
+
+          <!-- Form Fields Placeholder -->
+          <div class="space-y-4 text-xs">
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              <div>
+                <label class="block font-semibold text-slate-700 mb-1"
+                  >Nomor Rekam Medis (No. RM)</label
+                >
+                <input
+                  type="text"
+                  value="RM-2026-0158"
+                  readonly
+                  class="w-full px-3.5 py-2.5 rounded-xl bg-slate-100 border border-slate-200 font-mono text-slate-600 font-bold focus:outline-none"
+                />
+              </div>
+              <div>
+                <label class="block font-semibold text-slate-700 mb-1"
+                  >Nomor Induk Kependudukan (NIK)</label
+                >
+                <input
+                  type="text"
+                  placeholder="16 digit NIK KTP..."
+                  class="w-full px-3.5 py-2.5 rounded-xl border border-slate-200 focus:ring-2 focus:ring-med-blue focus:outline-none"
+                />
+              </div>
+            </div>
+
+            <div>
+              <label class="block font-semibold text-slate-700 mb-1"
+                >Nama Lengkap Pasien *</label
+              >
+              <input
+                type="text"
+                placeholder="Masukkan nama lengkap sesuai identitas..."
+                class="w-full px-3.5 py-2.5 rounded-xl border border-slate-200 focus:ring-2 focus:ring-med-blue focus:outline-none"
+              />
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              <div>
+                <label class="block font-semibold text-slate-700 mb-1"
+                  >Poliklinik Tujuan *</label
+                >
+                <select
+                  class="w-full px-3.5 py-2.5 rounded-xl border border-slate-200 focus:ring-2 focus:ring-med-blue focus:outline-none"
+                >
+                  <option value="">-- Pilih Poliklinik --</option>
+                  <option value="POLI-UMUM">Poli Umum</option>
+                  <option value="POLI-ANAK">Poli Anak (Pediatri)</option>
+                  <option value="POLI-GIGI">Poli Gigi & Mulut</option>
+                  <option value="POLI-JANTUNG">
+                    Poli Jantung & Pembuluh Darah
+                  </option>
+                  <option value="POLI-DALAM">Poli Penyakit Dalam</option>
+                </select>
+              </div>
+              <div>
+                <label class="block font-semibold text-slate-700 mb-1"
+                  >Metode Penjaminan *</label
+                >
+                <select
+                  class="w-full px-3.5 py-2.5 rounded-xl border border-slate-200 focus:ring-2 focus:ring-med-blue focus:outline-none"
+                >
+                  <option value="UMUM">Umum / Pembayaran Mandiri</option>
+                  <option value="BPJS">BPJS Kesehatan</option>
+                  <option value="ASURANSI">Asuransi Swasta</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="pt-3">
+              <button
+                type="button"
+                class="w-full py-3.5 rounded-xl font-bold text-white bg-med-blue hover:bg-blue-700 shadow-md shadow-blue-500/20 transition flex items-center justify-center gap-2"
+              >
+                <i class="fas fa-ticket-alt"></i> Daftarkan & Cetak Tiket
+                Antrean
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- KOLOM KANAN: MONITOR ANTREAN & KONSOL PEMANGGIL (Placeholder Tahap 8) -->
+        <div class="lg:col-span-6 space-y-6">
+          <!-- Display Antrean Monitor -->
+          <div
+            class="bg-gradient-to-br from-med-dark via-blue-900 to-med-dark text-white rounded-2xl p-6 shadow-xl space-y-4"
+          >
+            <div
+              class="flex items-center justify-between border-b border-blue-800/80 pb-3"
+            >
+              <span
+                class="text-xs uppercase font-bold tracking-wider text-med-cyan flex items-center gap-1.5"
+              >
+                <span
+                  class="w-2 h-2 rounded-full bg-med-emerald animate-ping"
+                ></span>
+                Layar Ruang Tunggu (Live Call)
+              </span>
+              <span class="text-xs text-slate-300">Poli Umum - Ruang 101</span>
+            </div>
+
+            <div class="text-center py-4">
+              <p class="text-xs text-blue-200 uppercase font-semibold">
+                Nomor Antrean Sedang Dilayani
+              </p>
+              <h3
+                class="font-heading font-black text-6xl text-white tracking-wider my-2"
+              >
+                A-012
+              </h3>
+              <p class="text-sm font-semibold text-med-cyan">
+                Budi Santoso &bull; dr. Sarah Wijaya
+              </p>
+            </div>
+
+            <!-- Next Queue Waiting List -->
+            <div
+              class="bg-black/30 rounded-xl p-3 flex items-center justify-around text-xs"
+            >
+              <div class="text-center">
+                <span class="text-slate-400 block text-[10px]"
+                  >Berikutnya:</span
+                >
+                <strong class="text-white text-sm">A-013</strong>
+              </div>
+              <div class="text-center">
+                <span class="text-slate-400 block text-[10px]"
+                  >Berikutnya:</span
+                >
+                <strong class="text-white text-sm">A-014</strong>
+              </div>
+              <div class="text-center">
+                <span class="text-slate-400 block text-[10px]"
+                  >Total Menunggu:</span
+                >
+                <strong class="text-med-amber text-sm">6 Pasien</strong>
+              </div>
+            </div>
+          </div>
+
+          <!-- Konsol Kontrol Petugas (Staff Caller Console) -->
+          <div
+            class="bg-white rounded-2xl p-6 shadow-sm border border-slate-200 space-y-4"
+          >
+            <div
+              class="flex items-center justify-between border-b border-slate-100 pb-3"
+            >
+              <h3 class="font-heading font-bold text-med-dark text-base">
+                Konsol Kontrol Petugas Loket
+              </h3>
+              <span
+                class="text-xs px-2.5 py-0.5 rounded-full bg-slate-100 font-semibold text-slate-600"
+                >Web Speech API</span
+              >
+            </div>
+
+            <div class="grid grid-cols-2 sm:grid-cols-4 gap-2.5">
+              <button
+                class="p-3 rounded-xl bg-med-blue text-white font-bold text-xs hover:bg-blue-700 transition flex flex-col items-center gap-1.5 shadow-sm"
+              >
+                <i class="fas fa-bullhorn text-sm"></i>
+                <span>Panggil Berikutnya</span>
+              </button>
+              <button
+                class="p-3 rounded-xl bg-slate-100 text-slate-700 font-bold text-xs hover:bg-slate-200 transition flex flex-col items-center gap-1.5"
+              >
+                <i class="fas fa-redo text-sm text-med-blue"></i>
+                <span>Panggil Ulang</span>
+              </button>
+              <button
+                class="p-3 rounded-xl bg-emerald-50 text-med-emerald font-bold text-xs hover:bg-emerald-100 transition flex flex-col items-center gap-1.5 border border-emerald-200"
+              >
+                <i class="fas fa-check-circle text-sm"></i>
+                <span>Mulai Dilayani</span>
+              </button>
+              <button
+                class="p-3 rounded-xl bg-rose-50 text-med-rose font-bold text-xs hover:bg-rose-100 transition flex flex-col items-center gap-1.5 border border-rose-200"
+              >
+                <i class="fas fa-times-circle text-sm"></i>
+                <span>Lewati Pasien</span>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <!-- MASTER HOSPITAL FOOTER -->
+    <footer
+      class="bg-slate-900 text-slate-300 pt-12 pb-6 border-t border-slate-800 mt-auto"
+    >
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div
+          class="flex flex-col sm:flex-row items-center justify-between text-xs text-slate-500 gap-3"
+        >
+          <p>
+            &copy; 2026 <strong>Klinika.id</strong> — Hospital & Clinic
+            Management System. All Rights Reserved.
+          </p>
+          <p class="flex items-center gap-2">
+            <span>Keamanan:</span>
+            <span
+              class="px-2 py-0.5 rounded bg-slate-800 text-slate-400 text-[11px] font-mono"
+              >robots: noindex, nofollow</span
+            >
+          </p>
+        </div>
+      </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script>
+      const mobileMenuBtn = document.getElementById("mobileMenuBtn");
+      const mobileMenu = document.getElementById("mobileMenu");
+      if (mobileMenuBtn && mobileMenu) {
+        mobileMenuBtn.addEventListener("click", () => {
+          mobileMenu.classList.toggle("hidden");
+        });
+      }
+    </script>
+  </body>
+</html>
