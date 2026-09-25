@@ -1,2 +1,2 @@
 # cloud-computing-klinika.id
-Tugas membuat web Poin of Sales / Sistem Kasir Digital pada Mata Kuliah Cloud Computing
+Tugas membuat web Hospital & Clinic Management System pada Mata Kuliah Cloud Computing
