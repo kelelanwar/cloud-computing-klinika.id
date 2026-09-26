@@ -46,7 +46,7 @@ const KlinikaEngine = (function () {
       days: ["Senin", "Selasa", "Rabu", "Kamis", "Jumat"],
       status: "Praktik Sore",
       avatar:
-        "https://images.unsplash.com/photo-1594824813583-066e40d4e9e4?auto=format&fit=crop&w=400&q=80",
+        "https://images.unsplash.com/photo-1623854767648-e7bb8009f0db?auto=format&fit=crop&w=400&q=80",
       experience: "11 Tahun Pengalaman",
     },
     {
@@ -601,6 +601,26 @@ const KlinikaEngine = (function () {
     try {
       if (!localStorage.getItem(KEYS.DOCTORS)) {
         localStorage.setItem(KEYS.DOCTORS, JSON.stringify(DEFAULT_DOCTORS));
+      } else {
+        // Auto-patch jika avatar dokter masih menggunakan URL lama yang rusak
+        const currentDocs = JSON.parse(
+          localStorage.getItem(KEYS.DOCTORS) || "[]",
+        );
+        let patched = false;
+        currentDocs.forEach((d) => {
+          if (
+            d.id === "DOC-002" &&
+            d.avatar !==
+              "https://images.unsplash.com/photo-1623854767648-e7bb8009f0db?auto=format&fit=crop&w=400&q=80"
+          ) {
+            d.avatar =
+              "https://images.unsplash.com/photo-1623854767648-e7bb8009f0db?auto=format&fit=crop&w=400&q=80";
+            patched = true;
+          }
+        });
+        if (patched) {
+          localStorage.setItem(KEYS.DOCTORS, JSON.stringify(currentDocs));
+        }
       }
       if (!localStorage.getItem(KEYS.ROOMS)) {
         localStorage.setItem(KEYS.ROOMS, JSON.stringify(DEFAULT_ROOMS));
