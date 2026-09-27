@@ -6,7 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <!-- TAG WAJIB KEAMANAN & SEO -->
     <meta name="robots" content="noindex, nofollow" />
-    <title>Klinika.id - Dashboard Manajemen Rumah Sakit & Klinik</title>
+    <title>Klinika.id - Executive Dashboard HCMS & Visualisasi Real-Time</title>
     <link
       rel="shortcut icon"
       href="https://img.icons8.com/color/48/hospital-2.png"
@@ -26,6 +26,9 @@
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
     />
+
+    <!-- CHART.JS VIA CDN (TAHAP 6) -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
     <!-- TAILWIND CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
@@ -52,568 +55,913 @@
       };
     </script>
   </head>
-  <body
-    class="bg-slate-50 font-sans text-slate-700 antialiased flex flex-col min-h-screen"
-  >
-    <!-- TOP HEADER STRIP -->
+  <body class="bg-slate-100 font-sans text-slate-700 antialiased flex min-h-screen">
+    <!-- MOBILE SIDEBAR BACKDROP OVERLAY -->
     <div
-      class="bg-med-dark text-slate-200 text-xs py-2 px-4 border-b border-slate-700"
-    >
-      <div
-        class="max-w-7xl mx-auto flex flex-wrap justify-between items-center gap-2"
-      >
-        <div class="flex items-center gap-3">
-          <span class="inline-flex items-center gap-1.5 font-medium">
-            <i class="fas fa-desktop text-med-cyan"></i>
-            <strong>Sistem Manajemen Internal</strong> — Rumah Sakit & Klinik
-            Klinika.id
-          </span>
-        </div>
-        <div class="flex items-center gap-4 text-slate-300">
-          <span class="flex items-center gap-1.5">
-            <i class="far fa-clock text-med-cyan"></i>
-            <span id="currentTime">WIB --:--:--</span>
-          </span>
-          <span class="hidden sm:inline border-l border-slate-600 pl-3">
-            Status Sistem: <strong class="text-med-emerald">Normal</strong>
-          </span>
-        </div>
-      </div>
-    </div>
+      id="sidebarBackdrop"
+      class="fixed inset-0 bg-slate-900/60 z-40 lg:hidden hidden backdrop-blur-sm transition-opacity duration-300"
+      onclick="toggleMobileSidebar()"
+    ></div>
 
-    <!-- MAIN NAVIGATION BAR -->
-    <header
-      class="bg-white sticky top-0 z-50 shadow-sm border-b border-slate-100"
+    <!-- SIDEBAR NAVIGATION (Executive Admin Layout) -->
+    <aside
+      id="mainSidebar"
+      class="fixed lg:sticky top-0 left-0 z-50 h-screen w-72 bg-med-dark text-slate-200 flex flex-col justify-between border-r border-slate-700/60 shadow-xl lg:shadow-none transition-transform duration-300 -translate-x-full lg:translate-x-0 shrink-0"
     >
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="flex justify-between items-center h-20">
-          <!-- Brand Logo -->
-          <a href="index.html" class="flex items-center gap-3">
+      <!-- Top Brand Header & Menu -->
+      <div class="flex flex-col h-full overflow-y-auto custom-scrollbar">
+        <!-- Brand Header -->
+        <div class="p-5 border-b border-slate-700/80 flex items-center justify-between">
+          <a href="index.html" class="flex items-center gap-3 group">
             <div
-              class="w-12 h-12 rounded-xl bg-gradient-to-br from-med-blue to-med-dark flex items-center justify-center shadow-md shadow-blue-500/20 text-white text-2xl"
+              class="w-11 h-11 rounded-xl bg-gradient-to-br from-med-blue to-med-cyan flex items-center justify-center text-white text-2xl shadow-lg shadow-blue-500/30 group-hover:scale-105 transition"
             >
               <i class="fas fa-hospital-alt"></i>
             </div>
             <div>
               <div class="flex items-center gap-1">
-                <span
-                  class="font-heading font-black text-2xl tracking-tight text-med-dark"
-                  >Klinika</span
-                >
-                <span class="font-heading font-black text-2xl text-med-blue"
-                  >.id</span
-                >
+                <span class="font-heading font-black text-2xl tracking-tight text-white">Klinika</span>
+                <span class="font-heading font-black text-2xl text-med-cyan">.id</span>
               </div>
-              <p
-                class="text-[10px] uppercase font-bold tracking-wider text-slate-400"
-              >
-                Hospital & Clinic System
+              <p class="text-[10px] uppercase font-bold tracking-wider text-slate-400">
+                Executive HCMS Portal
               </p>
             </div>
           </a>
-
-          <!-- Desktop Navigation Links -->
-          <nav class="hidden lg:flex items-center gap-1">
-            <a
-              href="index.html"
-              class="px-3.5 py-2 rounded-lg text-sm font-medium text-slate-600 hover:text-med-blue hover:bg-slate-50 transition flex items-center gap-1.5"
-            >
-              <i class="fas fa-home text-xs"></i> Beranda
-            </a>
-            <a
-              href="dashboard.html"
-              class="px-3.5 py-2 rounded-lg text-sm font-semibold text-med-blue bg-blue-50/80 transition flex items-center gap-1.5"
-            >
-              <i class="fas fa-chart-line text-xs"></i> Dashboard
-            </a>
-            <a
-              href="fitur-sistem.html"
-              class="px-3.5 py-2 rounded-lg text-sm font-medium text-slate-600 hover:text-med-blue hover:bg-slate-50 transition flex items-center gap-1.5"
-            >
-              <i class="fas fa-user-plus text-xs"></i> Pendaftaran & Antrean
-            </a>
-            <a
-              href="detail-layanan.html"
-              class="px-3.5 py-2 rounded-lg text-sm font-medium text-slate-600 hover:text-med-blue hover:bg-slate-50 transition flex items-center gap-1.5"
-            >
-              <i class="fas fa-calculator text-xs"></i> Layanan & Tarif
-            </a>
-            <a
-              href="laporan-data.html"
-              class="px-3.5 py-2 rounded-lg text-sm font-medium text-slate-600 hover:text-med-blue hover:bg-slate-50 transition flex items-center gap-1.5"
-            >
-              <i class="fas fa-file-invoice text-xs"></i> Rekapitulasi Laporan
-            </a>
-          </nav>
-
-          <!-- Right User Profile / Action -->
-          <div class="hidden sm:flex items-center gap-3">
-            <div class="flex items-center gap-3 pl-3 border-l border-slate-200">
-              <div
-                class="w-9 h-9 rounded-full bg-blue-100 border border-blue-200 flex items-center justify-center text-med-blue font-bold text-sm"
-              >
-                <i class="fas fa-user-md"></i>
-              </div>
-              <div class="text-left">
-                <p class="text-xs font-bold text-med-dark leading-none">
-                  dr. Jonathan Barnes
-                </p>
-                <p class="text-[10px] text-slate-400">Chief Medical Officer</p>
-              </div>
-            </div>
-          </div>
-
-          <!-- Mobile Menu Toggle Button -->
+          <!-- Close button on Mobile -->
           <button
-            id="mobileMenuBtn"
-            class="lg:hidden p-2 rounded-lg text-slate-600 hover:bg-slate-100 transition focus:outline-none"
+            onclick="toggleMobileSidebar()"
+            class="lg:hidden p-2 rounded-lg text-slate-400 hover:text-white hover:bg-slate-800 transition"
           >
-            <i class="fas fa-bars text-xl"></i>
+            <i class="fas fa-times text-lg"></i>
           </button>
         </div>
-      </div>
 
-      <!-- Mobile Dropdown Menu -->
-      <div
-        id="mobileMenu"
-        class="hidden lg:hidden border-t border-slate-100 bg-white px-4 pt-3 pb-5 space-y-1"
-      >
-        <a
-          href="index.html"
-          class="block px-3 py-2.5 rounded-lg text-base font-medium text-slate-700 hover:bg-slate-50"
-        >
-          <i class="fas fa-home w-6 text-slate-400"></i> Beranda
-        </a>
-        <a
-          href="dashboard.html"
-          class="block px-3 py-2.5 rounded-lg text-base font-semibold text-med-blue bg-blue-50"
-        >
-          <i class="fas fa-chart-line w-6"></i> Dashboard Sistem
-        </a>
-        <a
-          href="fitur-sistem.html"
-          class="block px-3 py-2.5 rounded-lg text-base font-medium text-slate-700 hover:bg-slate-50"
-        >
-          <i class="fas fa-user-plus w-6 text-slate-400"></i> Pendaftaran &
-          Antrean
-        </a>
-        <a
-          href="detail-layanan.html"
-          class="block px-3 py-2.5 rounded-lg text-base font-medium text-slate-700 hover:bg-slate-50"
-        >
-          <i class="fas fa-calculator w-6 text-slate-400"></i> Layanan & Tarif
-        </a>
-        <a
-          href="laporan-data.html"
-          class="block px-3 py-2.5 rounded-lg text-base font-medium text-slate-700 hover:bg-slate-50"
-        >
-          <i class="fas fa-file-invoice w-6 text-slate-400"></i> Rekapitulasi
-          Laporan
-        </a>
-      </div>
-    </header>
-
-    <!-- DASHBOARD HEADER / BREADCRUMB -->
-    <section class="bg-white border-b border-slate-200 py-6">
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div
-          class="flex flex-col md:flex-row md:items-center justify-between gap-4"
-        >
-          <div>
+        <!-- Officer Quick Profile Badge -->
+        <div class="px-5 py-4 bg-slate-800/60 border-b border-slate-700/60 flex items-center gap-3">
+          <div class="relative">
             <div
-              class="flex items-center gap-2 text-xs font-semibold text-med-blue mb-1"
+              class="w-10 h-10 rounded-full bg-blue-500/20 border-2 border-med-cyan flex items-center justify-center text-med-cyan font-bold text-base"
             >
-              <a href="index.html" class="hover:underline">Beranda</a>
-              <span>/</span>
-              <span class="text-slate-400">Executive Dashboard</span>
+              <i class="fas fa-user-md"></i>
             </div>
-            <h1
-              class="font-heading font-black text-2xl sm:text-3xl text-med-dark tracking-tight"
-            >
-              Dashboard Manajemen Pelayanan Medis
-            </h1>
-            <p class="text-xs sm:text-sm text-slate-500 mt-1">
-              Monitoring performa rumah sakit, beban poliklinik harian,
-              ketersediaan tempat tidur, dan antrean aktif secara real-time.
+            <span
+              class="absolute bottom-0 right-0 w-3 h-3 rounded-full bg-med-emerald border-2 border-med-dark"
+              title="Online / On Duty"
+            ></span>
+          </div>
+          <div class="min-w-0 flex-1">
+            <p class="text-xs font-bold text-white truncate">dr. Jonathan Barnes, Sp.PD</p>
+            <div class="flex items-center gap-1.5 text-[11px] text-slate-400">
+              <span class="truncate">Chief Medical Officer</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Navigation Links -->
+        <div class="px-4 py-5 space-y-6">
+          <!-- Main Section -->
+          <div>
+            <p class="px-3 text-[11px] font-bold uppercase tracking-wider text-slate-400 mb-2">
+              Menu Utama
             </p>
+            <nav class="space-y-1">
+              <!-- Portal Beranda -->
+              <a
+                href="index.html"
+                class="flex items-center gap-3 px-3.5 py-2.5 rounded-xl text-sm font-medium text-slate-300 hover:text-white hover:bg-slate-800/80 transition group"
+              >
+                <i class="fas fa-home w-5 text-slate-400 group-hover:text-med-cyan transition"></i>
+                <span>Beranda Portal</span>
+              </a>
+
+              <!-- Executive Dashboard (ACTIVE) -->
+              <a
+                href="dashboard.html"
+                class="flex items-center justify-between px-3.5 py-2.5 rounded-xl text-sm font-bold text-white bg-med-blue shadow-md shadow-blue-600/30 transition group"
+              >
+                <div class="flex items-center gap-3">
+                  <i class="fas fa-chart-line w-5 text-white"></i>
+                  <span>Executive Dashboard</span>
+                </div>
+                <span class="w-2 h-2 rounded-full bg-med-cyan animate-pulse"></span>
+              </a>
+
+              <!-- Pendaftaran & Antrean -->
+              <a
+                href="fitur-sistem.html"
+                class="flex items-center gap-3 px-3.5 py-2.5 rounded-xl text-sm font-medium text-slate-300 hover:text-white hover:bg-slate-800/80 transition group"
+              >
+                <i class="fas fa-user-plus w-5 text-slate-400 group-hover:text-med-cyan transition"></i>
+                <span>Pendaftaran & Antrean</span>
+              </a>
+
+              <!-- Layanan & Tarif -->
+              <a
+                href="detail-layanan.html"
+                class="flex items-center gap-3 px-3.5 py-2.5 rounded-xl text-sm font-medium text-slate-300 hover:text-white hover:bg-slate-800/80 transition group"
+              >
+                <i class="fas fa-calculator w-5 text-slate-400 group-hover:text-med-cyan transition"></i>
+                <span>Layanan & Tarif Medis</span>
+              </a>
+
+              <!-- Rekapitulasi Laporan -->
+              <a
+                href="laporan-data.html"
+                class="flex items-center gap-3 px-3.5 py-2.5 rounded-xl text-sm font-medium text-slate-300 hover:text-white hover:bg-slate-800/80 transition group"
+              >
+                <i class="fas fa-file-invoice-dollar w-5 text-slate-400 group-hover:text-med-cyan transition"></i>
+                <span>Rekap Laporan & Billing</span>
+              </a>
+            </nav>
           </div>
 
-          <!-- Quick Action Buttons -->
-          <div class="flex items-center gap-2.5">
+          <!-- Quick Action Section -->
+          <div>
+            <p class="px-3 text-[11px] font-bold uppercase tracking-wider text-slate-400 mb-2">
+              Aksi Cepat Operasional
+            </p>
+            <div class="space-y-1.5">
+              <a
+                href="fitur-sistem.html#konsol"
+                class="flex items-center gap-3 px-3.5 py-2 rounded-lg text-xs font-medium text-amber-300 bg-amber-500/10 hover:bg-amber-500/20 border border-amber-500/20 transition"
+              >
+                <i class="fas fa-bullhorn w-4 text-med-amber"></i>
+                <span>Panggil Antrean Poli</span>
+              </a>
+              <a
+                href="detail-layanan.html#kalkulator"
+                class="flex items-center gap-3 px-3.5 py-2 rounded-lg text-xs font-medium text-cyan-300 bg-cyan-500/10 hover:bg-cyan-500/20 border border-cyan-500/20 transition"
+              >
+                <i class="fas fa-calculator w-4 text-med-cyan"></i>
+                <span>Kalkulator Biaya Medis</span>
+              </a>
+              <button
+                onclick="handleQuickExportCSV()"
+                class="w-full flex items-center gap-3 px-3.5 py-2 rounded-lg text-xs font-medium text-emerald-300 bg-emerald-500/10 hover:bg-emerald-500/20 border border-emerald-500/20 transition text-left"
+              >
+                <i class="fas fa-file-csv w-4 text-med-emerald"></i>
+                <span>Unduh CSV Billing</span>
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Sidebar Footer System Info -->
+        <div class="mt-auto p-4 border-t border-slate-700/60">
+          <div class="p-3.5 rounded-xl bg-slate-800/80 border border-slate-700">
+            <div class="flex items-center justify-between text-xs font-semibold mb-1">
+              <span class="text-slate-300">Data Engine Status</span>
+              <span class="text-med-emerald flex items-center gap-1">
+                <span class="w-1.5 h-1.5 rounded-full bg-med-emerald animate-ping"></span>
+                Active
+              </span>
+            </div>
+            <p class="text-[11px] text-slate-400 mb-2">
+              Tersinkronisasi dengan browser localStorage secara otomatis.
+            </p>
+            <div class="flex items-center justify-between text-[11px] text-slate-400 pt-2 border-t border-slate-700">
+              <span>BOR Kamar Inap</span>
+              <strong class="text-white" id="sidebarBorStat">78% Terisi</strong>
+            </div>
+          </div>
+        </div>
+      </div>
+    </aside>
+
+    <!-- MAIN CONTENT WRAPPER -->
+    <div class="flex-1 flex flex-col min-w-0 overflow-x-hidden">
+      <!-- TOPBAR NAVIGATION (Live Clock, Search, Notification, Profile) -->
+      <header class="sticky top-0 z-40 bg-white/95 backdrop-blur-md border-b border-slate-200 shadow-sm">
+        <div class="px-4 sm:px-6 lg:px-8 h-18 py-3.5 flex items-center justify-between gap-4">
+          <!-- Left: Mobile Menu Toggle & Title -->
+          <div class="flex items-center gap-3">
+            <button
+              onclick="toggleMobileSidebar()"
+              class="lg:hidden p-2 rounded-lg text-slate-600 hover:text-med-blue hover:bg-slate-100 transition focus:outline-none"
+              aria-label="Toggle Navigation"
+            >
+              <i class="fas fa-bars text-xl"></i>
+            </button>
+
+            <!-- Breadcrumb Path -->
+            <div class="hidden sm:block">
+              <div class="flex items-center gap-2 text-xs font-medium text-slate-400">
+                <a href="index.html" class="hover:text-med-blue transition">Portal Utama</a>
+                <span>/</span>
+                <span class="text-med-blue font-semibold">Executive Dashboard</span>
+              </div>
+              <h2 class="text-lg font-heading font-black text-med-dark tracking-tight leading-none mt-0.5">
+                Pusat Kendali Rumah Sakit
+              </h2>
+            </div>
+          </div>
+
+          <!-- Middle: Patient & Doctor Instant Search -->
+          <div class="flex-1 max-w-md mx-2 hidden md:block">
+            <div class="relative">
+              <span class="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-slate-400 text-sm">
+                <i class="fas fa-search"></i>
+              </span>
+              <input
+                type="text"
+                id="topbarSearchInput"
+                placeholder="Cari pasien (Nama / No. RM) atau dokter..."
+                class="w-full pl-10 pr-12 py-2 text-xs bg-slate-50 border border-slate-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-med-blue/20 focus:border-med-blue transition"
+                onkeyup="handleQuickSearch(this.value)"
+              />
+              <span class="absolute inset-y-0 right-0 pr-3 flex items-center pointer-events-none text-[10px] text-slate-400 font-mono">
+                ⌘K
+              </span>
+            </div>
+          </div>
+
+          <!-- Right: Clock, Status, Notification, and User Badge -->
+          <div class="flex items-center gap-3">
+            <!-- Digital Clock Badge -->
+            <div class="hidden xl:flex items-center gap-2 px-3 py-1.5 rounded-xl bg-slate-100 text-slate-700 text-xs font-bold border border-slate-200">
+              <i class="far fa-clock text-med-cyan text-sm"></i>
+              <span id="currentTime">--:--:-- WIB</span>
+            </div>
+
+            <!-- Live Status Pill -->
+            <div class="hidden sm:flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-emerald-50 text-emerald-700 text-xs font-bold border border-emerald-200">
+              <span class="w-2 h-2 rounded-full bg-med-emerald animate-pulse"></span>
+              <span>Sistem Normal</span>
+            </div>
+
+            <!-- Notifications Dropdown -->
+            <div class="relative">
+              <button
+                id="notifBellBtn"
+                onclick="toggleNotifDropdown()"
+                class="relative p-2.5 rounded-xl text-slate-600 hover:text-med-blue hover:bg-slate-100 transition focus:outline-none"
+                title="Notifikasi Sistem"
+              >
+                <i class="far fa-bell text-lg"></i>
+                <span class="absolute top-1.5 right-1.5 w-2 h-2 bg-med-rose rounded-full ring-2 ring-white"></span>
+              </button>
+
+              <!-- Dropdown Content -->
+              <div
+                id="notifDropdown"
+                class="hidden absolute right-0 mt-2 w-80 sm:w-88 bg-white rounded-2xl shadow-xl border border-slate-200 py-3 z-50 animate-in fade-in slide-in-from-top-2 duration-200"
+              >
+                <div class="px-4 pb-2 border-b border-slate-100 flex items-center justify-between">
+                  <h4 class="font-heading font-bold text-xs text-med-dark">Notifikasi Operasional</h4>
+                  <span class="px-2 py-0.5 rounded-full bg-blue-50 text-med-blue text-[10px] font-bold">3 Baru</span>
+                </div>
+                <div class="divide-y divide-slate-100 text-xs max-h-64 overflow-y-auto">
+                  <div class="p-3 hover:bg-slate-50 transition flex items-start gap-3">
+                    <span class="w-7 h-7 rounded-lg bg-blue-100 text-med-blue flex items-center justify-center shrink-0 text-xs">
+                      <i class="fas fa-user-plus"></i>
+                    </span>
+                    <div>
+                      <p class="font-semibold text-slate-800">Pasien Baru Terdaftar</p>
+                      <p class="text-[11px] text-slate-500">Budi Santoso mendaftar ke Poli Umum (No. A-014)</p>
+                      <span class="text-[10px] text-slate-400 mt-1 block">5 menit lalu</span>
+                    </div>
+                  </div>
+                  <div class="p-3 hover:bg-slate-50 transition flex items-start gap-3">
+                    <span class="w-7 h-7 rounded-lg bg-amber-100 text-med-amber flex items-center justify-center shrink-0 text-xs">
+                      <i class="fas fa-bed"></i>
+                    </span>
+                    <div>
+                      <p class="font-semibold text-slate-800">BOR Ruang ICU Kritis</p>
+                      <p class="text-[11px] text-slate-500">Tersisa 3 bed kosong di Instalasi Rawat Intensif</p>
+                      <span class="text-[10px] text-slate-400 mt-1 block">18 menit lalu</span>
+                    </div>
+                  </div>
+                  <div class="p-3 hover:bg-slate-50 transition flex items-start gap-3">
+                    <span class="w-7 h-7 rounded-lg bg-emerald-100 text-med-emerald flex items-center justify-center shrink-0 text-xs">
+                      <i class="fas fa-file-invoice"></i>
+                    </span>
+                    <div>
+                      <p class="font-semibold text-slate-800">Billing Shift Pagi Lunas</p>
+                      <p class="text-[11px] text-slate-500">8 transaksi terverifikasi tanpa anomali</p>
+                      <span class="text-[10px] text-slate-400 mt-1 block">42 menit lalu</span>
+                    </div>
+                  </div>
+                </div>
+                <div class="px-4 pt-2 border-t border-slate-100 text-center">
+                  <a href="laporan-data.html" class="text-[11px] font-bold text-med-blue hover:underline">
+                    Lihat Semua Aktivitas &rarr;
+                  </a>
+                </div>
+              </div>
+            </div>
+
+            <!-- Profile Badge -->
+            <div class="flex items-center gap-2 pl-2 border-l border-slate-200">
+              <div class="w-9 h-9 rounded-xl bg-gradient-to-br from-med-blue to-med-dark text-white flex items-center justify-center font-bold text-sm shadow-sm">
+                JB
+              </div>
+              <div class="hidden sm:block text-left">
+                <p class="text-xs font-bold text-slate-800 leading-tight">dr. J. Barnes</p>
+                <p class="text-[10px] text-slate-400 leading-tight">CMO / On Duty</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </header>
+
+      <!-- DASHBOARD MAIN BODY -->
+      <main class="flex-grow p-4 sm:p-6 lg:p-8 space-y-6 max-w-7xl w-full mx-auto">
+        <!-- 1. GREETING & OPERATIONAL HEADER -->
+        <div class="bg-gradient-to-r from-med-dark via-slate-900 to-med-blue rounded-3xl p-6 sm:p-8 text-white shadow-lg relative overflow-hidden">
+          <!-- Background decorative shapes -->
+          <div class="absolute -right-10 -bottom-10 w-64 h-64 rounded-full bg-med-cyan/10 blur-2xl pointer-events-none"></div>
+          <div class="absolute right-1/4 -top-10 w-48 h-48 rounded-full bg-blue-500/10 blur-2xl pointer-events-none"></div>
+
+          <div class="relative z-10 flex flex-col lg:flex-row lg:items-center justify-between gap-6">
+            <div class="space-y-2 max-w-2xl">
+              <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/10 backdrop-blur-md text-cyan-300 text-xs font-semibold border border-white/10">
+                <i class="fas fa-stethoscope"></i>
+                <span>Sistem Informasi Manajemen Rumah Sakit Terpadu</span>
+              </div>
+              <h1 class="font-heading font-black text-2xl sm:text-3xl lg:text-4xl text-white tracking-tight leading-tight">
+                Selamat Datang, dr. Jonathan Barnes, Sp.PD 👋
+              </h1>
+              <p class="text-xs sm:text-sm text-slate-300 leading-relaxed">
+                Pantau seluruh operasional pelayanan pasien, antrean poli aktif, kapasitas rawat inap, dan transaksi billing klinik secara real-time dari satu pusat komando.
+              </p>
+              <div class="flex flex-wrap items-center gap-4 pt-1 text-xs text-slate-400">
+                <span class="flex items-center gap-1.5">
+                  <i class="far fa-calendar-alt text-med-cyan"></i>
+                  <span id="currentDateFormatted">Senin, 28 September 2026</span>
+                </span>
+                <span class="flex items-center gap-1.5">
+                  <i class="fas fa-user-clock text-med-cyan"></i>
+                  <span>Shift Terpadu: 08:00 - 20:00 WIB</span>
+                </span>
+              </div>
+            </div>
+
+            <!-- Quick Data Sync Control -->
+            <div class="flex flex-col sm:flex-row items-stretch sm:items-center gap-3 shrink-0">
+              <button
+                onclick="refreshDashboardData(true)"
+                class="px-4 py-2.5 rounded-xl bg-white/10 hover:bg-white/20 text-white text-xs font-bold backdrop-blur-md border border-white/20 transition flex items-center justify-center gap-2 shadow-sm"
+                title="Sinkronkan data metrik terbaru dari localStorage"
+              >
+                <i class="fas fa-sync-alt" id="refreshIcon"></i>
+                <span>Sinkron Data</span>
+              </button>
+              <a
+                href="fitur-sistem.html"
+                class="px-5 py-2.5 rounded-xl bg-gradient-to-r from-med-cyan to-blue-500 hover:from-cyan-500 hover:to-blue-600 text-white text-xs font-bold shadow-md shadow-cyan-500/20 transition flex items-center justify-center gap-2"
+              >
+                <i class="fas fa-plus-circle"></i>
+                <span>Registrasi Pasien</span>
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <!-- 2. QUICK ACTION TOOLBAR (Pintasan Aksi Cepat Operasional) -->
+        <div class="bg-white rounded-2xl p-4 sm:p-5 shadow-sm border border-slate-200/80">
+          <div class="flex items-center justify-between mb-3.5">
+            <h3 class="font-heading font-bold text-xs uppercase tracking-wider text-slate-500 flex items-center gap-2">
+              <i class="fas fa-bolt text-med-amber"></i>
+              <span>Pintasan Aksi Cepat Operasional</span>
+            </h3>
+            <span class="text-[11px] text-slate-400">5 Akses Cepat Terhubung</span>
+          </div>
+
+          <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-3">
+            <!-- Action 1: Pasien Baru -->
             <a
               href="fitur-sistem.html"
-              class="px-4 py-2.5 rounded-xl text-xs font-bold text-white bg-med-blue hover:bg-blue-700 shadow-sm transition flex items-center gap-2"
+              class="flex flex-col items-center justify-center p-3.5 rounded-xl bg-blue-50/70 hover:bg-blue-100/80 border border-blue-100 text-med-blue transition group text-center"
             >
-              <i class="fas fa-plus-circle"></i> Pasien Baru
+              <div class="w-10 h-10 rounded-xl bg-white text-med-blue flex items-center justify-center shadow-sm group-hover:scale-110 transition mb-2">
+                <i class="fas fa-user-plus text-base"></i>
+              </div>
+              <span class="text-xs font-bold text-slate-800 group-hover:text-med-blue">Pasien Baru</span>
+              <span class="text-[10px] text-slate-500 mt-0.5">Booking & Tiket RM</span>
             </a>
+
+            <!-- Action 2: Konsol Antrean Suara -->
+            <a
+              href="fitur-sistem.html#konsol"
+              class="flex flex-col items-center justify-center p-3.5 rounded-xl bg-amber-50/70 hover:bg-amber-100/80 border border-amber-100 text-med-amber transition group text-center"
+            >
+              <div class="w-10 h-10 rounded-xl bg-white text-med-amber flex items-center justify-center shadow-sm group-hover:scale-110 transition mb-2">
+                <i class="fas fa-bullhorn text-base"></i>
+              </div>
+              <span class="text-xs font-bold text-slate-800 group-hover:text-med-amber">Panggil Antrean</span>
+              <span class="text-[10px] text-slate-500 mt-0.5">Audio Web Speech</span>
+            </a>
+
+            <!-- Action 3: Kalkulator Biaya Medis -->
+            <a
+              href="detail-layanan.html#kalkulator"
+              class="flex flex-col items-center justify-center p-3.5 rounded-xl bg-cyan-50/70 hover:bg-cyan-100/80 border border-cyan-100 text-med-cyan transition group text-center"
+            >
+              <div class="w-10 h-10 rounded-xl bg-white text-med-cyan flex items-center justify-center shadow-sm group-hover:scale-110 transition mb-2">
+                <i class="fas fa-calculator text-base"></i>
+              </div>
+              <span class="text-xs font-bold text-slate-800 group-hover:text-med-cyan">Hitung Biaya</span>
+              <span class="text-[10px] text-slate-500 mt-0.5">Kalkulator Tindakan</span>
+            </a>
+
+            <!-- Action 4: Rekapitulasi Laporan -->
             <a
               href="laporan-data.html"
-              class="px-4 py-2.5 rounded-xl text-xs font-bold text-slate-700 bg-slate-100 hover:bg-slate-200 transition flex items-center gap-2"
+              class="flex flex-col items-center justify-center p-3.5 rounded-xl bg-emerald-50/70 hover:bg-emerald-100/80 border border-emerald-100 text-med-emerald transition group text-center"
             >
-              <i class="fas fa-file-alt"></i> Laporan
+              <div class="w-10 h-10 rounded-xl bg-white text-med-emerald flex items-center justify-center shadow-sm group-hover:scale-110 transition mb-2">
+                <i class="fas fa-receipt text-base"></i>
+              </div>
+              <span class="text-xs font-bold text-slate-800 group-hover:text-med-emerald">Rekap Billing</span>
+              <span class="text-[10px] text-slate-500 mt-0.5">Kuitansi & Audit</span>
+            </a>
+
+            <!-- Action 5: Ekspor CSV -->
+            <button
+              type="button"
+              onclick="handleQuickExportCSV()"
+              class="col-span-2 sm:col-span-1 flex flex-col items-center justify-center p-3.5 rounded-xl bg-slate-50 hover:bg-slate-100 border border-slate-200 text-slate-700 transition group text-center"
+            >
+              <div class="w-10 h-10 rounded-xl bg-white text-slate-700 flex items-center justify-center shadow-sm group-hover:scale-110 transition mb-2">
+                <i class="fas fa-file-csv text-base text-emerald-600"></i>
+              </div>
+              <span class="text-xs font-bold text-slate-800 group-hover:text-slate-900">Ekspor Data CSV</span>
+              <span class="text-[10px] text-slate-500 mt-0.5">Unduh Transaksi</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- 3. 4 EXECUTIVE KPI CARDS (Dinamis terhubung ke KlinikaEngine.getKPIStats()) -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
+          <!-- CARD 1: TOTAL KUNJUNGAN HARI INI -->
+          <div class="bg-white rounded-2xl p-5 shadow-sm border border-slate-200/80 hover:shadow-md hover:border-blue-200 transition group">
+            <div class="flex items-center justify-between">
+              <span class="text-xs font-bold uppercase tracking-wider text-slate-400 group-hover:text-med-blue transition">
+                Kunjungan Hari Ini
+              </span>
+              <div class="w-11 h-11 rounded-xl bg-blue-50 text-med-blue flex items-center justify-center text-lg shadow-sm group-hover:bg-med-blue group-hover:text-white transition">
+                <i class="fas fa-user-injured"></i>
+              </div>
+            </div>
+            <div class="mt-4">
+              <div class="flex items-baseline gap-2">
+                <h3 class="font-heading font-black text-3xl sm:text-4xl text-med-dark tracking-tight" id="statTodayVisits">
+                  142
+                </h3>
+                <span class="text-xs font-semibold text-slate-400">Pasien</span>
+              </div>
+              <div class="mt-2.5 flex items-center justify-between text-xs">
+                <span class="inline-flex items-center gap-1 font-bold text-med-emerald bg-emerald-50 px-2 py-0.5 rounded-md">
+                  <i class="fas fa-arrow-up text-[10px]"></i> +12.5%
+                </span>
+                <span class="text-slate-400 text-[11px]">vs kemarin</span>
+              </div>
+              <p class="text-[11px] text-slate-500 mt-2 pt-2 border-t border-slate-100 flex justify-between">
+                <span>Pasien BPJS: <strong>98</strong></span>
+                <span>Umum: <strong>44</strong></span>
+              </p>
+            </div>
+          </div>
+
+          <!-- CARD 2: ANTREAN AKTIF POLIKLINIK -->
+          <div class="bg-white rounded-2xl p-5 shadow-sm border border-slate-200/80 hover:shadow-md hover:border-amber-200 transition group">
+            <div class="flex items-center justify-between">
+              <span class="text-xs font-bold uppercase tracking-wider text-slate-400 group-hover:text-med-amber transition">
+                Antrean Aktif Saat Ini
+              </span>
+              <div class="w-11 h-11 rounded-xl bg-amber-50 text-med-amber flex items-center justify-center text-lg shadow-sm group-hover:bg-med-amber group-hover:text-white transition">
+                <i class="fas fa-clock"></i>
+              </div>
+            </div>
+            <div class="mt-4">
+              <div class="flex items-baseline gap-2">
+                <h3 class="font-heading font-black text-3xl sm:text-4xl text-med-dark tracking-tight" id="statActiveQueues">
+                  18
+                </h3>
+                <span class="text-xs font-semibold text-slate-400">Dalam Antrean</span>
+              </div>
+              <div class="mt-2.5 flex items-center justify-between text-xs">
+                <span class="inline-flex items-center gap-1 font-bold text-amber-700 bg-amber-50 px-2 py-0.5 rounded-md">
+                  <i class="fas fa-hourglass-half text-[10px]"></i> Tunggu Poli
+                </span>
+                <a href="fitur-sistem.html#konsol" class="text-med-blue font-bold text-[11px] hover:underline">
+                  Buka Konsol &rarr;
+                </a>
+              </div>
+              <p class="text-[11px] text-slate-500 mt-2 pt-2 border-t border-slate-100 flex justify-between">
+                <span>Poli Umum: <strong>8</strong></span>
+                <span>Spesialis: <strong>10</strong></span>
+              </p>
+            </div>
+          </div>
+
+          <!-- CARD 3: BED OCCUPANCY RATE (BOR) -->
+          <div class="bg-white rounded-2xl p-5 shadow-sm border border-slate-200/80 hover:shadow-md hover:border-emerald-200 transition group">
+            <div class="flex items-center justify-between">
+              <span class="text-xs font-bold uppercase tracking-wider text-slate-400 group-hover:text-med-emerald transition">
+                BOR Rawat Inap
+              </span>
+              <div class="w-11 h-11 rounded-xl bg-emerald-50 text-med-emerald flex items-center justify-center text-lg shadow-sm group-hover:bg-med-emerald group-hover:text-white transition">
+                <i class="fas fa-bed"></i>
+              </div>
+            </div>
+            <div class="mt-4">
+              <div class="flex items-baseline gap-2">
+                <h3 class="font-heading font-black text-3xl sm:text-4xl text-med-dark tracking-tight" id="statBorRate">
+                  78%
+                </h3>
+                <span class="text-xs font-semibold text-emerald-600 bg-emerald-50 px-1.5 py-0.5 rounded">Taraf Ideal</span>
+              </div>
+              <!-- Progress Bar Dinamis -->
+              <div class="w-full bg-slate-100 rounded-full h-2.5 mt-2.5 overflow-hidden">
+                <div
+                  id="statBorBar"
+                  class="bg-gradient-to-r from-med-emerald to-emerald-400 h-2.5 rounded-full transition-all duration-700"
+                  style="width: 78%"
+                ></div>
+              </div>
+              <p class="text-[11px] text-slate-500 mt-2 pt-2 border-t border-slate-100 flex justify-between">
+                <span id="statBedCount">94 dari 120 Bed Terisi</span>
+                <span class="text-med-emerald font-semibold">26 Tersedia</span>
+              </p>
+            </div>
+          </div>
+
+          <!-- CARD 4: TOTAL REVENUE & BILLING HARIAN -->
+          <div class="bg-white rounded-2xl p-5 shadow-sm border border-slate-200/80 hover:shadow-md hover:border-cyan-200 transition group">
+            <div class="flex items-center justify-between">
+              <span class="text-xs font-bold uppercase tracking-wider text-slate-400 group-hover:text-med-cyan transition">
+                Total Billing Hari Ini
+              </span>
+              <div class="w-11 h-11 rounded-xl bg-cyan-50 text-med-cyan flex items-center justify-center text-lg shadow-sm group-hover:bg-med-cyan group-hover:text-white transition">
+                <i class="fas fa-wallet"></i>
+              </div>
+            </div>
+            <div class="mt-4">
+              <div class="flex items-baseline gap-1">
+                <h3 class="font-heading font-black text-2xl sm:text-3xl text-med-dark tracking-tight truncate" id="statRevenue">
+                  Rp 35.855.000
+                </h3>
+              </div>
+              <div class="mt-2.5 flex items-center justify-between text-xs">
+                <span class="inline-flex items-center gap-1 font-bold text-cyan-700 bg-cyan-50 px-2 py-0.5 rounded-md">
+                  <i class="fas fa-check-circle text-[10px]"></i> Lunas Tervalidasi
+                </span>
+                <span class="text-[11px] text-slate-400">8 Faktur</span>
+              </div>
+              <p class="text-[11px] text-slate-500 mt-2 pt-2 border-t border-slate-100 flex justify-between">
+                <span>BPJS: <strong>65%</strong></span>
+                <span>Mandiri/Debit: <strong>35%</strong></span>
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <!-- 4. VISUALISASI DATA INTERAKTIF DENGAN CHART.JS CDN (TAHAP 6) -->
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
+          <!-- Chart 1: Tren Kunjungan Pasien (Line / Bar Chart) -->
+          <div class="lg:col-span-8 bg-white rounded-2xl p-6 shadow-sm border border-slate-200/80 space-y-4">
+            <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 pb-3 border-b border-slate-100">
+              <div>
+                <div class="flex items-center gap-2">
+                  <span class="w-2.5 h-2.5 rounded-full bg-med-blue"></span>
+                  <h3 class="font-heading font-bold text-lg text-med-dark">
+                    Tren Kunjungan Pasien
+                  </h3>
+                </div>
+                <p class="text-xs text-slate-400 mt-0.5">
+                  Analisis perbandingan pasien jaminan BPJS Kesehatan vs Pasien Mandiri
+                </p>
+              </div>
+
+              <!-- Controls Toolbar: Range & Type Toggle -->
+              <div class="flex flex-wrap items-center gap-2 self-start sm:self-auto">
+                <!-- Time Range Filter -->
+                <div class="inline-flex rounded-xl bg-slate-100 p-0.5 text-xs font-semibold">
+                  <button
+                    id="btnRange7d"
+                    onclick="switchChartRange('7d')"
+                    class="px-3 py-1 rounded-lg bg-white text-med-blue shadow-xs transition"
+                  >
+                    7 Hari
+                  </button>
+                  <button
+                    id="btnRange30d"
+                    onclick="switchChartRange('30d')"
+                    class="px-3 py-1 rounded-lg text-slate-500 hover:text-slate-800 transition"
+                  >
+                    30 Hari
+                  </button>
+                </div>
+
+                <!-- Chart Type Switcher -->
+                <div class="inline-flex rounded-xl bg-slate-100 p-0.5 text-xs font-semibold">
+                  <button
+                    id="btnTypeLine"
+                    onclick="switchChartType('line')"
+                    class="px-2.5 py-1 rounded-lg bg-white text-med-blue shadow-xs transition"
+                    title="Grafik Garis (Line)"
+                  >
+                    <i class="fas fa-chart-line"></i>
+                  </button>
+                  <button
+                    id="btnTypeBar"
+                    onclick="switchChartType('bar')"
+                    class="px-2.5 py-1 rounded-lg text-slate-500 hover:text-slate-800 transition"
+                    title="Grafik Batang (Bar)"
+                  >
+                    <i class="fas fa-chart-bar"></i>
+                  </button>
+                </div>
+              </div>
+            </div>
+
+            <!-- Canvas Container -->
+            <div id="visitChartContainer" class="relative h-72 sm:h-80 w-full">
+              <canvas id="weeklyVisitChart"></canvas>
+            </div>
+
+            <!-- Custom Legend & Summary Info -->
+            <div class="flex flex-wrap items-center justify-between text-xs text-slate-500 pt-2 border-t border-slate-100">
+              <div class="flex items-center gap-4">
+                <span class="flex items-center gap-1.5">
+                  <span class="w-3 h-3 rounded-full bg-med-blue shadow-xs"></span>
+                  <strong class="text-slate-700">Pasien BPJS:</strong> ~68% total
+                </span>
+                <span class="flex items-center gap-1.5">
+                  <span class="w-3 h-3 rounded-full bg-med-cyan shadow-xs"></span>
+                  <strong class="text-slate-700">Pasien Umum / Asuransi:</strong> ~32%
+                </span>
+              </div>
+              <span class="text-[11px] text-slate-400">
+                Pembaruan Terakhir: <strong class="text-slate-600" id="chartLastUpdated">Hari Ini</strong>
+              </span>
+            </div>
+          </div>
+
+          <!-- Chart 2: Beban Distribusi Poliklinik (Doughnut Chart) -->
+          <div class="lg:col-span-4 bg-white rounded-2xl p-6 shadow-sm border border-slate-200/80 space-y-4">
+            <div class="pb-3 border-b border-slate-100 flex items-center justify-between">
+              <div>
+                <div class="flex items-center gap-2">
+                  <span class="w-2.5 h-2.5 rounded-full bg-med-cyan"></span>
+                  <h3 class="font-heading font-bold text-lg text-med-dark">
+                    Distribusi Poliklinik
+                  </h3>
+                </div>
+                <p class="text-xs text-slate-400 mt-0.5">Beban kunjungan per spesialisasi</p>
+              </div>
+              <span class="px-2 py-0.5 rounded-md bg-cyan-50 text-med-cyan text-[11px] font-bold">
+                Workload
+              </span>
+            </div>
+
+            <!-- Canvas Container with Centered Metric -->
+            <div id="polyChartContainer" class="relative h-60 w-full flex items-center justify-center">
+              <canvas id="polyDistributionChart"></canvas>
+              <!-- Center Donut Text -->
+              <div class="absolute inset-0 flex flex-col items-center justify-center pointer-events-none text-center">
+                <span class="text-2xl font-black font-heading text-med-dark leading-none" id="polyTotalCount">142</span>
+                <span class="text-[10px] font-bold text-slate-400 uppercase tracking-wider mt-0.5">Total Pasien</span>
+              </div>
+            </div>
+
+            <!-- Interactive Legend List -->
+            <div class="space-y-2 text-xs pt-1 border-t border-slate-100">
+              <div class="flex items-center justify-between text-slate-600 hover:bg-slate-50 p-1 rounded-lg transition">
+                <span class="flex items-center gap-2"><span class="w-2.5 h-2.5 rounded-full bg-med-blue"></span> Poli Umum</span>
+                <span class="font-bold text-slate-800">38% (54 Pasien)</span>
+              </div>
+              <div class="flex items-center justify-between text-slate-600 hover:bg-slate-50 p-1 rounded-lg transition">
+                <span class="flex items-center gap-2"><span class="w-2.5 h-2.5 rounded-full bg-med-emerald"></span> Poli Anak</span>
+                <span class="font-bold text-slate-800">22% (31 Pasien)</span>
+              </div>
+              <div class="flex items-center justify-between text-slate-600 hover:bg-slate-50 p-1 rounded-lg transition">
+                <span class="flex items-center gap-2"><span class="w-2.5 h-2.5 rounded-full bg-med-amber"></span> Poli Gigi & Mulut</span>
+                <span class="font-bold text-slate-800">16% (23 Pasien)</span>
+              </div>
+              <div class="flex items-center justify-between text-slate-600 hover:bg-slate-50 p-1 rounded-lg transition">
+                <span class="flex items-center gap-2"><span class="w-2.5 h-2.5 rounded-full bg-med-rose"></span> Poli Jantung & Sp.JP</span>
+                <span class="font-bold text-slate-800">12% (17 Pasien)</span>
+              </div>
+              <div class="flex items-center justify-between text-slate-600 hover:bg-slate-50 p-1 rounded-lg transition">
+                <span class="flex items-center gap-2"><span class="w-2.5 h-2.5 rounded-full bg-purple-500"></span> Poli Saraf & Bedah</span>
+                <span class="font-bold text-slate-800">12% (17 Pasien)</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 5. LIVE OPERATIONAL MONITORS (Papan Antrean Poliklinik & Monitor Kapasitas Kamar) -->
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
+          <!-- Live Polyclinic Queue Status Board -->
+          <div class="lg:col-span-7 bg-white rounded-2xl p-6 shadow-sm border border-slate-200/80 space-y-4">
+            <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 pb-3 border-b border-slate-100">
+              <div>
+                <h3 class="font-heading font-bold text-lg text-med-dark flex items-center gap-2">
+                  <i class="fas fa-list-ol text-med-blue"></i>
+                  <span>Monitor Antrean Poliklinik Langsung</span>
+                </h3>
+                <p class="text-xs text-slate-400 mt-0.5">
+                  Status dokter jaga dan pasien yang sedang diperiksa di tiap ruangan poli
+                </p>
+              </div>
+
+              <!-- Filter Dropdown Poli -->
+              <div class="flex items-center gap-2">
+                <select
+                  id="polyFilterSelect"
+                  onchange="filterQueueBoard(this.value)"
+                  class="text-xs bg-slate-50 border border-slate-200 rounded-lg px-2.5 py-1.5 focus:outline-none focus:ring-1 focus:ring-med-blue text-slate-600 font-medium"
+                >
+                  <option value="ALL">Semua Poliklinik</option>
+                  <option value="POLI-UMUM">Poli Umum (Loket 1)</option>
+                  <option value="POLI-ANAK">Poli Anak (Loket 2)</option>
+                  <option value="POLI-GIGI">Poli Gigi (Loket 3)</option>
+                  <option value="POLI-JANTUNG">Poli Jantung (Loket 4)</option>
+                </select>
+                <a
+                  href="fitur-sistem.html#konsol"
+                  class="px-3 py-1.5 rounded-lg text-xs font-bold text-med-blue bg-blue-50 hover:bg-blue-100 transition shrink-0"
+                  title="Buka konsol pemanggil antrean bersuara"
+                >
+                  <i class="fas fa-bullhorn mr-1"></i> Konsol
+                </a>
+              </div>
+            </div>
+
+            <!-- Dynamic Live Queue Board Items -->
+            <div id="dashboardLiveQueueList" class="space-y-2.5">
+              <!-- Rendered via JS -->
+            </div>
+          </div>
+
+          <!-- Bed Occupancy Monitor (Kapasitas Tempat Tidur Rawat Inap) -->
+          <div class="lg:col-span-5 bg-white rounded-2xl p-6 shadow-sm border border-slate-200/80 space-y-4">
+            <div class="flex items-center justify-between pb-3 border-b border-slate-100">
+              <div>
+                <h3 class="font-heading font-bold text-lg text-med-dark flex items-center gap-2">
+                  <i class="fas fa-procedures text-med-emerald"></i>
+                  <span>Kapasitas Kamar Rawat Inap</span>
+                </h3>
+                <p class="text-xs text-slate-400 mt-0.5">Ketersediaan tempat tidur berdasarkan kelas perawatan</p>
+              </div>
+              <span class="px-2.5 py-1 rounded-lg bg-emerald-50 text-med-emerald text-xs font-bold border border-emerald-100">
+                120 Total Bed
+              </span>
+            </div>
+
+            <!-- Dynamic Bed Progress Bars per Class -->
+            <div id="dashboardBedClassList" class="space-y-3.5 text-xs">
+              <!-- Populated dynamically from localStorage rooms -->
+            </div>
+
+            <div class="pt-2 border-t border-slate-100 flex items-center justify-between text-[11px] text-slate-400">
+              <span>Standard Kemenkes RI: Ideal 75% - 85%</span>
+              <span class="text-med-emerald font-semibold flex items-center gap-1">
+                <i class="fas fa-shield-alt"></i> Kapasitas Aman
+              </span>
+            </div>
+          </div>
+        </div>
+
+        <!-- 6. AUDIT & RECENT CLINICAL ACTIVITY LOG FEED -->
+        <div class="bg-white rounded-2xl p-6 shadow-sm border border-slate-200/80">
+          <div class="flex items-center justify-between pb-4 border-b border-slate-100 mb-4">
+            <div>
+              <h3 class="font-heading font-bold text-lg text-med-dark flex items-center gap-2">
+                <i class="fas fa-history text-med-cyan"></i>
+                <span>Log Aktivitas Klinis Terakhir</span>
+              </h3>
+              <p class="text-xs text-slate-400 mt-0.5">
+                Audit trail pendaftaran pasien baru, pemanggilan antrean, dan pelunasan billing kasir
+              </p>
+            </div>
+            <a href="laporan-data.html" class="text-xs font-bold text-med-blue hover:underline">
+              Buka Semua Riwayat &rarr;
             </a>
           </div>
-        </div>
-      </div>
-    </section>
 
-    <!-- MAIN DASHBOARD CONTENT (Pondasi Tahap 1 - Siap Dikembangkan di Tahap 5-6) -->
-    <main
-      class="flex-grow max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-8"
+          <div class="grid grid-cols-1 md:grid-cols-3 gap-4 text-xs">
+            <div class="p-3.5 rounded-xl bg-slate-50 border border-slate-100 flex items-start gap-3 hover:bg-slate-100/70 transition">
+              <div class="w-8 h-8 rounded-lg bg-blue-100 text-med-blue flex items-center justify-center shrink-0">
+                <i class="fas fa-user-plus text-xs"></i>
+              </div>
+              <div>
+                <p class="font-bold text-slate-800">Pendaftaran Mandiri</p>
+                <p class="text-slate-500 text-[11px]">RM-2026-0164 &bull; Pasien: Siti Rahmawati</p>
+                <span class="text-[10px] text-slate-400">Poli Gigi &bull; 10 Menit lalu</span>
+              </div>
+            </div>
+
+            <div class="p-3.5 rounded-xl bg-slate-50 border border-slate-100 flex items-start gap-3 hover:bg-slate-100/70 transition">
+              <div class="w-8 h-8 rounded-lg bg-amber-100 text-med-amber flex items-center justify-center shrink-0">
+                <i class="fas fa-bullhorn text-xs"></i>
+              </div>
+              <div>
+                <p class="font-bold text-slate-800">Pemanggilan Loket</p>
+                <p class="text-slate-500 text-[11px]">Antrean B-005 dipanggil ke Ruang 104 (Poli Anak)</p>
+                <span class="text-[10px] text-slate-400">Oleh: dr. Hendra Gunawan &bull; 18 Menit lalu</span>
+              </div>
+            </div>
+
+            <div class="p-3.5 rounded-xl bg-slate-50 border border-slate-100 flex items-start gap-3 hover:bg-slate-100/70 transition">
+              <div class="w-8 h-8 rounded-lg bg-emerald-100 text-med-emerald flex items-center justify-center shrink-0">
+                <i class="fas fa-check-double text-xs"></i>
+              </div>
+              <div>
+                <p class="font-bold text-slate-800">Pelunasan Faktur Kasir</p>
+                <p class="text-slate-500 text-[11px]">INV-KLN-2026-096 senilai Rp 970.000 Lunas</p>
+                <span class="text-[10px] text-slate-400">Kasir: Siti Aminah &bull; 25 Menit lalu</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </main>
+
+      <!-- EXECUTIVE DASHBOARD FOOTER -->
+      <footer class="bg-slate-900 text-slate-400 pt-8 pb-6 border-t border-slate-800 mt-auto">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div class="flex flex-col sm:flex-row items-center justify-between text-xs gap-3">
+            <div class="flex items-center gap-2">
+              <div class="w-6 h-6 rounded-lg bg-med-blue flex items-center justify-center text-white text-xs">
+                <i class="fas fa-hospital-alt"></i>
+              </div>
+              <p>
+                &copy; 2026 <strong>Klinika.id</strong> &mdash; Hospital & Clinic Management System (Tahap 6: Chart.js & Live Monitors).
+              </p>
+            </div>
+            <div class="flex items-center gap-3">
+              <span class="px-2.5 py-1 rounded bg-slate-800 text-slate-400 text-[11px] font-mono border border-slate-700">
+                robots: noindex, nofollow
+              </span>
+              <a href="index.html" class="hover:text-white transition">Portal Publik</a>
+              <span class="text-slate-600">&bull;</span>
+              <a href="fitur-sistem.html" class="hover:text-white transition">Konsol Antrean</a>
+              <span class="text-slate-600">&bull;</span>
+              <a href="laporan-data.html" class="hover:text-white transition">Rekap Data</a>
+            </div>
+          </div>
+        </div>
+      </footer>
+    </div>
+
+    <!-- TOAST NOTIFICATION CONTAINER -->
+    <div
+      id="toastNotification"
+      class="fixed bottom-5 right-5 z-50 transform translate-y-24 opacity-0 transition-all duration-300 pointer-events-none"
     >
-      <!-- 4 KPI SUMMARY CARDS (Placeholder Layout Shell) -->
-      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
-        <!-- KPI 1: Kunjungan -->
-        <div
-          class="bg-white rounded-2xl p-5 shadow-sm border border-slate-200/80 hover:shadow-md transition"
-        >
-          <div class="flex items-center justify-between">
-            <span
-              class="text-xs font-bold uppercase tracking-wider text-slate-400"
-              >Kunjungan Hari Ini</span
-            >
-            <div
-              class="w-10 h-10 rounded-xl bg-blue-50 text-med-blue flex items-center justify-center text-lg"
-            >
-              <i class="fas fa-user-injured"></i>
-            </div>
-          </div>
-          <div class="mt-4">
-            <h3
-              class="font-heading font-black text-3xl text-med-dark"
-              id="statTodayVisits"
-            >
-              142
-            </h3>
-            <p
-              class="text-xs font-semibold text-med-emerald flex items-center gap-1 mt-1"
-            >
-              <i class="fas fa-arrow-up"></i> +12.5%
-              <span class="text-slate-400 font-normal">dibanding kemarin</span>
-            </p>
-          </div>
-        </div>
-
-        <!-- KPI 2: Antrean Aktif -->
-        <div
-          class="bg-white rounded-2xl p-5 shadow-sm border border-slate-200/80 hover:shadow-md transition"
-        >
-          <div class="flex items-center justify-between">
-            <span
-              class="text-xs font-bold uppercase tracking-wider text-slate-400"
-              >Antrean Aktif Poli</span
-            >
-            <div
-              class="w-10 h-10 rounded-xl bg-amber-50 text-med-amber flex items-center justify-center text-lg"
-            >
-              <i class="fas fa-clock"></i>
-            </div>
-          </div>
-          <div class="mt-4">
-            <h3
-              class="font-heading font-black text-3xl text-med-dark"
-              id="statActiveQueues"
-            >
-              18
-            </h3>
-            <p class="text-xs text-slate-500 mt-1">
-              Dalam ruang tunggu poliklinik
-            </p>
-          </div>
-        </div>
-
-        <!-- KPI 3: BOR (Bed Occupancy Rate) -->
-        <div
-          class="bg-white rounded-2xl p-5 shadow-sm border border-slate-200/80 hover:shadow-md transition"
-        >
-          <div class="flex items-center justify-between">
-            <span
-              class="text-xs font-bold uppercase tracking-wider text-slate-400"
-              >BOR Rawat Inap</span
-            >
-            <div
-              class="w-10 h-10 rounded-xl bg-emerald-50 text-med-emerald flex items-center justify-center text-lg"
-            >
-              <i class="fas fa-bed"></i>
-            </div>
-          </div>
-          <div class="mt-4">
-            <h3
-              class="font-heading font-black text-3xl text-med-dark"
-              id="statBorRate"
-            >
-              78%
-            </h3>
-            <div class="w-full bg-slate-100 rounded-full h-2 mt-2">
-              <div
-                class="bg-med-emerald h-2 rounded-full"
-                style="width: 78%"
-              ></div>
-            </div>
-            <p class="text-[11px] text-slate-400 mt-1">
-              94 dari 120 Bed Terisi
-            </p>
-          </div>
-        </div>
-
-        <!-- KPI 4: Pendapatan Harian -->
-        <div
-          class="bg-white rounded-2xl p-5 shadow-sm border border-slate-200/80 hover:shadow-md transition"
-        >
-          <div class="flex items-center justify-between">
-            <span
-              class="text-xs font-bold uppercase tracking-wider text-slate-400"
-              >Billing Hari Ini</span
-            >
-            <div
-              class="w-10 h-10 rounded-xl bg-cyan-50 text-med-cyan flex items-center justify-center text-lg"
-            >
-              <i class="fas fa-wallet"></i>
-            </div>
-          </div>
-          <div class="mt-4">
-            <h3
-              class="font-heading font-black text-2xl text-med-dark"
-              id="statRevenue"
-            >
-              Rp 28.450.000
-            </h3>
-            <p class="text-[11px] text-slate-400 mt-1">
-              BPJS: 65% | Mandiri: 35%
-            </p>
-          </div>
+      <div class="flex items-center gap-3 bg-slate-900 text-white px-5 py-3.5 rounded-2xl shadow-2xl border border-slate-700 text-xs">
+        <span id="toastIcon" class="w-7 h-7 rounded-xl bg-med-emerald text-white flex items-center justify-center text-sm font-bold">
+          <i class="fas fa-check"></i>
+        </span>
+        <div>
+          <p class="font-bold text-white" id="toastTitle">Berhasil</p>
+          <p class="text-slate-300 text-[11px]" id="toastMessage">Operasi data berhasil dilakukan.</p>
         </div>
       </div>
+    </div>
 
-      <!-- GRAPHICS & VISUALIZATION SHELL (Placeholder Tahap 6: Chart.js) -->
-      <div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
-        <!-- Chart 1: Tren Kunjungan -->
-        <div
-          class="lg:col-span-8 bg-white rounded-2xl p-6 shadow-sm border border-slate-200/80 space-y-4"
-        >
-          <div class="flex items-center justify-between">
-            <div>
-              <h3 class="font-heading font-bold text-lg text-med-dark">
-                Tren Kunjungan Pasien
-              </h3>
-              <p class="text-xs text-slate-400">
-                Statistik harian pasien umum vs pasien jaminan BPJS (7 Hari
-                Terakhir)
-              </p>
-            </div>
-            <span
-              class="px-2.5 py-1 rounded-lg bg-blue-50 text-med-blue text-xs font-bold"
-              >Chart.js Container</span
-            >
-          </div>
-          <!-- Canvas Shell Placeholder -->
-          <div
-            class="h-64 rounded-xl bg-slate-50 border border-dashed border-slate-200 flex flex-col items-center justify-center text-slate-400 text-xs gap-2"
-          >
-            <i class="fas fa-chart-area text-3xl text-slate-300"></i>
-            <span
-              >Wadah Grafik Tren Kunjungan Pasien (Akan diaktifkan pada Tahap
-              6)</span
-            >
-          </div>
-        </div>
-
-        <!-- Chart 2: Distribusi Poli -->
-        <div
-          class="lg:col-span-4 bg-white rounded-2xl p-6 shadow-sm border border-slate-200/80 space-y-4"
-        >
-          <div class="flex items-center justify-between">
-            <div>
-              <h3 class="font-heading font-bold text-lg text-med-dark">
-                Beban Poliklinik
-              </h3>
-              <p class="text-xs text-slate-400">
-                Distribusi kunjungan antar spesialisasi
-              </p>
-            </div>
-            <span
-              class="px-2.5 py-1 rounded-lg bg-cyan-50 text-med-cyan text-xs font-bold"
-              >Poli Share</span
-            >
-          </div>
-          <!-- Canvas Shell Placeholder -->
-          <div
-            class="h-64 rounded-xl bg-slate-50 border border-dashed border-slate-200 flex flex-col items-center justify-center text-slate-400 text-xs gap-2 text-center p-4"
-          >
-            <i class="fas fa-chart-pie text-3xl text-slate-300"></i>
-            <span
-              >Wadah Grafik Donat Beban Poliklinik (Akan diaktifkan pada Tahap
-              6)</span
-            >
-          </div>
-        </div>
-      </div>
-
-      <!-- LIVE QUEUE & BED OCCUPANCY SHELL (Placeholder Tahap 6) -->
-      <div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
-        <!-- Live Queue Status -->
-        <div
-          class="lg:col-span-7 bg-white rounded-2xl p-6 shadow-sm border border-slate-200/80 space-y-4"
-        >
-          <div class="flex items-center justify-between">
-            <div>
-              <h3 class="font-heading font-bold text-lg text-med-dark">
-                Monitor Antrean Langsung
-              </h3>
-              <p class="text-xs text-slate-400">
-                Status nomor yang sedang diperiksa di tiap ruangan poliklinik
-              </p>
-            </div>
-            <a
-              href="fitur-sistem.html"
-              class="text-xs font-bold text-med-blue hover:underline"
-              >Kelola Antrean &rarr;</a
-            >
-          </div>
-
-          <div class="space-y-2">
-            <div
-              class="p-3 rounded-xl bg-slate-50 border border-slate-100 flex items-center justify-between text-xs"
-            >
-              <div class="flex items-center gap-3">
-                <span
-                  class="w-8 h-8 rounded-lg bg-blue-100 text-med-blue font-bold flex items-center justify-center text-sm"
-                  >A-12</span
-                >
-                <div>
-                  <p class="font-bold text-slate-700">Poli Umum (Ruang 101)</p>
-                  <p class="text-slate-400 text-[11px]">
-                    dr. Sarah Wijaya - Pasien: Budi Santoso
-                  </p>
-                </div>
-              </div>
-              <span
-                class="px-2 py-1 rounded-full bg-emerald-50 text-med-emerald font-bold text-[11px]"
-                >Sedang Konsultasi</span
-              >
-            </div>
-
-            <div
-              class="p-3 rounded-xl bg-slate-50 border border-slate-100 flex items-center justify-between text-xs"
-            >
-              <div class="flex items-center gap-3">
-                <span
-                  class="w-8 h-8 rounded-lg bg-emerald-100 text-med-emerald font-bold flex items-center justify-center text-sm"
-                  >B-05</span
-                >
-                <div>
-                  <p class="font-bold text-slate-700">Poli Anak (Ruang 104)</p>
-                  <p class="text-slate-400 text-[11px]">
-                    dr. Hendra Gunawan, Sp.A - Pasien: An. Rizky
-                  </p>
-                </div>
-              </div>
-              <span
-                class="px-2 py-1 rounded-full bg-amber-50 text-med-amber font-bold text-[11px]"
-                >Pemeriksaan Fisik</span
-              >
-            </div>
-          </div>
-        </div>
-
-        <!-- Bed Occupancy Monitor -->
-        <div
-          class="lg:col-span-5 bg-white rounded-2xl p-6 shadow-sm border border-slate-200/80 space-y-4"
-        >
-          <div class="flex items-center justify-between">
-            <div>
-              <h3 class="font-heading font-bold text-lg text-med-dark">
-                Kapasitas Tempat Tidur
-              </h3>
-              <p class="text-xs text-slate-400">
-                Ketersediaan kamar rawat inap aktif
-              </p>
-            </div>
-            <span class="text-xs font-bold text-med-emerald"
-              >120 Total Bed</span
-            >
-          </div>
-
-          <div class="space-y-3 text-xs">
-            <div>
-              <div class="flex justify-between font-semibold mb-1">
-                <span>VVIP Suite</span>
-                <span class="text-slate-500">8 / 10 Terisi (2 Kosong)</span>
-              </div>
-              <div class="w-full bg-slate-100 rounded-full h-2">
-                <div
-                  class="bg-med-dark h-2 rounded-full"
-                  style="width: 80%"
-                ></div>
-              </div>
-            </div>
-            <div>
-              <div class="flex justify-between font-semibold mb-1">
-                <span>VIP Room</span>
-                <span class="text-slate-500">20 / 25 Terisi (5 Kosong)</span>
-              </div>
-              <div class="w-full bg-slate-100 rounded-full h-2">
-                <div
-                  class="bg-med-blue h-2 rounded-full"
-                  style="width: 80%"
-                ></div>
-              </div>
-            </div>
-            <div>
-              <div class="flex justify-between font-semibold mb-1">
-                <span>Kelas 1 & 2</span>
-                <span class="text-slate-500">60 / 75 Terisi (15 Kosong)</span>
-              </div>
-              <div class="w-full bg-slate-100 rounded-full h-2">
-                <div
-                  class="bg-med-cyan h-2 rounded-full"
-                  style="width: 75%"
-                ></div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </main>
-
-    <!-- MASTER HOSPITAL FOOTER -->
-    <footer
-      class="bg-slate-900 text-slate-300 pt-12 pb-6 border-t border-slate-800 mt-auto"
-    >
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div
-          class="flex flex-col sm:flex-row items-center justify-between text-xs text-slate-500 gap-3"
-        >
-          <p>
-            &copy; 2026 <strong>Klinika.id</strong> — Hospital & Clinic
-            Management System. All Rights Reserved.
-          </p>
-          <p class="flex items-center gap-2">
-            <span>Keamanan:</span>
-            <span
-              class="px-2 py-0.5 rounded bg-slate-800 text-slate-400 text-[11px] font-mono"
-              >robots: noindex, nofollow</span
-            >
-          </p>
-        </div>
-      </div>
-    </footer>
-
-    <!-- Shared Klinika Data Engine -->
+    <!-- SHARED KLINIKA DATA ENGINE -->
     <script src="klinika-engine.js"></script>
 
-    <!-- Scripts -->
+    <!-- DASHBOARD SCRIPTS (TAHAP 5 & TAHAP 6: CHART.JS & REALTIME DATA) -->
     <script>
-      // Mobile Menu
-      const mobileMenuBtn = document.getElementById("mobileMenuBtn");
-      const mobileMenu = document.getElementById("mobileMenu");
-      if (mobileMenuBtn && mobileMenu) {
-        mobileMenuBtn.addEventListener("click", () => {
-          mobileMenu.classList.toggle("hidden");
-        });
+      // ==========================================
+      // 1. MOBILE SIDEBAR DRAWER & NOTIF DROPDOWN
+      // ==========================================
+      function toggleMobileSidebar() {
+        const sidebar = document.getElementById("mainSidebar");
+        const backdrop = document.getElementById("sidebarBackdrop");
+        if (!sidebar || !backdrop) return;
+
+        const isHidden = sidebar.classList.contains("-translate-x-full");
+        if (isHidden) {
+          sidebar.classList.remove("-translate-x-full");
+          backdrop.classList.remove("hidden");
+        } else {
+          sidebar.classList.add("-translate-x-full");
+          backdrop.classList.add("hidden");
+        }
       }
 
-      // Realtime Clock
+      function toggleNotifDropdown() {
+        const dropdown = document.getElementById("notifDropdown");
+        if (dropdown) dropdown.classList.toggle("hidden");
+      }
+
+      window.addEventListener("click", (e) => {
+        const bellBtn = document.getElementById("notifBellBtn");
+        const dropdown = document.getElementById("notifDropdown");
+        if (dropdown && bellBtn && !bellBtn.contains(e.target) && !dropdown.contains(e.target)) {
+          dropdown.classList.add("hidden");
+        }
+      });
+
+      // ==========================================
+      // 2. REALTIME CLOCK & DATE (WIB)
+      // ==========================================
       function updateClock() {
         const now = new Date();
         const timeStr =
@@ -627,6 +975,552 @@
       }
       setInterval(updateClock, 1000);
       updateClock();
+
+      function setFormattedDate() {
+        const now = new Date();
+        const options = { weekday: "long", year: "numeric", month: "long", day: "numeric" };
+        const dateStr = now.toLocaleDateString("id-ID", options);
+        const dateEl = document.getElementById("currentDateFormatted");
+        if (dateEl) dateEl.textContent = dateStr;
+      }
+      setFormattedDate();
+
+      // ==========================================
+      // 3. TOAST NOTIFICATION HELPER
+      // ==========================================
+      function showToast(title, message, isSuccess = true) {
+        const toast = document.getElementById("toastNotification");
+        const toastTitle = document.getElementById("toastTitle");
+        const toastMessage = document.getElementById("toastMessage");
+        const toastIcon = document.getElementById("toastIcon");
+
+        if (!toast) return;
+
+        toastTitle.textContent = title;
+        toastMessage.textContent = message;
+
+        if (isSuccess) {
+          toastIcon.className = "w-7 h-7 rounded-xl bg-med-emerald text-white flex items-center justify-center text-sm font-bold";
+          toastIcon.innerHTML = '<i class="fas fa-check"></i>';
+        } else {
+          toastIcon.className = "w-7 h-7 rounded-xl bg-med-rose text-white flex items-center justify-center text-sm font-bold";
+          toastIcon.innerHTML = '<i class="fas fa-exclamation-triangle"></i>';
+        }
+
+        toast.classList.remove("translate-y-24", "opacity-0", "pointer-events-none");
+        setTimeout(() => {
+          toast.classList.add("translate-y-24", "opacity-0", "pointer-events-none");
+        }, 3200);
+      }
+
+      // Quick Export CSV
+      function handleQuickExportCSV() {
+        if (typeof KlinikaEngine !== "undefined" && KlinikaEngine.exportTransactionsToCSV) {
+          const success = KlinikaEngine.exportTransactionsToCSV();
+          if (success) {
+            showToast("Ekspor Berhasil", "File CSV data transaksi telah diunduh ke browser Anda.");
+          } else {
+            showToast("Ekspor Gagal", "Belum ada transaksi untuk diekspor.", false);
+          }
+        }
+      }
+
+      // ==========================================
+      // 4. CHART.JS VISUALIZATIONS (TAHAP 6)
+      // ==========================================
+      let weeklyVisitChartInstance = null;
+      let polyDistributionChartInstance = null;
+      let currentChartPeriod = "7d";
+      let currentChartType = "line";
+
+      const CHART_DATA = {
+        "7d": {
+          labels: ["Senin", "Selasa", "Rabu", "Kamis", "Jumat", "Sabtu", "Minggu"],
+          bpjs: [88, 94, 76, 102, 95, 68, 98],
+          umum: [36, 42, 38, 48, 44, 28, 44]
+        },
+        "30d": {
+          labels: ["Minggu 1", "Minggu 2", "Minggu 3", "Minggu 4"],
+          bpjs: [590, 620, 580, 645],
+          umum: [250, 275, 245, 290]
+        }
+      };
+
+      function initWeeklyVisitChart() {
+        const ctx = document.getElementById("weeklyVisitChart");
+        if (!ctx || typeof Chart === "undefined") return;
+
+        if (weeklyVisitChartInstance) {
+          weeklyVisitChartInstance.destroy();
+        }
+
+        const dataSet = CHART_DATA[currentChartPeriod];
+
+        weeklyVisitChartInstance = new Chart(ctx, {
+          type: currentChartType,
+          data: {
+            labels: dataSet.labels,
+            datasets: [
+              {
+                label: "Pasien BPJS Kesehatan",
+                data: dataSet.bpjs,
+                borderColor: "#1b68b3",
+                backgroundColor: currentChartType === "line" ? "rgba(27, 104, 179, 0.12)" : "#1b68b3",
+                fill: true,
+                tension: 0.35,
+                borderWidth: 2.5,
+                pointBackgroundColor: "#1b68b3",
+                pointBorderColor: "#ffffff",
+                pointBorderWidth: 2,
+                pointRadius: 4,
+                pointHoverRadius: 6,
+                borderRadius: currentChartType === "bar" ? 6 : 0
+              },
+              {
+                label: "Pasien Umum & Asuransi",
+                data: dataSet.umum,
+                borderColor: "#0ea5e9",
+                backgroundColor: currentChartType === "line" ? "rgba(14, 165, 233, 0.10)" : "#0ea5e9",
+                fill: true,
+                tension: 0.35,
+                borderWidth: 2.5,
+                pointBackgroundColor: "#0ea5e9",
+                pointBorderColor: "#ffffff",
+                pointBorderWidth: 2,
+                pointRadius: 4,
+                pointHoverRadius: 6,
+                borderRadius: currentChartType === "bar" ? 6 : 0
+              }
+            ]
+          },
+          options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            interaction: {
+              mode: "index",
+              intersect: false
+            },
+            plugins: {
+              legend: {
+                display: false
+              },
+              tooltip: {
+                backgroundColor: "rgba(35, 53, 110, 0.95)",
+                titleFont: { family: "Lato", size: 12, weight: "bold" },
+                bodyFont: { family: "Roboto", size: 11 },
+                padding: 10,
+                cornerRadius: 8,
+                callbacks: {
+                  label: function (context) {
+                    return ` ${context.dataset.label}: ${context.parsed.y} Pasien`;
+                  }
+                }
+              }
+            },
+            scales: {
+              x: {
+                grid: {
+                  display: false
+                },
+                ticks: {
+                  font: { family: "Roboto", size: 11 },
+                  color: "#64748b"
+                }
+              },
+              y: {
+                beginAtZero: true,
+                grid: {
+                  color: "rgba(226, 232, 240, 0.7)"
+                },
+                ticks: {
+                  font: { family: "Roboto", size: 11 },
+                  color: "#64748b",
+                  callback: function (val) {
+                    return val + " Org";
+                  }
+                }
+              }
+            }
+          }
+        });
+      }
+
+      function switchChartRange(range) {
+        currentChartPeriod = range;
+
+        const btn7d = document.getElementById("btnRange7d");
+        const btn30d = document.getElementById("btnRange30d");
+
+        if (range === "7d") {
+          btn7d.className = "px-3 py-1 rounded-lg bg-white text-med-blue shadow-xs transition";
+          btn30d.className = "px-3 py-1 rounded-lg text-slate-500 hover:text-slate-800 transition";
+        } else {
+          btn30d.className = "px-3 py-1 rounded-lg bg-white text-med-blue shadow-xs transition";
+          btn7d.className = "px-3 py-1 rounded-lg text-slate-500 hover:text-slate-800 transition";
+        }
+
+        initWeeklyVisitChart();
+      }
+
+      function switchChartType(type) {
+        currentChartType = type;
+
+        const btnLine = document.getElementById("btnTypeLine");
+        const btnBar = document.getElementById("btnTypeBar");
+
+        if (type === "line") {
+          btnLine.className = "px-2.5 py-1 rounded-lg bg-white text-med-blue shadow-xs transition";
+          btnBar.className = "px-2.5 py-1 rounded-lg text-slate-500 hover:text-slate-800 transition";
+        } else {
+          btnBar.className = "px-2.5 py-1 rounded-lg bg-white text-med-blue shadow-xs transition";
+          btnLine.className = "px-2.5 py-1 rounded-lg text-slate-500 hover:text-slate-800 transition";
+        }
+
+        initWeeklyVisitChart();
+      }
+
+      function initPolyDistributionChart() {
+        const ctx = document.getElementById("polyDistributionChart");
+        if (!ctx || typeof Chart === "undefined") return;
+
+        if (polyDistributionChartInstance) {
+          polyDistributionChartInstance.destroy();
+        }
+
+        polyDistributionChartInstance = new Chart(ctx, {
+          type: "doughnut",
+          data: {
+            labels: [
+              "Poli Umum",
+              "Poli Anak",
+              "Poli Gigi & Mulut",
+              "Poli Jantung (Sp.JP)",
+              "Poli Saraf & Bedah"
+            ],
+            datasets: [
+              {
+                data: [38, 22, 16, 12, 12],
+                backgroundColor: [
+                  "#1b68b3", // med-blue
+                  "#10b981", // med-emerald
+                  "#f59e0b", // med-amber
+                  "#ef4444", // med-rose
+                  "#8b5cf6"  // purple
+                ],
+                borderWidth: 3,
+                borderColor: "#ffffff",
+                hoverOffset: 6
+              }
+            ]
+          },
+          options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            cutout: "70%",
+            plugins: {
+              legend: {
+                display: false
+              },
+              tooltip: {
+                backgroundColor: "rgba(35, 53, 110, 0.95)",
+                titleFont: { family: "Lato", size: 12, weight: "bold" },
+                bodyFont: { family: "Roboto", size: 11 },
+                padding: 10,
+                cornerRadius: 8,
+                callbacks: {
+                  label: function (context) {
+                    return ` ${context.label}: ${context.raw}% Beban`;
+                  }
+                }
+              }
+            }
+          }
+        });
+      }
+
+      // ==========================================
+      // 5. LIVE QUEUE STATUS BOARD & BED MONITOR
+      // ==========================================
+      const DEFAULT_POLY_BOARD_DATA = [
+        {
+          polyCode: "POLI-UMUM",
+          polyName: "Poli Umum",
+          room: "Ruang 101 (Loket 1)",
+          queueNumber: "A-014",
+          doctor: "dr. Sarah Wijaya, Sp.JP",
+          patient: "Budi Santoso",
+          status: "Sedang Konsultasi",
+          badgeColor: "bg-emerald-50 text-med-emerald border-emerald-200",
+          dotColor: "bg-med-emerald"
+        },
+        {
+          polyCode: "POLI-ANAK",
+          polyName: "Poli Anak",
+          room: "Ruang 104 (Loket 2)",
+          queueNumber: "B-008",
+          doctor: "dr. Hendra Gunawan, Sp.A",
+          patient: "An. Rizky Fauzan",
+          status: "Pemeriksaan Fisik",
+          badgeColor: "bg-cyan-50 text-med-cyan border-cyan-200",
+          dotColor: "bg-med-cyan"
+        },
+        {
+          polyCode: "POLI-GIGI",
+          polyName: "Poli Gigi & Mulut",
+          room: "Ruang 202 (Loket 3)",
+          queueNumber: "C-005",
+          doctor: "drg. Maya Putri, Sp.KG",
+          patient: "Dewi Anggraini",
+          status: "Tindakan Medis",
+          badgeColor: "bg-amber-50 text-med-amber border-amber-200",
+          dotColor: "bg-med-amber"
+        },
+        {
+          polyCode: "POLI-JANTUNG",
+          polyName: "Poli Jantung & Pembuluh",
+          room: "Ruang 301 (Loket 4)",
+          queueNumber: "D-003",
+          doctor: "dr. Jonathan Barnes, Sp.PD",
+          patient: "H. Ahmad Dahlan",
+          status: "Menunggu Pasien",
+          badgeColor: "bg-slate-100 text-slate-600 border-slate-200",
+          dotColor: "bg-slate-400"
+        }
+      ];
+
+      function renderLiveQueueList(filterPoly = "ALL") {
+        const container = document.getElementById("dashboardLiveQueueList");
+        if (!container) return;
+
+        let items = DEFAULT_POLY_BOARD_DATA;
+        if (filterPoly !== "ALL") {
+          items = items.filter((item) => item.polyCode === filterPoly);
+        }
+
+        if (items.length === 0) {
+          container.innerHTML = `
+            <div class="p-6 text-center text-slate-400 text-xs">
+              <i class="far fa-folder-open text-2xl mb-1 text-slate-300"></i>
+              <p>Tidak ada jadwal aktif pada poliklinik ini.</p>
+            </div>
+          `;
+          return;
+        }
+
+        let html = "";
+        items.forEach((item) => {
+          html += `
+            <div class="p-3.5 rounded-xl bg-slate-50 hover:bg-slate-100/80 border border-slate-200/80 flex items-center justify-between text-xs transition">
+              <div class="flex items-center gap-3">
+                <span class="w-11 h-11 rounded-xl bg-blue-100 text-med-blue font-bold flex items-center justify-center text-sm shadow-xs shrink-0">
+                  ${item.queueNumber}
+                </span>
+                <div>
+                  <p class="font-bold text-slate-800">${item.polyName} <span class="text-slate-400 font-normal">(${item.room})</span></p>
+                  <p class="text-slate-500 text-[11px]">${item.doctor} &bull; Pasien: <strong class="text-slate-700">${item.patient}</strong></p>
+                </div>
+              </div>
+              <div class="text-right">
+                <span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-[11px] font-bold border ${item.badgeColor}">
+                  <span class="w-1.5 h-1.5 rounded-full ${item.dotColor} animate-pulse"></span>
+                  ${item.status}
+                </span>
+                <div class="mt-1">
+                  <a href="fitur-sistem.html#konsol" class="text-[10px] text-med-blue font-bold hover:underline">
+                    Panggil Pasien &rarr;
+                  </a>
+                </div>
+              </div>
+            </div>
+          `;
+        });
+
+        container.innerHTML = html;
+      }
+
+      function filterQueueBoard(polyCode) {
+        renderLiveQueueList(polyCode);
+      }
+
+      function handleQuickSearch(query) {
+        if (!query) {
+          renderLiveQueueList("ALL");
+          return;
+        }
+        const term = query.toLowerCase().trim();
+        const container = document.getElementById("dashboardLiveQueueList");
+        if (!container) return;
+
+        const filtered = DEFAULT_POLY_BOARD_DATA.filter((item) =>
+          item.patient.toLowerCase().includes(term) ||
+          item.queueNumber.toLowerCase().includes(term) ||
+          item.doctor.toLowerCase().includes(term) ||
+          item.polyName.toLowerCase().includes(term)
+        );
+
+        if (filtered.length === 0) {
+          container.innerHTML = `
+            <div class="p-6 text-center text-slate-400 text-xs">
+              <i class="fas fa-search text-2xl mb-1 text-slate-300"></i>
+              <p>Tidak ditemukan pasien atau dokter dengan kata kunci: "<strong>${query}</strong>"</p>
+            </div>
+          `;
+        } else {
+          let html = "";
+          filtered.forEach((item) => {
+            html += `
+              <div class="p-3.5 rounded-xl bg-blue-50/50 border border-blue-200/80 flex items-center justify-between text-xs transition">
+                <div class="flex items-center gap-3">
+                  <span class="w-10 h-10 rounded-xl bg-blue-100 text-med-blue font-bold flex items-center justify-center text-sm shadow-xs shrink-0">
+                    ${item.queueNumber}
+                  </span>
+                  <div>
+                    <p class="font-bold text-slate-800">${item.polyName} <span class="text-slate-400 font-normal">(${item.room})</span></p>
+                    <p class="text-slate-500 text-[11px]">${item.doctor} &bull; Pasien: <strong class="text-slate-700">${item.patient}</strong></p>
+                  </div>
+                </div>
+                <div class="text-right">
+                  <span class="px-2 py-0.5 rounded-full text-[10px] font-bold border ${item.badgeColor}">
+                    ${item.status}
+                  </span>
+                </div>
+              </div>
+            `;
+          });
+          container.innerHTML = html;
+        }
+      }
+
+      // Render Bed Class Occupancy Bars
+      function renderBedClassList() {
+        const container = document.getElementById("dashboardBedClassList");
+        if (!container || typeof KlinikaEngine === "undefined") return;
+
+        const rooms = KlinikaEngine.getRooms();
+        if (!rooms || rooms.length === 0) return;
+
+        let html = "";
+        rooms.forEach((r) => {
+          const pct = Math.round((r.occupiedBeds / r.totalBeds) * 100);
+          const available = r.totalBeds - r.occupiedBeds;
+
+          let barColor = "bg-med-emerald";
+          let badgeText = "Taraf Ideal";
+          let badgeClass = "bg-emerald-50 text-med-emerald";
+
+          if (pct >= 85) {
+            barColor = "bg-med-rose";
+            badgeText = "Hampir Penuh";
+            badgeClass = "bg-rose-50 text-med-rose";
+          } else if (pct >= 75) {
+            barColor = "bg-med-blue";
+            badgeText = "Optimal";
+            badgeClass = "bg-blue-50 text-med-blue";
+          }
+
+          html += `
+            <div>
+              <div class="flex justify-between font-semibold mb-1 text-slate-700">
+                <span class="flex items-center gap-1.5">
+                  <span class="font-bold">${r.className}</span>
+                  <span class="text-[10px] text-slate-400">(${r.floor})</span>
+                </span>
+                <div class="flex items-center gap-2">
+                  <span class="px-1.5 py-0.2 rounded text-[10px] font-bold ${badgeClass}">
+                    ${pct}% (${badgeText})
+                  </span>
+                  <span class="text-slate-500 text-[11px]">
+                    <strong>${r.occupiedBeds}</strong> / ${r.totalBeds} Bed
+                  </span>
+                </div>
+              </div>
+              <div class="w-full bg-slate-100 rounded-full h-2 overflow-hidden">
+                <div
+                  class="${barColor} h-2 rounded-full transition-all duration-700"
+                  style="width: ${pct}%"
+                ></div>
+              </div>
+            </div>
+          `;
+        });
+
+        container.innerHTML = html;
+      }
+
+      // ==========================================
+      // 6. SYNC DASHBOARD METRICS WITH ENGINE
+      // ==========================================
+      function syncDashboardMetrics() {
+        if (typeof KlinikaEngine === "undefined") return;
+
+        const stats = KlinikaEngine.getKPIStats();
+
+        // Total Visits
+        const visitEl = document.getElementById("statTodayVisits");
+        if (visitEl) visitEl.textContent = stats.totalVisits;
+
+        const polyCountEl = document.getElementById("polyTotalCount");
+        if (polyCountEl) polyCountEl.textContent = stats.totalVisits;
+
+        // Active Queues
+        const queueEl = document.getElementById("statActiveQueues");
+        if (queueEl) queueEl.textContent = stats.activeQueues;
+
+        // BOR Percentage
+        const borEl = document.getElementById("statBorRate");
+        if (borEl) borEl.textContent = stats.borPercentage + "%";
+
+        const borBarEl = document.getElementById("statBorBar");
+        if (borBarEl) borBarEl.style.width = stats.borPercentage + "%";
+
+        const sidebarBorEl = document.getElementById("sidebarBorStat");
+        if (sidebarBorEl) sidebarBorEl.textContent = stats.borPercentage + "% Terisi";
+
+        // Bed Count Subtext
+        const bedCountEl = document.getElementById("statBedCount");
+        if (bedCountEl) {
+          bedCountEl.textContent = `${stats.occupiedBeds} dari ${stats.totalBeds} Bed Terisi`;
+        }
+
+        // Total Revenue
+        const revEl = document.getElementById("statRevenue");
+        if (revEl) revEl.textContent = stats.formattedRevenue;
+
+        // Render monitors
+        renderLiveQueueList("ALL");
+        renderBedClassList();
+      }
+
+      // Manual Refresh Button Action
+      function refreshDashboardData(showFeedback = false) {
+        const icon = document.getElementById("refreshIcon");
+        if (icon) icon.classList.add("fa-spin");
+
+        syncDashboardMetrics();
+        initWeeklyVisitChart();
+        initPolyDistributionChart();
+
+        setTimeout(() => {
+          if (icon) icon.classList.remove("fa-spin");
+          if (showFeedback) {
+            showToast("Data Tersinkron", "Seluruh metrik dan grafik telah diperbarui secara real-time.");
+          }
+        }, 500);
+      }
+
+      // ==========================================
+      // 7. INITIALIZATION ON DOM READY
+      // ==========================================
+      document.addEventListener("DOMContentLoaded", () => {
+        syncDashboardMetrics();
+        initWeeklyVisitChart();
+        initPolyDistributionChart();
+      });
+
+      // Reactive listener to KlinikaEngine updates
+      window.addEventListener("klinika_data_updated", () => {
+        syncDashboardMetrics();
+      });
     </script>
   </body>
 </html>
