@@ -83,8 +83,13 @@
 
       /* Audio wave animation bars */
       @keyframes soundWave {
-        0%, 100% { height: 6px; }
-        50% { height: 26px; }
+        0%,
+        100% {
+          height: 6px;
+        }
+        50% {
+          height: 26px;
+        }
       }
       .wave-bar {
         display: inline-block;
@@ -93,27 +98,47 @@
         border-radius: 9999px;
         animation: soundWave 1.2s ease-in-out infinite;
       }
-      .wave-bar:nth-child(1) { animation-delay: 0.0s; }
-      .wave-bar:nth-child(2) { animation-delay: 0.2s; }
-      .wave-bar:nth-child(3) { animation-delay: 0.4s; }
-      .wave-bar:nth-child(4) { animation-delay: 0.1s; }
-      .wave-bar:nth-child(5) { animation-delay: 0.3s; }
+      .wave-bar:nth-child(1) {
+        animation-delay: 0s;
+      }
+      .wave-bar:nth-child(2) {
+        animation-delay: 0.2s;
+      }
+      .wave-bar:nth-child(3) {
+        animation-delay: 0.4s;
+      }
+      .wave-bar:nth-child(4) {
+        animation-delay: 0.1s;
+      }
+      .wave-bar:nth-child(5) {
+        animation-delay: 0.3s;
+      }
     </style>
   </head>
-  <body class="bg-slate-50 font-sans text-slate-700 antialiased flex flex-col min-h-screen">
+  <body
+    class="bg-slate-50 font-sans text-slate-700 antialiased flex flex-col min-h-screen"
+  >
     <!-- TOP HEADER STRIP -->
-    <div class="bg-med-dark text-slate-200 text-xs py-2 px-4 border-b border-slate-700">
-      <div class="max-w-7xl mx-auto flex flex-wrap justify-between items-center gap-2">
+    <div
+      class="bg-med-dark text-slate-200 text-xs py-2 px-4 border-b border-slate-700"
+    >
+      <div
+        class="max-w-7xl mx-auto flex flex-wrap justify-between items-center gap-2"
+      >
         <div class="flex items-center gap-3">
           <span class="inline-flex items-center gap-1.5 font-medium">
             <i class="fas fa-ticket-alt text-med-cyan"></i>
-            <strong>Sistem Pendaftaran Pasien & Manajemen Antrean Cerdas</strong> &mdash; Klinika.id
+            <strong
+              >Sistem Pendaftaran Pasien & Manajemen Antrean Cerdas</strong
+            >
+            &mdash; Klinika.id
           </span>
         </div>
         <div class="flex items-center gap-4 text-slate-300">
           <span class="flex items-center gap-1.5">
             <i class="fas fa-volume-up text-med-emerald animate-pulse"></i>
-            Web Speech Audio: <strong class="text-white">Bahasa Indonesia (Aktif)</strong>
+            Web Speech Audio:
+            <strong class="text-white">Bahasa Indonesia (Aktif)</strong>
           </span>
           <span class="flex items-center gap-1.5">
             <i class="far fa-clock text-med-cyan"></i>
@@ -124,7 +149,9 @@
     </div>
 
     <!-- MAIN NAVIGATION BAR -->
-    <header class="bg-white sticky top-0 z-40 shadow-sm border-b border-slate-100">
+    <header
+      class="bg-white sticky top-0 z-40 shadow-sm border-b border-slate-100"
+    >
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="flex justify-between items-center h-20">
           <!-- Brand Logo -->
@@ -136,10 +163,17 @@
             </div>
             <div>
               <div class="flex items-center gap-1">
-                <span class="font-heading font-black text-2xl tracking-tight text-med-dark">Klinika</span>
-                <span class="font-heading font-black text-2xl text-med-blue">.id</span>
+                <span
+                  class="font-heading font-black text-2xl tracking-tight text-med-dark"
+                  >Klinika</span
+                >
+                <span class="font-heading font-black text-2xl text-med-blue"
+                  >.id</span
+                >
               </div>
-              <p class="text-[10px] uppercase font-bold tracking-wider text-slate-400">
+              <p
+                class="text-[10px] uppercase font-bold tracking-wider text-slate-400"
+              >
                 Hospital & Clinic System
               </p>
             </div>
@@ -184,7 +218,9 @@
             <span
               class="px-3 py-1.5 rounded-full bg-emerald-50 text-med-emerald border border-emerald-200 text-xs font-bold flex items-center gap-1.5"
             >
-              <span class="w-2 h-2 rounded-full bg-med-emerald animate-pulse"></span>
+              <span
+                class="w-2 h-2 rounded-full bg-med-emerald animate-pulse"
+              ></span>
               Konsol Suara Siap
             </span>
           </div>
@@ -205,20 +241,36 @@
         id="mobileMenu"
         class="hidden lg:hidden border-t border-slate-100 bg-white px-4 pt-3 pb-5 space-y-1"
       >
-        <a href="index.html" class="block px-3 py-2.5 rounded-lg text-base font-medium text-slate-700 hover:bg-slate-50">
+        <a
+          href="index.html"
+          class="block px-3 py-2.5 rounded-lg text-base font-medium text-slate-700 hover:bg-slate-50"
+        >
           <i class="fas fa-home w-6 text-slate-400"></i> Beranda
         </a>
-        <a href="dashboard.html" class="block px-3 py-2.5 rounded-lg text-base font-medium text-slate-700 hover:bg-slate-50">
+        <a
+          href="dashboard.html"
+          class="block px-3 py-2.5 rounded-lg text-base font-medium text-slate-700 hover:bg-slate-50"
+        >
           <i class="fas fa-chart-line w-6 text-slate-400"></i> Dashboard Sistem
         </a>
-        <a href="fitur-sistem.html" class="block px-3 py-2.5 rounded-lg text-base font-semibold text-med-blue bg-blue-50">
+        <a
+          href="fitur-sistem.html"
+          class="block px-3 py-2.5 rounded-lg text-base font-semibold text-med-blue bg-blue-50"
+        >
           <i class="fas fa-user-plus w-6"></i> Pendaftaran & Antrean
         </a>
-        <a href="detail-layanan.html" class="block px-3 py-2.5 rounded-lg text-base font-medium text-slate-700 hover:bg-slate-50">
+        <a
+          href="detail-layanan.html"
+          class="block px-3 py-2.5 rounded-lg text-base font-medium text-slate-700 hover:bg-slate-50"
+        >
           <i class="fas fa-calculator w-6 text-slate-400"></i> Layanan & Tarif
         </a>
-        <a href="laporan-data.html" class="block px-3 py-2.5 rounded-lg text-base font-medium text-slate-700 hover:bg-slate-50">
-          <i class="fas fa-file-invoice w-6 text-slate-400"></i> Rekapitulasi Laporan
+        <a
+          href="laporan-data.html"
+          class="block px-3 py-2.5 rounded-lg text-base font-medium text-slate-700 hover:bg-slate-50"
+        >
+          <i class="fas fa-file-invoice w-6 text-slate-400"></i> Rekapitulasi
+          Laporan
         </a>
       </div>
     </header>
@@ -226,23 +278,33 @@
     <!-- SECTION BREADCRUMB & HEADER -->
     <section class="bg-white border-b border-slate-200 py-6">
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="flex flex-col md:flex-row md:items-center justify-between gap-4">
+        <div
+          class="flex flex-col md:flex-row md:items-center justify-between gap-4"
+        >
           <div>
-            <div class="flex items-center gap-2 text-xs font-semibold text-med-blue mb-1">
+            <div
+              class="flex items-center gap-2 text-xs font-semibold text-med-blue mb-1"
+            >
               <a href="index.html" class="hover:underline">Beranda</a>
               <span>/</span>
               <span class="text-slate-400">Modul Fitur Interaktif</span>
             </div>
-            <h1 class="font-heading font-black text-2xl sm:text-3xl text-med-dark tracking-tight">
+            <h1
+              class="font-heading font-black text-2xl sm:text-3xl text-med-dark tracking-tight"
+            >
               Pendaftaran Pasien & Simulator Antrean Suara
             </h1>
             <p class="text-xs sm:text-sm text-slate-500 mt-1">
-              Formulir pendaftaran pasien baru mandiri, nomor rekam medis otomatis, struk tiket termal, serta simulator konsol pemanggil antrean suara interaktif (Web Speech API).
+              Formulir pendaftaran pasien baru mandiri, nomor rekam medis
+              otomatis, struk tiket termal, serta simulator konsol pemanggil
+              antrean suara interaktif (Web Speech API).
             </p>
           </div>
 
           <div class="flex items-center gap-2.5 self-start md:self-auto">
-            <span class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-blue-50 text-med-blue border border-blue-200 text-xs font-bold">
+            <span
+              class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-blue-50 text-med-blue border border-blue-200 text-xs font-bold"
+            >
               <i class="fas fa-volume-up text-med-cyan"></i>
               <span>Speech API Ready</span>
             </span>
@@ -259,19 +321,29 @@
     </section>
 
     <!-- MAIN TWO-COLUMN WORKSPACE (Tahap 7 & Tahap 8) -->
-    <main class="flex-grow max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-8">
+    <main
+      class="flex-grow max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-8"
+    >
       <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
         <!-- ======================================================== -->
         <!-- KOLOM KIRI: FORMULIR PENDAFTARAN PASIEN BARU (TAHAP 7)   -->
         <!-- ======================================================== -->
-        <div class="lg:col-span-6 bg-white rounded-3xl p-6 sm:p-7 shadow-sm border border-slate-200/90 space-y-6">
-          <div class="flex items-center justify-between border-b border-slate-100 pb-4">
+        <div
+          class="lg:col-span-6 bg-white rounded-3xl p-6 sm:p-7 shadow-sm border border-slate-200/90 space-y-6"
+        >
+          <div
+            class="flex items-center justify-between border-b border-slate-100 pb-4"
+          >
             <div class="flex items-center gap-3">
-              <div class="w-11 h-11 rounded-2xl bg-blue-50 text-med-blue flex items-center justify-center text-xl shadow-sm">
+              <div
+                class="w-11 h-11 rounded-2xl bg-blue-50 text-med-blue flex items-center justify-center text-xl shadow-sm"
+              >
                 <i class="fas fa-user-plus"></i>
               </div>
               <div>
-                <h2 class="font-heading font-black text-xl text-med-dark tracking-tight">
+                <h2
+                  class="font-heading font-black text-xl text-med-dark tracking-tight"
+                >
                   Formulir Registrasi Pasien Baru
                 </h2>
                 <p class="text-xs text-slate-400">
@@ -279,18 +351,26 @@
                 </p>
               </div>
             </div>
-            <span class="px-2.5 py-1 rounded-full bg-blue-50 text-med-blue text-xs font-bold font-mono">
+            <span
+              class="px-2.5 py-1 rounded-full bg-blue-50 text-med-blue text-xs font-bold font-mono"
+            >
               Auto RM
             </span>
           </div>
 
           <!-- FORM PENDAFTARAN INTERAKTIF -->
-          <form id="patientRegistrationForm" onsubmit="handlePatientRegistration(event)" class="space-y-4 text-xs">
+          <form
+            id="patientRegistrationForm"
+            onsubmit="handlePatientRegistration(event)"
+            class="space-y-4 text-xs"
+          >
             <!-- Row 1: No. Rekam Medis (Auto-Generated) & NIK KTP -->
             <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
               <div>
                 <div class="flex items-center justify-between mb-1">
-                  <label for="regRM" class="font-bold text-slate-700">Nomor Rekam Medis (No. RM)</label>
+                  <label for="regRM" class="font-bold text-slate-700"
+                    >Nomor Rekam Medis (No. RM)</label
+                  >
                   <button
                     type="button"
                     onclick="regenerateRM()"
@@ -309,17 +389,27 @@
                     class="w-full pl-3.5 pr-8 py-2.5 rounded-xl bg-slate-100 border border-slate-200 font-mono text-slate-700 font-bold focus:outline-none cursor-not-allowed text-xs"
                     value="RM-2026-0160"
                   />
-                  <span class="absolute inset-y-0 right-0 pr-3 flex items-center text-slate-400 pointer-events-none text-xs">
+                  <span
+                    class="absolute inset-y-0 right-0 pr-3 flex items-center text-slate-400 pointer-events-none text-xs"
+                  >
                     <i class="fas fa-lock"></i>
                   </span>
                 </div>
-                <p class="text-[10px] text-slate-400 mt-1">Dibuat otomatis oleh generator KlinikaEngine</p>
+                <p class="text-[10px] text-slate-400 mt-1">
+                  Dibuat otomatis oleh generator KlinikaEngine
+                </p>
               </div>
 
               <div>
                 <div class="flex items-center justify-between mb-1">
-                  <label for="regNik" class="font-bold text-slate-700">Nomor Induk Kependudukan (NIK) *</label>
-                  <span id="nikCounter" class="text-[10px] text-slate-400 font-mono">0/16</span>
+                  <label for="regNik" class="font-bold text-slate-700"
+                    >Nomor Induk Kependudukan (NIK) *</label
+                  >
+                  <span
+                    id="nikCounter"
+                    class="text-[10px] text-slate-400 font-mono"
+                    >0/16</span
+                  >
                 </div>
                 <input
                   type="text"
@@ -331,7 +421,12 @@
                   oninput="handleNikInput(this)"
                   class="w-full px-3.5 py-2.5 rounded-xl border border-slate-200 focus:ring-2 focus:ring-med-blue/20 focus:border-med-blue focus:outline-none transition text-xs font-mono"
                 />
-                <p id="nikValidationMsg" class="text-[10px] text-slate-400 mt-1">Wajib 16 digit angka KTP</p>
+                <p
+                  id="nikValidationMsg"
+                  class="text-[10px] text-slate-400 mt-1"
+                >
+                  Wajib 16 digit angka KTP
+                </p>
               </div>
             </div>
 
@@ -341,7 +436,9 @@
                 Nama Lengkap Pasien (Sesuai KTP / KK) *
               </label>
               <div class="relative">
-                <span class="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-slate-400 text-xs">
+                <span
+                  class="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-slate-400 text-xs"
+                >
                   <i class="fas fa-user"></i>
                 </span>
                 <input
@@ -358,11 +455,16 @@
             <!-- Row 3: No. HP / WhatsApp & Jenis Kelamin -->
             <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
               <div>
-                <label for="regPhone" class="block font-bold text-slate-700 mb-1">
+                <label
+                  for="regPhone"
+                  class="block font-bold text-slate-700 mb-1"
+                >
                   Nomor WhatsApp / HP Pasien *
                 </label>
                 <div class="relative">
-                  <span class="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-slate-400 text-xs">
+                  <span
+                    class="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-slate-400 text-xs"
+                  >
                     <i class="fab fa-whatsapp text-emerald-500"></i>
                   </span>
                   <input
@@ -377,14 +479,31 @@
               </div>
 
               <div>
-                <label class="block font-bold text-slate-700 mb-1">Jenis Kelamin *</label>
+                <label class="block font-bold text-slate-700 mb-1"
+                  >Jenis Kelamin *</label
+                >
                 <div class="grid grid-cols-2 gap-2 pt-0.5">
-                  <label class="flex items-center gap-2 p-2 rounded-xl border border-slate-200 cursor-pointer hover:bg-slate-50 transition">
-                    <input type="radio" name="regGender" value="Laki-laki" checked class="text-med-blue focus:ring-med-blue" />
+                  <label
+                    class="flex items-center gap-2 p-2 rounded-xl border border-slate-200 cursor-pointer hover:bg-slate-50 transition"
+                  >
+                    <input
+                      type="radio"
+                      name="regGender"
+                      value="Laki-laki"
+                      checked
+                      class="text-med-blue focus:ring-med-blue"
+                    />
                     <span class="font-medium text-slate-700">Laki-laki</span>
                   </label>
-                  <label class="flex items-center gap-2 p-2 rounded-xl border border-slate-200 cursor-pointer hover:bg-slate-50 transition">
-                    <input type="radio" name="regGender" value="Perempuan" class="text-med-blue focus:ring-med-blue" />
+                  <label
+                    class="flex items-center gap-2 p-2 rounded-xl border border-slate-200 cursor-pointer hover:bg-slate-50 transition"
+                  >
+                    <input
+                      type="radio"
+                      name="regGender"
+                      value="Perempuan"
+                      class="text-med-blue focus:ring-med-blue"
+                    />
                     <span class="font-medium text-slate-700">Perempuan</span>
                   </label>
                 </div>
@@ -394,7 +513,10 @@
             <!-- Row 4: Poliklinik Tujuan & Dokter Praktik (Terhubung Dinamis) -->
             <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
               <div>
-                <label for="regPoly" class="block font-bold text-slate-700 mb-1">
+                <label
+                  for="regPoly"
+                  class="block font-bold text-slate-700 mb-1"
+                >
                   Poliklinik Tujuan *
                 </label>
                 <select
@@ -405,18 +527,29 @@
                   class="w-full px-3.5 py-2.5 rounded-xl border border-slate-200 bg-white focus:ring-2 focus:ring-med-blue/20 focus:border-med-blue focus:outline-none transition text-xs font-semibold text-slate-700"
                 >
                   <option value="POLI-UMUM">Poli Umum (Loket 1)</option>
-                  <option value="POLI-ANAK">Poli Anak / Pediatri (Loket 2)</option>
+                  <option value="POLI-ANAK">
+                    Poli Anak / Pediatri (Loket 2)
+                  </option>
                   <option value="POLI-GIGI">Poli Gigi & Mulut (Loket 3)</option>
-                  <option value="POLI-JANTUNG">Poli Jantung & Pembuluh (Loket 4)</option>
-                  <option value="POLI-DALAM">Poli Penyakit Dalam (Internis)</option>
+                  <option value="POLI-JANTUNG">
+                    Poli Jantung & Pembuluh (Loket 4)
+                  </option>
+                  <option value="POLI-DALAM">
+                    Poli Penyakit Dalam (Internis)
+                  </option>
                   <option value="POLI-SARAF">Poli Neurologi / Saraf</option>
-                  <option value="POLI-KANDUNGAN">Poli Kebidanan & Kandungan</option>
+                  <option value="POLI-KANDUNGAN">
+                    Poli Kebidanan & Kandungan
+                  </option>
                   <option value="POLI-BEDAH">Poli Bedah Umum</option>
                 </select>
               </div>
 
               <div>
-                <label for="regDoctor" class="block font-bold text-slate-700 mb-1">
+                <label
+                  for="regDoctor"
+                  class="block font-bold text-slate-700 mb-1"
+                >
                   Dokter Spesialis Praktik *
                 </label>
                 <select
@@ -432,10 +565,15 @@
             </div>
 
             <!-- Doctor Room & Schedule Preview Banner -->
-            <div id="doctorRoomPreview" class="p-3 rounded-xl bg-blue-50/70 border border-blue-100 flex items-center justify-between text-[11px] text-med-dark">
+            <div
+              id="doctorRoomPreview"
+              class="p-3 rounded-xl bg-blue-50/70 border border-blue-100 flex items-center justify-between text-[11px] text-med-dark"
+            >
               <span class="flex items-center gap-1.5">
                 <i class="fas fa-door-open text-med-cyan"></i>
-                <span id="previewRoomText">Ruangan: <strong>Ruang 101</strong></span>
+                <span id="previewRoomText"
+                  >Ruangan: <strong>Ruang 101</strong></span
+                >
               </span>
               <span class="flex items-center gap-1.5 text-slate-500">
                 <i class="far fa-clock text-med-blue"></i>
@@ -445,9 +583,13 @@
 
             <!-- Row 5: Metode Penjaminan / Pembayaran -->
             <div>
-              <label class="block font-bold text-slate-700 mb-1">Metode Penjaminan & Biaya *</label>
+              <label class="block font-bold text-slate-700 mb-1"
+                >Metode Penjaminan & Biaya *</label
+              >
               <div class="grid grid-cols-1 sm:grid-cols-3 gap-2">
-                <label class="flex items-center gap-2 p-2.5 rounded-xl border border-slate-200 cursor-pointer hover:bg-slate-50 transition has-[:checked]:border-med-blue has-[:checked]:bg-blue-50/50">
+                <label
+                  class="flex items-center gap-2 p-2.5 rounded-xl border border-slate-200 cursor-pointer hover:bg-slate-50 transition has-[:checked]:border-med-blue has-[:checked]:bg-blue-50/50"
+                >
                   <input
                     type="radio"
                     name="regPayment"
@@ -457,12 +599,18 @@
                     class="text-med-blue focus:ring-med-blue"
                   />
                   <div>
-                    <span class="font-bold text-slate-800 block text-xs">Umum / Tunai</span>
-                    <span class="text-[10px] text-slate-400">Biaya Mandiri</span>
+                    <span class="font-bold text-slate-800 block text-xs"
+                      >Umum / Tunai</span
+                    >
+                    <span class="text-[10px] text-slate-400"
+                      >Biaya Mandiri</span
+                    >
                   </div>
                 </label>
 
-                <label class="flex items-center gap-2 p-2.5 rounded-xl border border-slate-200 cursor-pointer hover:bg-slate-50 transition has-[:checked]:border-med-emerald has-[:checked]:bg-emerald-50/50">
+                <label
+                  class="flex items-center gap-2 p-2.5 rounded-xl border border-slate-200 cursor-pointer hover:bg-slate-50 transition has-[:checked]:border-med-emerald has-[:checked]:bg-emerald-50/50"
+                >
                   <input
                     type="radio"
                     name="regPayment"
@@ -471,12 +619,18 @@
                     class="text-med-emerald focus:ring-med-emerald"
                   />
                   <div>
-                    <span class="font-bold text-slate-800 block text-xs">BPJS Kesehatan</span>
-                    <span class="text-[10px] text-slate-400">Jaminan Pemerintah</span>
+                    <span class="font-bold text-slate-800 block text-xs"
+                      >BPJS Kesehatan</span
+                    >
+                    <span class="text-[10px] text-slate-400"
+                      >Jaminan Pemerintah</span
+                    >
                   </div>
                 </label>
 
-                <label class="flex items-center gap-2 p-2.5 rounded-xl border border-slate-200 cursor-pointer hover:bg-slate-50 transition has-[:checked]:border-purple-500 has-[:checked]:bg-purple-50/50">
+                <label
+                  class="flex items-center gap-2 p-2.5 rounded-xl border border-slate-200 cursor-pointer hover:bg-slate-50 transition has-[:checked]:border-purple-500 has-[:checked]:bg-purple-50/50"
+                >
                   <input
                     type="radio"
                     name="regPayment"
@@ -485,16 +639,26 @@
                     class="text-purple-600 focus:ring-purple-600"
                   />
                   <div>
-                    <span class="font-bold text-slate-800 block text-xs">Asuransi Swasta</span>
-                    <span class="text-[10px] text-slate-400">AdMedika / Prudential</span>
+                    <span class="font-bold text-slate-800 block text-xs"
+                      >Asuransi Swasta</span
+                    >
+                    <span class="text-[10px] text-slate-400"
+                      >AdMedika / Prudential</span
+                    >
                   </div>
                 </label>
               </div>
             </div>
 
             <!-- Dynamic Additional Fields for BPJS -->
-            <div id="bpjsFieldContainer" class="hidden p-3.5 rounded-xl bg-emerald-50/60 border border-emerald-200 space-y-2">
-              <label for="regBpjsNumber" class="block font-bold text-emerald-900 text-xs">
+            <div
+              id="bpjsFieldContainer"
+              class="hidden p-3.5 rounded-xl bg-emerald-50/60 border border-emerald-200 space-y-2"
+            >
+              <label
+                for="regBpjsNumber"
+                class="block font-bold text-emerald-900 text-xs"
+              >
                 Nomor Kartu BPJS Kesehatan (13 Digit) *
               </label>
               <input
@@ -505,12 +669,20 @@
                 placeholder="Contoh: 0001234567890"
                 class="w-full px-3.5 py-2 rounded-lg border border-emerald-300 focus:ring-2 focus:ring-emerald-500 focus:outline-none text-xs font-mono"
               />
-              <p class="text-[10px] text-emerald-700">Pastikan status kepesertaan aktif di faskes tingkat 1</p>
+              <p class="text-[10px] text-emerald-700">
+                Pastikan status kepesertaan aktif di faskes tingkat 1
+              </p>
             </div>
 
             <!-- Dynamic Additional Fields for Private Insurance -->
-            <div id="insuranceFieldContainer" class="hidden p-3.5 rounded-xl bg-purple-50/60 border border-purple-200 space-y-2">
-              <label for="regInsuranceName" class="block font-bold text-purple-900 text-xs">
+            <div
+              id="insuranceFieldContainer"
+              class="hidden p-3.5 rounded-xl bg-purple-50/60 border border-purple-200 space-y-2"
+            >
+              <label
+                for="regInsuranceName"
+                class="block font-bold text-purple-900 text-xs"
+              >
                 Nama Asuransi & Nomor Polis Pasien *
               </label>
               <input
@@ -543,7 +715,9 @@
                 id="regSubmitBtn"
                 class="w-full sm:flex-1 py-3.5 rounded-xl font-bold text-white bg-gradient-to-r from-med-blue to-med-dark hover:from-blue-700 hover:to-slate-900 shadow-md shadow-blue-500/20 transition flex items-center justify-center gap-2 group"
               >
-                <i class="fas fa-ticket-alt group-hover:scale-110 transition"></i>
+                <i
+                  class="fas fa-ticket-alt group-hover:scale-110 transition"
+                ></i>
                 <span>Daftarkan & Cetak Tiket Antrean</span>
               </button>
               <button
@@ -562,40 +736,66 @@
         <!-- ======================================================== -->
         <div class="lg:col-span-6 space-y-6">
           <!-- 1. DISPLAY MONITOR RUANG TUNGGU (Digital Queue Screen) -->
-          <div class="bg-gradient-to-br from-med-dark via-slate-900 to-med-dark text-white rounded-3xl p-6 sm:p-7 shadow-xl space-y-5 border border-slate-700 relative overflow-hidden">
+          <div
+            class="bg-gradient-to-br from-med-dark via-slate-900 to-med-dark text-white rounded-3xl p-6 sm:p-7 shadow-xl space-y-5 border border-slate-700 relative overflow-hidden"
+          >
             <!-- Decorative Glow & Broadcasting Badge -->
-            <div class="absolute -right-8 -top-8 w-48 h-48 rounded-full bg-med-cyan/15 blur-2xl pointer-events-none"></div>
+            <div
+              class="absolute -right-8 -top-8 w-48 h-48 rounded-full bg-med-cyan/15 blur-2xl pointer-events-none"
+            ></div>
 
-            <div class="flex flex-wrap items-center justify-between border-b border-slate-700 pb-3 gap-2">
+            <div
+              class="flex flex-wrap items-center justify-between border-b border-slate-700 pb-3 gap-2"
+            >
               <div class="flex items-center gap-2">
-                <span class="w-2.5 h-2.5 rounded-full bg-med-emerald animate-ping"></span>
-                <span class="text-xs uppercase font-bold tracking-wider text-med-cyan flex items-center gap-1.5">
+                <span
+                  class="w-2.5 h-2.5 rounded-full bg-med-emerald animate-ping"
+                ></span>
+                <span
+                  class="text-xs uppercase font-bold tracking-wider text-med-cyan flex items-center gap-1.5"
+                >
                   <i class="fas fa-tv"></i> Layar Antrean Ruang Tunggu
                 </span>
               </div>
               <div class="flex items-center gap-2">
-                <span id="audioStatusBadge" class="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-emerald-500/20 text-emerald-300 border border-emerald-500/30 text-[10px] font-bold">
+                <span
+                  id="audioStatusBadge"
+                  class="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-emerald-500/20 text-emerald-300 border border-emerald-500/30 text-[10px] font-bold"
+                >
                   <i class="fas fa-volume-up text-xs"></i> Audio Siap
                 </span>
-                <span class="text-xs font-semibold px-2.5 py-0.5 rounded-full bg-slate-800 text-slate-300 border border-slate-700" id="displayActivePolyName">
+                <span
+                  class="text-xs font-semibold px-2.5 py-0.5 rounded-full bg-slate-800 text-slate-300 border border-slate-700"
+                  id="displayActivePolyName"
+                >
                   Poli Umum &bull; Ruang 101
                 </span>
               </div>
             </div>
 
             <!-- Big Number Calling Box with Animated Audio Waves -->
-            <div class="text-center py-5 bg-slate-800/50 rounded-2xl border border-slate-700/60 relative">
+            <div
+              class="text-center py-5 bg-slate-800/50 rounded-2xl border border-slate-700/60 relative"
+            >
               <!-- Audio Wave Indicator (Active during speech calling) -->
-              <div id="audioWaveAnimation" class="hidden items-center justify-center gap-1.5 mb-2 h-7">
+              <div
+                id="audioWaveAnimation"
+                class="hidden items-center justify-center gap-1.5 mb-2 h-7"
+              >
                 <span class="wave-bar"></span>
                 <span class="wave-bar"></span>
                 <span class="wave-bar"></span>
                 <span class="wave-bar"></span>
                 <span class="wave-bar"></span>
-                <span class="text-xs font-bold text-med-cyan ml-2 tracking-wide uppercase">Sedang Memanggil...</span>
+                <span
+                  class="text-xs font-bold text-med-cyan ml-2 tracking-wide uppercase"
+                  >Sedang Memanggil...</span
+                >
               </div>
 
-              <p class="text-xs text-cyan-300 uppercase font-bold tracking-wider mb-1">
+              <p
+                class="text-xs text-cyan-300 uppercase font-bold tracking-wider mb-1"
+              >
                 Nomor Antrean Sedang Dipanggil
               </p>
 
@@ -609,17 +809,26 @@
 
               <!-- Patient & Doctor Information -->
               <div class="mt-3 space-y-1">
-                <p class="text-base font-bold text-white tracking-tight" id="displayPatientName">
+                <p
+                  class="text-base font-bold text-white tracking-tight"
+                  id="displayPatientName"
+                >
                   Budi Santoso
                 </p>
                 <p class="text-xs text-slate-300" id="displayDoctorName">
                   dr. Sarah Wijaya, Sp.JP &bull; Ruang 101 (Loket 1)
                 </p>
                 <div class="pt-1.5 flex items-center justify-center gap-2">
-                  <span id="displayPaymentMethod" class="px-2 py-0.5 rounded bg-blue-500/20 text-blue-300 text-[10px] font-semibold border border-blue-400/20">
+                  <span
+                    id="displayPaymentMethod"
+                    class="px-2 py-0.5 rounded bg-blue-500/20 text-blue-300 text-[10px] font-semibold border border-blue-400/20"
+                  >
                     BPJS Kesehatan
                   </span>
-                  <span id="displayStatusBadge" class="px-2 py-0.5 rounded bg-emerald-500/20 text-emerald-300 text-[10px] font-bold border border-emerald-400/20">
+                  <span
+                    id="displayStatusBadge"
+                    class="px-2 py-0.5 rounded bg-emerald-500/20 text-emerald-300 text-[10px] font-bold border border-emerald-400/20"
+                  >
                     Sedang Dipanggil
                   </span>
                 </div>
@@ -628,35 +837,52 @@
 
             <!-- Next In Queue List (Daftar Tunggu Antrean Berikutnya) -->
             <div class="space-y-2">
-              <div class="flex items-center justify-between text-xs text-slate-300 font-semibold px-1">
+              <div
+                class="flex items-center justify-between text-xs text-slate-300 font-semibold px-1"
+              >
                 <span class="flex items-center gap-1.5">
                   <i class="fas fa-user-clock text-med-amber"></i>
                   <span>Daftar Tunggu Berikutnya (Next Waiting List):</span>
                 </span>
-                <span class="text-med-amber font-bold text-[11px]" id="displayTotalWaiting">
+                <span
+                  class="text-med-amber font-bold text-[11px]"
+                  id="displayTotalWaiting"
+                >
                   4 Pasien Menunggu
                 </span>
               </div>
 
               <!-- 4 Queue Preview Grid -->
-              <div id="displayNextList" class="grid grid-cols-2 sm:grid-cols-4 gap-2 text-center text-xs">
+              <div
+                id="displayNextList"
+                class="grid grid-cols-2 sm:grid-cols-4 gap-2 text-center text-xs"
+              >
                 <!-- Dynamically populated by JavaScript -->
               </div>
             </div>
           </div>
 
           <!-- 2. KONSOL KONTROL PETUGAS LOKET (Staff Interactive Calling Console) -->
-          <div id="konsol" class="bg-white rounded-3xl p-6 shadow-sm border border-slate-200/90 space-y-4">
-            <div class="flex flex-col sm:flex-row sm:items-center justify-between border-b border-slate-100 pb-3 gap-2">
+          <div
+            id="konsol"
+            class="bg-white rounded-3xl p-6 shadow-sm border border-slate-200/90 space-y-4"
+          >
+            <div
+              class="flex flex-col sm:flex-row sm:items-center justify-between border-b border-slate-100 pb-3 gap-2"
+            >
               <div class="flex items-center gap-2.5">
-                <div class="w-9 h-9 rounded-xl bg-amber-50 text-med-amber flex items-center justify-center text-base shadow-xs">
+                <div
+                  class="w-9 h-9 rounded-xl bg-amber-50 text-med-amber flex items-center justify-center text-base shadow-xs"
+                >
                   <i class="fas fa-headset"></i>
                 </div>
                 <div>
                   <h3 class="font-heading font-bold text-med-dark text-base">
                     Konsol Kontrol Petugas Loket
                   </h3>
-                  <p class="text-[11px] text-slate-400">Simulator pemanggilan audio sintetis Web Speech API</p>
+                  <p class="text-[11px] text-slate-400">
+                    Simulator pemanggilan audio sintetis Web Speech API
+                  </p>
                 </div>
               </div>
 
@@ -670,22 +896,34 @@
                   <option value="POLI-UMUM">Poli Umum (Loket 1)</option>
                   <option value="POLI-ANAK">Poli Anak (Loket 2)</option>
                   <option value="POLI-GIGI">Poli Gigi & Mulut (Loket 3)</option>
-                  <option value="POLI-JANTUNG">Poli Jantung & Sp.JP (Loket 4)</option>
+                  <option value="POLI-JANTUNG">
+                    Poli Jantung & Sp.JP (Loket 4)
+                  </option>
                   <option value="POLI-DALAM">Poli Penyakit Dalam</option>
                   <option value="POLI-SARAF">Poli Neurologi / Saraf</option>
-                  <option value="POLI-KANDUNGAN">Poli Kebidanan & Kandungan</option>
+                  <option value="POLI-KANDUNGAN">
+                    Poli Kebidanan & Kandungan
+                  </option>
                   <option value="POLI-BEDAH">Poli Bedah Umum</option>
                 </select>
               </div>
             </div>
 
             <!-- Doctor & Poly Active Badge -->
-            <div id="consoleDoctorPreview" class="p-3 rounded-xl bg-slate-50 border border-slate-100 flex items-center justify-between text-xs text-slate-600">
+            <div
+              id="consoleDoctorPreview"
+              class="p-3 rounded-xl bg-slate-50 border border-slate-100 flex items-center justify-between text-xs text-slate-600"
+            >
               <span class="flex items-center gap-1.5 font-medium">
                 <i class="fas fa-user-md text-med-blue"></i>
-                <span id="consoleActiveDoctorName">dr. Sarah Wijaya, Sp.JP</span>
+                <span id="consoleActiveDoctorName"
+                  >dr. Sarah Wijaya, Sp.JP</span
+                >
               </span>
-              <span class="text-[11px] text-slate-500 font-semibold" id="consoleRoomBadge">
+              <span
+                class="text-[11px] text-slate-500 font-semibold"
+                id="consoleRoomBadge"
+              >
                 Ruang 101 &bull; Loket 1
               </span>
             </div>
@@ -754,10 +992,18 @@
             </div>
 
             <!-- Voice Simulator Controls & Audio Chime Tester -->
-            <div class="pt-2 border-t border-slate-100 flex flex-wrap items-center justify-between text-[11px] text-slate-500 gap-2">
+            <div
+              class="pt-2 border-t border-slate-100 flex flex-wrap items-center justify-between text-[11px] text-slate-500 gap-2"
+            >
               <span class="flex items-center gap-1.5">
                 <i class="fas fa-bell text-med-cyan"></i>
-                <span>Teks Format: <em>"Nomor antrean... [Kode]... Silakan ke [Poli], [Ruangan]"</em></span>
+                <span
+                  >Teks Format:
+                  <em
+                    >"Nomor antrean... [Kode]... Silakan ke [Poli],
+                    [Ruangan]"</em
+                  ></span
+                >
               </span>
               <button
                 type="button"
@@ -777,22 +1023,32 @@
       <!-- ======================================================== -->
       <!-- TABEL REKAPITULASI ANTREAN HARI INI (LIVE DATA TABLE)    -->
       <!-- ======================================================== -->
-      <section id="tabelAntrean" class="bg-white rounded-3xl p-6 sm:p-7 shadow-sm border border-slate-200/90 space-y-4">
-        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-4 border-b border-slate-100">
+      <section
+        id="tabelAntrean"
+        class="bg-white rounded-3xl p-6 sm:p-7 shadow-sm border border-slate-200/90 space-y-4"
+      >
+        <div
+          class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-4 border-b border-slate-100"
+        >
           <div>
-            <h3 class="font-heading font-bold text-lg text-med-dark flex items-center gap-2">
+            <h3
+              class="font-heading font-bold text-lg text-med-dark flex items-center gap-2"
+            >
               <i class="fas fa-list-alt text-med-blue"></i>
               <span>Daftar Antrean Pasien Hari Ini</span>
             </h3>
             <p class="text-xs text-slate-400 mt-0.5">
-              Data tersinkronisasi langsung dari browser localStorage secara otomatis
+              Data tersinkronisasi langsung dari browser localStorage secara
+              otomatis
             </p>
           </div>
 
           <div class="flex flex-wrap items-center gap-2.5">
             <!-- Search Input -->
             <div class="relative">
-              <span class="absolute inset-y-0 left-0 pl-3 flex items-center text-slate-400 text-xs pointer-events-none">
+              <span
+                class="absolute inset-y-0 left-0 pl-3 flex items-center text-slate-400 text-xs pointer-events-none"
+              >
                 <i class="fas fa-search"></i>
               </span>
               <input
@@ -818,7 +1074,10 @@
               <option value="Dilewati">Dilewati / Batal</option>
             </select>
 
-            <span id="queueTotalBadge" class="px-3 py-1 rounded-xl bg-blue-50 text-med-blue font-bold text-xs">
+            <span
+              id="queueTotalBadge"
+              class="px-3 py-1 rounded-xl bg-blue-50 text-med-blue font-bold text-xs"
+            >
               8 Terdaftar
             </span>
           </div>
@@ -827,7 +1086,9 @@
         <!-- Master Queue Table -->
         <div class="overflow-x-auto">
           <table class="w-full text-left text-xs">
-            <thead class="bg-slate-50 text-slate-500 font-bold uppercase text-[10px] tracking-wider border-b border-slate-200">
+            <thead
+              class="bg-slate-50 text-slate-500 font-bold uppercase text-[10px] tracking-wider border-b border-slate-200"
+            >
               <tr>
                 <th class="py-3 px-3">No. Antrean</th>
                 <th class="py-3 px-3">No. RM & Nama Pasien</th>
@@ -839,7 +1100,10 @@
                 <th class="py-3 px-3 text-center">Aksi</th>
               </tr>
             </thead>
-            <tbody id="todayQueueTableBody" class="divide-y divide-slate-100 text-slate-700">
+            <tbody
+              id="todayQueueTableBody"
+              class="divide-y divide-slate-100 text-slate-700"
+            >
               <!-- Rendered via JavaScript -->
             </tbody>
           </table>
@@ -862,10 +1126,16 @@
       ></div>
 
       <!-- Thermal Paper Slip Container -->
-      <div class="relative bg-white rounded-2xl shadow-2xl max-w-sm w-full z-10 overflow-hidden border border-slate-200 animate-in fade-in zoom-in-95 duration-200">
+      <div
+        class="relative bg-white rounded-2xl shadow-2xl max-w-sm w-full z-10 overflow-hidden border border-slate-200 animate-in fade-in zoom-in-95 duration-200"
+      >
         <!-- Close Bar -->
-        <div class="p-3 bg-slate-50 border-b border-slate-100 flex items-center justify-between no-print">
-          <span class="text-xs font-bold text-slate-600 flex items-center gap-1.5">
+        <div
+          class="p-3 bg-slate-50 border-b border-slate-100 flex items-center justify-between no-print"
+        >
+          <span
+            class="text-xs font-bold text-slate-600 flex items-center gap-1.5"
+          >
             <i class="fas fa-receipt text-med-blue"></i> Pratinjau Tiket Antrean
           </span>
           <button
@@ -877,14 +1147,23 @@
         </div>
 
         <!-- The Printable Ticket Element -->
-        <div id="printableTicket" class="p-6 font-mono text-center text-slate-900 bg-white">
+        <div
+          id="printableTicket"
+          class="p-6 font-mono text-center text-slate-900 bg-white"
+        >
           <!-- Hospital Header -->
           <div class="border-b border-dashed border-slate-400 pb-3">
-            <div class="flex items-center justify-center gap-1.5 mb-1 font-sans">
+            <div
+              class="flex items-center justify-center gap-1.5 mb-1 font-sans"
+            >
               <i class="fas fa-hospital-alt text-med-blue text-base"></i>
-              <strong class="text-base tracking-tight font-black">KLINIKA.ID</strong>
+              <strong class="text-base tracking-tight font-black"
+                >KLINIKA.ID</strong
+              >
             </div>
-            <p class="text-[10px] uppercase font-bold tracking-wider text-slate-600 font-sans">
+            <p
+              class="text-[10px] uppercase font-bold tracking-wider text-slate-600 font-sans"
+            >
               Hospital & Clinic Management
             </p>
             <p class="text-[9px] text-slate-500 font-sans mt-0.5">
@@ -894,22 +1173,36 @@
 
           <!-- Queue Big Number -->
           <div class="py-4">
-            <span class="text-[10px] uppercase tracking-widest text-slate-500 block mb-1">
+            <span
+              class="text-[10px] uppercase tracking-widest text-slate-500 block mb-1"
+            >
               Nomor Antrean Anda
             </span>
-            <h2 id="ticketQueueNumber" class="text-5xl font-black font-sans text-med-dark tracking-wider">
+            <h2
+              id="ticketQueueNumber"
+              class="text-5xl font-black font-sans text-med-dark tracking-wider"
+            >
               A-015
             </h2>
-            <div class="inline-block mt-2 px-2.5 py-0.5 rounded-full bg-slate-100 border border-slate-300 text-[11px] font-bold font-sans" id="ticketPolyBadge">
+            <div
+              class="inline-block mt-2 px-2.5 py-0.5 rounded-full bg-slate-100 border border-slate-300 text-[11px] font-bold font-sans"
+              id="ticketPolyBadge"
+            >
               Poli Umum &bull; Ruang 101
             </div>
           </div>
 
           <!-- Details Table -->
-          <div class="border-t border-b border-dashed border-slate-400 py-3 text-left text-[11px] space-y-1.5">
+          <div
+            class="border-t border-b border-dashed border-slate-400 py-3 text-left text-[11px] space-y-1.5"
+          >
             <div class="flex justify-between">
               <span class="text-slate-500">Pasien:</span>
-              <strong id="ticketPatientName" class="truncate max-w-[170px] text-right">-</strong>
+              <strong
+                id="ticketPatientName"
+                class="truncate max-w-[170px] text-right"
+                >-</strong
+              >
             </div>
             <div class="flex justify-between">
               <span class="text-slate-500">No. RM:</span>
@@ -921,7 +1214,11 @@
             </div>
             <div class="flex justify-between">
               <span class="text-slate-500">Dokter:</span>
-              <span id="ticketDoctor" class="truncate max-w-[170px] text-right font-semibold">-</span>
+              <span
+                id="ticketDoctor"
+                class="truncate max-w-[170px] text-right font-semibold"
+                >-</span
+              >
             </div>
             <div class="flex justify-between">
               <span class="text-slate-500">Penjamin:</span>
@@ -951,19 +1248,25 @@
               <span class="w-[1px] bg-slate-900"></span>
               <span class="w-[2px] bg-slate-900"></span>
             </div>
-            <span class="text-[9px] tracking-widest text-slate-500 font-mono mt-1" id="ticketBarcodeText">
+            <span
+              class="text-[9px] tracking-widest text-slate-500 font-mono mt-1"
+              id="ticketBarcodeText"
+            >
               *KLN-2026-A015*
             </span>
           </div>
 
           <!-- Footer Message -->
           <p class="text-[9px] text-slate-500 font-sans mt-1">
-            Simpan tiket ini dan tunggu hingga nomor Anda dipanggil pada layar ruang tunggu poliklinik. Terima kasih.
+            Simpan tiket ini dan tunggu hingga nomor Anda dipanggil pada layar
+            ruang tunggu poliklinik. Terima kasih.
           </p>
         </div>
 
         <!-- Modal Actions (No Print) -->
-        <div class="p-4 bg-slate-50 border-t border-slate-100 flex items-center gap-2 no-print">
+        <div
+          class="p-4 bg-slate-50 border-t border-slate-100 flex items-center gap-2 no-print"
+        >
           <button
             type="button"
             onclick="window.print()"
@@ -987,27 +1290,41 @@
       id="toastNotification"
       class="fixed bottom-5 right-5 z-50 transform translate-y-24 opacity-0 transition-all duration-300 pointer-events-none"
     >
-      <div class="flex items-center gap-3 bg-slate-900 text-white px-5 py-3.5 rounded-2xl shadow-2xl border border-slate-700 text-xs">
-        <span id="toastIcon" class="w-7 h-7 rounded-xl bg-med-emerald text-white flex items-center justify-center text-sm font-bold">
+      <div
+        class="flex items-center gap-3 bg-slate-900 text-white px-5 py-3.5 rounded-2xl shadow-2xl border border-slate-700 text-xs"
+      >
+        <span
+          id="toastIcon"
+          class="w-7 h-7 rounded-xl bg-med-emerald text-white flex items-center justify-center text-sm font-bold"
+        >
           <i class="fas fa-check"></i>
         </span>
         <div>
           <p class="font-bold text-white" id="toastTitle">Berhasil</p>
-          <p class="text-slate-300 text-[11px]" id="toastMessage">Operasi antrean berhasil dilakukan.</p>
+          <p class="text-slate-300 text-[11px]" id="toastMessage">
+            Operasi antrean berhasil dilakukan.
+          </p>
         </div>
       </div>
     </div>
 
     <!-- MASTER HOSPITAL FOOTER -->
-    <footer class="bg-slate-900 text-slate-300 pt-12 pb-6 border-t border-slate-800 mt-auto">
+    <footer
+      class="bg-slate-900 text-slate-300 pt-12 pb-6 border-t border-slate-800 mt-auto"
+    >
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="flex flex-col sm:flex-row items-center justify-between text-xs text-slate-500 gap-3">
+        <div
+          class="flex flex-col sm:flex-row items-center justify-between text-xs text-slate-500 gap-3"
+        >
           <p>
-            &copy; 2026 <strong>Klinika.id</strong> &mdash; Hospital & Clinic Management System (Tahap 8: Simulator Antrean Suara Web Speech API).
+            &copy; 2026 <strong>Klinika.id</strong> &mdash; Hospital & Clinic
+            Management System (Tahap 8: Simulator Antrean Suara Web Speech API).
           </p>
           <p class="flex items-center gap-2">
             <span>Keamanan:</span>
-            <span class="px-2 py-0.5 rounded bg-slate-800 text-slate-400 text-[11px] font-mono">
+            <span
+              class="px-2 py-0.5 rounded bg-slate-800 text-slate-400 text-[11px] font-mono"
+            >
               robots: noindex, nofollow
             </span>
           </p>
@@ -1060,16 +1377,26 @@
         toastMessage.textContent = message;
 
         if (isSuccess) {
-          toastIcon.className = "w-7 h-7 rounded-xl bg-med-emerald text-white flex items-center justify-center text-sm font-bold";
+          toastIcon.className =
+            "w-7 h-7 rounded-xl bg-med-emerald text-white flex items-center justify-center text-sm font-bold";
           toastIcon.innerHTML = '<i class="fas fa-check"></i>';
         } else {
-          toastIcon.className = "w-7 h-7 rounded-xl bg-med-rose text-white flex items-center justify-center text-sm font-bold";
+          toastIcon.className =
+            "w-7 h-7 rounded-xl bg-med-rose text-white flex items-center justify-center text-sm font-bold";
           toastIcon.innerHTML = '<i class="fas fa-exclamation-triangle"></i>';
         }
 
-        toast.classList.remove("translate-y-24", "opacity-0", "pointer-events-none");
+        toast.classList.remove(
+          "translate-y-24",
+          "opacity-0",
+          "pointer-events-none",
+        );
         setTimeout(() => {
-          toast.classList.add("translate-y-24", "opacity-0", "pointer-events-none");
+          toast.classList.add(
+            "translate-y-24",
+            "opacity-0",
+            "pointer-events-none",
+          );
         }, 3200);
       }
 
@@ -1077,7 +1404,10 @@
       // 3. REGISTRATION FORM LOGIC (TAHAP 7)
       // ==========================================
       function regenerateRM() {
-        if (typeof KlinikaEngine !== "undefined" && KlinikaEngine.generateRMNumber) {
+        if (
+          typeof KlinikaEngine !== "undefined" &&
+          KlinikaEngine.generateRMNumber
+        ) {
           const rmInput = document.getElementById("regRM");
           if (rmInput) {
             rmInput.value = KlinikaEngine.generateRMNumber();
@@ -1110,7 +1440,9 @@
         if (!docSelect || typeof KlinikaEngine === "undefined") return;
 
         const doctors = KlinikaEngine.getDoctors();
-        const matchingDoctors = doctors.filter((d) => d.polyCode === selectedPolyCode);
+        const matchingDoctors = doctors.filter(
+          (d) => d.polyCode === selectedPolyCode,
+        );
 
         docSelect.innerHTML = "";
 
@@ -1142,7 +1474,8 @@
         const selectedOpt = docSelect.options[docSelect.selectedIndex];
         if (selectedOpt) {
           const room = selectedOpt.getAttribute("data-room") || "Ruang 101";
-          const sched = selectedOpt.getAttribute("data-schedule") || "08:00 - 14:00 WIB";
+          const sched =
+            selectedOpt.getAttribute("data-schedule") || "08:00 - 14:00 WIB";
 
           const roomEl = document.getElementById("previewRoomText");
           const schedEl = document.getElementById("previewScheduleText");
@@ -1177,7 +1510,11 @@
 
         const nikInput = document.getElementById("regNik");
         if (nikInput && nikInput.value.length !== 16) {
-          showToast("Validasi Gagal", "Nomor Induk Kependudukan (NIK) harus tepat 16 digit angka.", false);
+          showToast(
+            "Validasi Gagal",
+            "Nomor Induk Kependudukan (NIK) harus tepat 16 digit angka.",
+            false,
+          );
           nikInput.focus();
           return;
         }
@@ -1186,15 +1523,23 @@
         const nik = document.getElementById("regNik").value;
         const name = document.getElementById("regName").value;
         const phone = document.getElementById("regPhone").value;
-        const gender = document.querySelector('input[name="regGender"]:checked')?.value || "Laki-laki";
+        const gender =
+          document.querySelector('input[name="regGender"]:checked')?.value ||
+          "Laki-laki";
         const polySelect = document.getElementById("regPoly");
         const polyCode = polySelect.value;
         const polyName = polySelect.options[polySelect.selectedIndex].text;
         const docSelect = document.getElementById("regDoctor");
         const doctorName = docSelect.value;
-        const doctorRoom = docSelect.options[docSelect.selectedIndex]?.getAttribute("data-room") || "Ruang 101";
-        const paymentMethod = document.querySelector('input[name="regPayment"]:checked')?.value || "Umum / Mandiri";
-        const bpjsNumber = document.getElementById("regBpjsNumber")?.value || "-";
+        const doctorRoom =
+          docSelect.options[docSelect.selectedIndex]?.getAttribute(
+            "data-room",
+          ) || "Ruang 101";
+        const paymentMethod =
+          document.querySelector('input[name="regPayment"]:checked')?.value ||
+          "Umum / Mandiri";
+        const bpjsNumber =
+          document.getElementById("regBpjsNumber")?.value || "-";
         const notes = document.getElementById("regNotes")?.value || "-";
 
         if (typeof KlinikaEngine === "undefined") {
@@ -1214,11 +1559,14 @@
           doctorRoom: doctorRoom,
           paymentMethod: paymentMethod,
           bpjsNumber: bpjsNumber,
-          notes: notes
+          notes: notes,
         });
 
         openTicketModal(newQueue, rm);
-        showToast("Pendaftaran Berhasil", `Tiket ${newQueue.queueNumber} atas nama ${name} berhasil diterbitkan!`);
+        showToast(
+          "Pendaftaran Berhasil",
+          `Tiket ${newQueue.queueNumber} atas nama ${name} berhasil diterbitkan!`,
+        );
         resetRegistrationForm();
         renderQueueTable();
       }
@@ -1245,27 +1593,35 @@
         const modal = document.getElementById("ticketModal");
         if (!modal) return;
 
-        document.getElementById("ticketQueueNumber").textContent = queue.queueNumber;
-        document.getElementById("ticketPolyBadge").textContent = `${queue.polyName} • ${queue.doctorRoom}`;
-        document.getElementById("ticketPatientName").textContent = queue.patientName;
-        document.getElementById("ticketRM").textContent = rmNumber || "RM-2026-0160";
+        document.getElementById("ticketQueueNumber").textContent =
+          queue.queueNumber;
+        document.getElementById("ticketPolyBadge").textContent =
+          `${queue.polyName} • ${queue.doctorRoom}`;
+        document.getElementById("ticketPatientName").textContent =
+          queue.patientName;
+        document.getElementById("ticketRM").textContent =
+          rmNumber || "RM-2026-0160";
         document.getElementById("ticketNik").textContent = queue.patientNik;
         document.getElementById("ticketDoctor").textContent = queue.doctorName;
-        document.getElementById("ticketPayment").textContent = queue.paymentMethod;
+        document.getElementById("ticketPayment").textContent =
+          queue.paymentMethod;
 
         const now = new Date();
         const dateStr = now.toLocaleDateString("id-ID", {
           day: "numeric",
           month: "short",
-          year: "numeric"
+          year: "numeric",
         });
-        const timeStr = now.toLocaleTimeString("id-ID", {
-          hour: "2-digit",
-          minute: "2-digit"
-        }) + " WIB";
+        const timeStr =
+          now.toLocaleTimeString("id-ID", {
+            hour: "2-digit",
+            minute: "2-digit",
+          }) + " WIB";
 
-        document.getElementById("ticketDateTime").textContent = `${dateStr}, ${timeStr}`;
-        document.getElementById("ticketBarcodeText").textContent = `*KLN-${queue.queueNumber}*`;
+        document.getElementById("ticketDateTime").textContent =
+          `${dateStr}, ${timeStr}`;
+        document.getElementById("ticketBarcodeText").textContent =
+          `*KLN-${queue.queueNumber}*`;
 
         modal.classList.remove("hidden");
       }
@@ -1293,8 +1649,10 @@
           wave.classList.add("flex");
         }
         if (badge) {
-          badge.className = "inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-cyan-500/30 text-cyan-200 border border-cyan-400 text-[10px] font-bold animate-pulse";
-          badge.innerHTML = '<i class="fas fa-volume-up text-xs"></i> Sedang Memanggil...';
+          badge.className =
+            "inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-cyan-500/30 text-cyan-200 border border-cyan-400 text-[10px] font-bold animate-pulse";
+          badge.innerHTML =
+            '<i class="fas fa-volume-up text-xs"></i> Sedang Memanggil...';
         }
 
         setTimeout(() => {
@@ -1303,8 +1661,10 @@
             wave.classList.remove("flex");
           }
           if (badge) {
-            badge.className = "inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-emerald-500/20 text-emerald-300 border border-emerald-500/30 text-[10px] font-bold";
-            badge.innerHTML = '<i class="fas fa-volume-up text-xs"></i> Audio Siap';
+            badge.className =
+              "inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-emerald-500/20 text-emerald-300 border border-emerald-500/30 text-[10px] font-bold";
+            badge.innerHTML =
+              '<i class="fas fa-volume-up text-xs"></i> Audio Siap';
           }
         }, durationMs);
       }
@@ -1313,28 +1673,34 @@
       function updateDisplayMonitor() {
         if (typeof KlinikaEngine === "undefined") return;
         const queues = KlinikaEngine.getQueues();
-        const polyFilter = document.getElementById("consolePolyFilter")?.value || "POLI-UMUM";
+        const polyFilter =
+          document.getElementById("consolePolyFilter")?.value || "POLI-UMUM";
 
         // Cari dokter untuk poli ini
         const doctors = KlinikaEngine.getDoctors();
         const doc = doctors.find((d) => d.polyCode === polyFilter) || {
           name: "dr. Sarah Wijaya, Sp.JP",
-          room: "Ruang 101"
+          room: "Ruang 101",
         };
 
         // Update Console Info
         const consoleDocEl = document.getElementById("consoleActiveDoctorName");
         const consoleRoomEl = document.getElementById("consoleRoomBadge");
         if (consoleDocEl) consoleDocEl.textContent = doc.name;
-        if (consoleRoomEl) consoleRoomEl.innerHTML = `${doc.room} &bull; ${doc.polyName || "Loket"}`;
+        if (consoleRoomEl)
+          consoleRoomEl.innerHTML = `${doc.room} &bull; ${doc.polyName || "Loket"}`;
 
         // Cari antrean aktif (Dipanggil atau Sedang Dilayani)
         let active = queues.find(
-          (q) => q.polyCode === polyFilter && (q.status === "Sedang Dilayani" || q.status === "Dipanggil")
+          (q) =>
+            q.polyCode === polyFilter &&
+            (q.status === "Sedang Dilayani" || q.status === "Dipanggil"),
         );
 
         if (!active) {
-          active = queues.find((q) => q.polyCode === polyFilter && q.status === "Menunggu");
+          active = queues.find(
+            (q) => q.polyCode === polyFilter && q.status === "Menunggu",
+          );
         }
 
         if (active) {
@@ -1347,19 +1713,24 @@
 
           if (numEl) numEl.textContent = active.queueNumber;
           if (nameEl) nameEl.textContent = active.patientName;
-          if (docEl) docEl.textContent = `${active.doctorName} • ${active.doctorRoom || doc.room}`;
-          if (polyEl) polyEl.textContent = `${active.polyName} - ${active.doctorRoom || doc.room}`;
+          if (docEl)
+            docEl.textContent = `${active.doctorName} • ${active.doctorRoom || doc.room}`;
+          if (polyEl)
+            polyEl.textContent = `${active.polyName} - ${active.doctorRoom || doc.room}`;
           if (payEl) payEl.textContent = active.paymentMethod || "Umum";
 
           if (statEl) {
             if (active.status === "Dipanggil") {
-              statEl.className = "px-2 py-0.5 rounded bg-cyan-500/20 text-cyan-300 text-[10px] font-bold border border-cyan-400/20 animate-pulse";
+              statEl.className =
+                "px-2 py-0.5 rounded bg-cyan-500/20 text-cyan-300 text-[10px] font-bold border border-cyan-400/20 animate-pulse";
               statEl.textContent = "Sedang Dipanggil";
             } else if (active.status === "Sedang Dilayani") {
-              statEl.className = "px-2 py-0.5 rounded bg-emerald-500/20 text-emerald-300 text-[10px] font-bold border border-emerald-400/20";
+              statEl.className =
+                "px-2 py-0.5 rounded bg-emerald-500/20 text-emerald-300 text-[10px] font-bold border border-emerald-400/20";
               statEl.textContent = "Sedang Dilayani";
             } else {
-              statEl.className = "px-2 py-0.5 rounded bg-amber-500/20 text-amber-300 text-[10px] font-bold border border-amber-400/20";
+              statEl.className =
+                "px-2 py-0.5 rounded bg-amber-500/20 text-amber-300 text-[10px] font-bold border border-amber-400/20";
               statEl.textContent = "Menunggu Dipanggil";
             }
           }
@@ -1370,17 +1741,21 @@
           if (numEl) numEl.textContent = "--";
           if (nameEl) nameEl.textContent = "Tidak Ada Antrean Aktif";
           if (statEl) {
-            statEl.className = "px-2 py-0.5 rounded bg-slate-700 text-slate-300 text-[10px]";
+            statEl.className =
+              "px-2 py-0.5 rounded bg-slate-700 text-slate-300 text-[10px]";
             statEl.textContent = "Standby";
           }
         }
 
         // Render 4 Next In Queue List Items
-        const waitingList = queues.filter((q) => q.polyCode === polyFilter && q.status === "Menunggu");
+        const waitingList = queues.filter(
+          (q) => q.polyCode === polyFilter && q.status === "Menunggu",
+        );
         const nextContainer = document.getElementById("displayNextList");
         const totalWaitEl = document.getElementById("displayTotalWaiting");
 
-        if (totalWaitEl) totalWaitEl.textContent = `${waitingList.length} Pasien dalam Antrean`;
+        if (totalWaitEl)
+          totalWaitEl.textContent = `${waitingList.length} Pasien dalam Antrean`;
 
         if (nextContainer) {
           if (waitingList.length === 0) {
@@ -1413,63 +1788,100 @@
       // 1. Panggil Antrean Berikutnya (Next)
       function handleCallNextQueue() {
         if (typeof KlinikaEngine === "undefined") return;
-        const polyCode = document.getElementById("consolePolyFilter")?.value || "POLI-UMUM";
+        const polyCode =
+          document.getElementById("consolePolyFilter")?.value || "POLI-UMUM";
         const waiting = KlinikaEngine.getNextWaitingQueue(polyCode);
 
         if (waiting.length === 0) {
-          showToast("Antrean Kosong", "Tidak ada antrean berstatus menunggu pada poliklinik ini.", false);
+          showToast(
+            "Antrean Kosong",
+            "Tidak ada antrean berstatus menunggu pada poliklinik ini.",
+            false,
+          );
           return;
         }
 
         const next = waiting[0];
         KlinikaEngine.updateQueueStatus(next.id, "Dipanggil");
-        KlinikaEngine.speakQueue(next.queueNumber, next.polyName, next.doctorRoom);
+        KlinikaEngine.speakQueue(
+          next.queueNumber,
+          next.polyName,
+          next.doctorRoom,
+        );
         activateAudioWave();
 
-        showToast("Panggilan Suara", `Memanggil nomor ${next.queueNumber} (${next.patientName}) menuju ke ${next.doctorRoom}...`);
+        showToast(
+          "Panggilan Suara",
+          `Memanggil nomor ${next.queueNumber} (${next.patientName}) menuju ke ${next.doctorRoom}...`,
+        );
         renderQueueTable();
       }
 
       // 2. Panggil Ulang (Recall)
       function handleRecallCurrentQueue() {
         if (typeof KlinikaEngine === "undefined") return;
-        const polyCode = document.getElementById("consolePolyFilter")?.value || "POLI-UMUM";
+        const polyCode =
+          document.getElementById("consolePolyFilter")?.value || "POLI-UMUM";
         const active = KlinikaEngine.getActiveQueueByPoly(polyCode);
 
         if (!active) {
-          showToast("Peringatan", "Belum ada antrean yang dipanggil pada poliklinik ini.", false);
+          showToast(
+            "Peringatan",
+            "Belum ada antrean yang dipanggil pada poliklinik ini.",
+            false,
+          );
           return;
         }
 
-        KlinikaEngine.speakQueue(active.queueNumber, active.polyName, active.doctorRoom);
+        KlinikaEngine.speakQueue(
+          active.queueNumber,
+          active.polyName,
+          active.doctorRoom,
+        );
         activateAudioWave();
-        showToast("Panggilan Ulang", `Memanggil ulang nomor ${active.queueNumber} (${active.patientName})...`);
+        showToast(
+          "Panggilan Ulang",
+          `Memanggil ulang nomor ${active.queueNumber} (${active.patientName})...`,
+        );
       }
 
       // 3. Mulai Layani Pasien
       function handleServeCurrentQueue() {
         if (typeof KlinikaEngine === "undefined") return;
-        const polyCode = document.getElementById("consolePolyFilter")?.value || "POLI-UMUM";
+        const polyCode =
+          document.getElementById("consolePolyFilter")?.value || "POLI-UMUM";
         const active = KlinikaEngine.getActiveQueueByPoly(polyCode);
 
         if (!active) {
-          showToast("Peringatan", "Tidak ada antrean yang siap dilayani.", false);
+          showToast(
+            "Peringatan",
+            "Tidak ada antrean yang siap dilayani.",
+            false,
+          );
           return;
         }
 
         KlinikaEngine.updateQueueStatus(active.id, "Sedang Dilayani");
-        showToast("Status Dilayani", `Pasien ${active.patientName} (${active.queueNumber}) mulai diperiksa oleh dokter.`);
+        showToast(
+          "Status Dilayani",
+          `Pasien ${active.patientName} (${active.queueNumber}) mulai diperiksa oleh dokter.`,
+        );
         renderQueueTable();
       }
 
       // 4. Selesai Pelayanan (Otomatis Terbitkan Draft Transaksi Billing ke localStorage)
       function handleFinishCurrentQueue() {
         if (typeof KlinikaEngine === "undefined") return;
-        const polyCode = document.getElementById("consolePolyFilter")?.value || "POLI-UMUM";
+        const polyCode =
+          document.getElementById("consolePolyFilter")?.value || "POLI-UMUM";
         const active = KlinikaEngine.getActiveQueueByPoly(polyCode);
 
         if (!active) {
-          showToast("Peringatan", "Tidak ada antrean aktif yang sedang dilayani saat ini.", false);
+          showToast(
+            "Peringatan",
+            "Tidak ada antrean aktif yang sedang dilayani saat ini.",
+            false,
+          );
           return;
         }
 
@@ -1478,8 +1890,16 @@
 
         // Terbitkan draft transaksi ke localStorage via KlinikaEngine.addTransaction
         let baseFee = 75000;
-        if (active.polyCode === "POLI-JANTUNG" || active.polyCode === "POLI-DALAM") baseFee = 200000;
-        else if (active.polyCode === "POLI-ANAK" || active.polyCode === "POLI-GIGI") baseFee = 150000;
+        if (
+          active.polyCode === "POLI-JANTUNG" ||
+          active.polyCode === "POLI-DALAM"
+        )
+          baseFee = 200000;
+        else if (
+          active.polyCode === "POLI-ANAK" ||
+          active.polyCode === "POLI-GIGI"
+        )
+          baseFee = 150000;
 
         const isBPJS = active.paymentMethod.includes("BPJS");
         const subtotal = baseFee + 50000; // Konsultasi + Tindakan dasar
@@ -1493,8 +1913,11 @@
           polyName: active.polyName,
           doctorName: active.doctorName,
           items: [
-            { name: `Konsultasi & Pemeriksaan ${active.polyName}`, cost: baseFee },
-            { name: "Alkes & Administrasi Rekam Medis", cost: 50000 }
+            {
+              name: `Konsultasi & Pemeriksaan ${active.polyName}`,
+              cost: baseFee,
+            },
+            { name: "Alkes & Administrasi Rekam Medis", cost: 50000 },
           ],
           subtotal: subtotal,
           discountCover: discountCover,
@@ -1502,26 +1925,38 @@
           paymentMethod: active.paymentMethod,
           paymentStatus: "Lunas",
           cashier: "Loket Kasir Terpadu",
-          notes: `Penyelesaian antrean otomatis ${active.queueNumber}`
+          notes: `Penyelesaian antrean otomatis ${active.queueNumber}`,
         });
 
-        showToast("Pelayanan Selesai", `Pasien ${active.queueNumber} selesai. Faktur billing otomatis dibukukan ke modul laporan!`);
+        showToast(
+          "Pelayanan Selesai",
+          `Pasien ${active.queueNumber} selesai. Faktur billing otomatis dibukukan ke modul laporan!`,
+        );
         renderQueueTable();
       }
 
       // 5. Lewati / Tidak Hadir (Skip)
       function handleSkipCurrentQueue() {
         if (typeof KlinikaEngine === "undefined") return;
-        const polyCode = document.getElementById("consolePolyFilter")?.value || "POLI-UMUM";
+        const polyCode =
+          document.getElementById("consolePolyFilter")?.value || "POLI-UMUM";
         const active = KlinikaEngine.getActiveQueueByPoly(polyCode);
 
         if (!active) {
-          showToast("Peringatan", "Tidak ada antrean aktif untuk dilewati.", false);
+          showToast(
+            "Peringatan",
+            "Tidak ada antrean aktif untuk dilewati.",
+            false,
+          );
           return;
         }
 
         KlinikaEngine.updateQueueStatus(active.id, "Dilewati");
-        showToast("Pasien Dilewati", `Pasien ${active.patientName} (${active.queueNumber}) ditandai tidak hadir/dilewati.`, false);
+        showToast(
+          "Pasien Dilewati",
+          `Pasien ${active.patientName} (${active.queueNumber}) ditandai tidak hadir/dilewati.`,
+          false,
+        );
         renderQueueTable();
       }
 
@@ -1530,7 +1965,10 @@
         if (typeof KlinikaEngine !== "undefined" && KlinikaEngine.speakQueue) {
           KlinikaEngine.speakQueue("A-001", "Poli Umum", "Ruang 101");
           activateAudioWave();
-          showToast("Uji Coba Suara", "Memutar nada bel chime & sintesis suara Bahasa Indonesia...");
+          showToast(
+            "Uji Coba Suara",
+            "Memutar nada bel chime & sintesis suara Bahasa Indonesia...",
+          );
         }
       }
 
@@ -1542,18 +1980,26 @@
         if (!tbody || typeof KlinikaEngine === "undefined") return;
 
         const queues = KlinikaEngine.getQueues();
-        const searchTerm = (document.getElementById("queueTableSearch")?.value || "").toLowerCase().trim();
-        const statusFilter = document.getElementById("queueTableStatusFilter")?.value || "ALL";
+        const searchTerm = (
+          document.getElementById("queueTableSearch")?.value || ""
+        )
+          .toLowerCase()
+          .trim();
+        const statusFilter =
+          document.getElementById("queueTableStatusFilter")?.value || "ALL";
 
         const filtered = queues.filter((q) => {
           const matchSearch =
             !searchTerm ||
-            (q.patientName && q.patientName.toLowerCase().includes(searchTerm)) ||
-            (q.queueNumber && q.queueNumber.toLowerCase().includes(searchTerm)) ||
+            (q.patientName &&
+              q.patientName.toLowerCase().includes(searchTerm)) ||
+            (q.queueNumber &&
+              q.queueNumber.toLowerCase().includes(searchTerm)) ||
             (q.polyName && q.polyName.toLowerCase().includes(searchTerm)) ||
             (q.doctorName && q.doctorName.toLowerCase().includes(searchTerm));
 
-          const matchStatus = statusFilter === "ALL" || q.status === statusFilter;
+          const matchStatus =
+            statusFilter === "ALL" || q.status === statusFilter;
 
           return matchSearch && matchStatus;
         });
@@ -1576,18 +2022,31 @@
 
         let html = "";
         filtered.forEach((q) => {
-          let statusBadge = "bg-amber-50 text-med-amber border border-amber-200";
-          if (q.status === "Dipanggil") statusBadge = "bg-cyan-50 text-med-cyan border border-cyan-200 animate-pulse";
-          else if (q.status === "Sedang Dilayani") statusBadge = "bg-emerald-50 text-med-emerald border border-emerald-200";
-          else if (q.status === "Selesai") statusBadge = "bg-blue-50 text-med-blue border border-blue-200";
-          else if (q.status === "Dilewati") statusBadge = "bg-rose-50 text-med-rose border border-rose-200";
+          let statusBadge =
+            "bg-amber-50 text-med-amber border border-amber-200";
+          if (q.status === "Dipanggil")
+            statusBadge =
+              "bg-cyan-50 text-med-cyan border border-cyan-200 animate-pulse";
+          else if (q.status === "Sedang Dilayani")
+            statusBadge =
+              "bg-emerald-50 text-med-emerald border border-emerald-200";
+          else if (q.status === "Selesai")
+            statusBadge = "bg-blue-50 text-med-blue border border-blue-200";
+          else if (q.status === "Dilewati")
+            statusBadge = "bg-rose-50 text-med-rose border border-rose-200";
 
           let payBadge = "bg-slate-100 text-slate-700";
-          if (q.paymentMethod.includes("BPJS")) payBadge = "bg-emerald-50 text-med-emerald border border-emerald-200";
-          else if (q.paymentMethod.includes("Asuransi")) payBadge = "bg-purple-50 text-purple-700 border border-purple-200";
+          if (q.paymentMethod.includes("BPJS"))
+            payBadge =
+              "bg-emerald-50 text-med-emerald border border-emerald-200";
+          else if (q.paymentMethod.includes("Asuransi"))
+            payBadge = "bg-purple-50 text-purple-700 border border-purple-200";
 
           const formattedTime = q.timestamp
-            ? new Date(q.timestamp).toLocaleTimeString("id-ID", { hour: "2-digit", minute: "2-digit" }) + " WIB"
+            ? new Date(q.timestamp).toLocaleTimeString("id-ID", {
+                hour: "2-digit",
+                minute: "2-digit",
+              }) + " WIB"
             : "08:30 WIB";
 
           html += `
@@ -1658,7 +2117,10 @@
         KlinikaEngine.updateQueueStatus(id, "Dipanggil");
         KlinikaEngine.speakQueue(queueNumber, polyName, doctorRoom);
         activateAudioWave();
-        showToast("Panggilan Suara", `Memanggil nomor ${queueNumber} menuju ${doctorRoom}...`);
+        showToast(
+          "Panggilan Suara",
+          `Memanggil nomor ${queueNumber} menuju ${doctorRoom}...`,
+        );
         renderQueueTable();
       }
 
