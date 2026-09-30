@@ -6,9 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <!-- TAG WAJIB KEAMANAN & SEO -->
     <meta name="robots" content="noindex, nofollow" />
-    <title>
-      Klinika.id - Modul Layanan, Jadwal Dokter & Kalkulator Biaya Medis
-    </title>
+    <title>Klinika.id - Katalog Layanan, Jadwal Dokter & Kalkulator Biaya Medis</title>
     <link
       rel="shortcut icon"
       href="https://img.icons8.com/color/48/hospital-2.png"
@@ -53,63 +51,75 @@
         },
       };
     </script>
+
+    <!-- CUSTOM PRINT STYLES FOR ESTIMATION SHEET -->
+    <style>
+      @media print {
+        body * {
+          visibility: hidden !important;
+        }
+        #printableEstimateSheet,
+        #printableEstimateSheet * {
+          visibility: visible !important;
+        }
+        #printableEstimateSheet {
+          position: fixed !important;
+          left: 0 !important;
+          top: 0 !important;
+          width: 100% !important;
+          margin: 0 !important;
+          padding: 20px !important;
+          background: #fff !important;
+          color: #000 !important;
+          box-shadow: none !important;
+          border: none !important;
+        }
+        .no-print {
+          display: none !important;
+        }
+      }
+    </style>
   </head>
-  <body
-    class="bg-slate-50 font-sans text-slate-700 antialiased flex flex-col min-h-screen"
-  >
+  <body class="bg-slate-50 font-sans text-slate-700 antialiased flex flex-col min-h-screen">
     <!-- TOP HEADER STRIP -->
-    <div
-      class="bg-med-dark text-slate-200 text-xs py-2 px-4 border-b border-slate-700"
-    >
-      <div
-        class="max-w-7xl mx-auto flex flex-wrap justify-between items-center gap-2"
-      >
+    <div class="bg-med-dark text-slate-200 text-xs py-2 px-4 border-b border-slate-700">
+      <div class="max-w-7xl mx-auto flex flex-wrap justify-between items-center gap-2">
         <div class="flex items-center gap-3">
           <span class="inline-flex items-center gap-1.5 font-medium">
             <i class="fas fa-notes-medical text-med-cyan"></i>
-            <strong>Katalog Layanan & Transparansi Biaya Medis</strong> —
-            Klinika.id
+            <strong>Katalog Fasilitas Medis, Jadwal Praktik & Kalkulator Biaya</strong> &mdash; Klinika.id
           </span>
         </div>
         <div class="flex items-center gap-4 text-slate-300">
           <span class="flex items-center gap-1.5">
             <i class="fas fa-calculator text-med-emerald"></i>
-            Kalkulator Medis: <strong class="text-white">Interaktif</strong>
+            Kalkulator Biaya: <strong class="text-white">Transparan & Realtime</strong>
           </span>
-          <span class="hidden sm:inline border-l border-slate-600 pl-3">
-            Konsultasi Tarif:
-            <strong class="text-med-cyan">(021) 800-KLINIK</strong>
+          <span class="flex items-center gap-1.5">
+            <i class="far fa-clock text-med-cyan"></i>
+            <span id="currentTime">--:--:-- WIB</span>
           </span>
         </div>
       </div>
     </div>
 
     <!-- MAIN NAVIGATION BAR -->
-    <header
-      class="bg-white sticky top-0 z-50 shadow-sm border-b border-slate-100"
-    >
+    <header class="bg-white sticky top-0 z-40 shadow-sm border-b border-slate-100">
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="flex justify-between items-center h-20">
           <!-- Brand Logo -->
-          <a href="index.html" class="flex items-center gap-3">
+          <a href="index.html" class="flex items-center gap-3 group">
             <div
-              class="w-12 h-12 rounded-xl bg-gradient-to-br from-med-blue to-med-dark flex items-center justify-center shadow-md shadow-blue-500/20 text-white text-2xl"
+              class="w-12 h-12 rounded-xl bg-gradient-to-br from-med-blue to-med-dark flex items-center justify-center shadow-md shadow-blue-500/20 text-white text-2xl group-hover:scale-105 transition"
             >
               <i class="fas fa-hospital-alt"></i>
             </div>
             <div>
               <div class="flex items-center gap-1">
-                <span
-                  class="font-heading font-black text-2xl tracking-tight text-med-dark"
-                  >Klinika</span
-                >
-                <span class="font-heading font-black text-2xl text-med-blue"
-                  >.id</span
-                >
+                <span class="font-heading font-black text-2xl tracking-tight text-med-dark">Klinika</span>
+                <span class="font-heading font-black text-2xl text-med-blue">.id</span>
               </div>
-              <p
-                class="text-[10px] uppercase font-bold tracking-wider text-slate-400"
-              >
+              <p class="text-[10px] uppercase font-bold tracking-wider text-slate-400">
                 Hospital & Clinic System
               </p>
             </div>
@@ -149,14 +159,14 @@
             </a>
           </nav>
 
-          <!-- Right CTA Button -->
+          <!-- Right Action CTA -->
           <div class="hidden sm:flex items-center gap-3">
             <a
-              href="fitur-sistem.html"
-              class="inline-flex items-center gap-2 px-5 py-2.5 rounded-lg text-sm font-semibold text-white bg-med-blue hover:bg-blue-700 shadow-md shadow-blue-500/20 transition transform active:scale-95"
+              href="#kalkulator"
+              class="inline-flex items-center gap-2 px-4 py-2 rounded-xl text-xs font-bold text-white bg-med-blue hover:bg-blue-700 shadow-md shadow-blue-500/20 transition transform active:scale-95"
             >
-              <i class="fas fa-calendar-check"></i>
-              <span>Daftar Sekarang</span>
+              <i class="fas fa-calculator"></i>
+              <span>Hitung Biaya Medis</span>
             </a>
           </div>
 
@@ -164,6 +174,7 @@
           <button
             id="mobileMenuBtn"
             class="lg:hidden p-2 rounded-lg text-slate-600 hover:bg-slate-100 transition focus:outline-none"
+            aria-label="Toggle Navigation"
           >
             <i class="fas fa-bars text-xl"></i>
           </button>
@@ -175,425 +186,812 @@
         id="mobileMenu"
         class="hidden lg:hidden border-t border-slate-100 bg-white px-4 pt-3 pb-5 space-y-1"
       >
-        <a
-          href="index.html"
-          class="block px-3 py-2.5 rounded-lg text-base font-medium text-slate-700 hover:bg-slate-50"
-        >
+        <a href="index.html" class="block px-3 py-2.5 rounded-lg text-base font-medium text-slate-700 hover:bg-slate-50">
           <i class="fas fa-home w-6 text-slate-400"></i> Beranda
         </a>
-        <a
-          href="dashboard.html"
-          class="block px-3 py-2.5 rounded-lg text-base font-medium text-slate-700 hover:bg-slate-50"
-        >
+        <a href="dashboard.html" class="block px-3 py-2.5 rounded-lg text-base font-medium text-slate-700 hover:bg-slate-50">
           <i class="fas fa-chart-line w-6 text-slate-400"></i> Dashboard Sistem
         </a>
-        <a
-          href="fitur-sistem.html"
-          class="block px-3 py-2.5 rounded-lg text-base font-medium text-slate-700 hover:bg-slate-50"
-        >
-          <i class="fas fa-user-plus w-6 text-slate-400"></i> Pendaftaran &
-          Antrean
+        <a href="fitur-sistem.html" class="block px-3 py-2.5 rounded-lg text-base font-medium text-slate-700 hover:bg-slate-50">
+          <i class="fas fa-user-plus w-6 text-slate-400"></i> Pendaftaran & Antrean
         </a>
-        <a
-          href="detail-layanan.html"
-          class="block px-3 py-2.5 rounded-lg text-base font-semibold text-med-blue bg-blue-50"
-        >
+        <a href="detail-layanan.html" class="block px-3 py-2.5 rounded-lg text-base font-semibold text-med-blue bg-blue-50">
           <i class="fas fa-calculator w-6"></i> Layanan & Tarif
         </a>
-        <a
-          href="laporan-data.html"
-          class="block px-3 py-2.5 rounded-lg text-base font-medium text-slate-700 hover:bg-slate-50"
-        >
-          <i class="fas fa-file-invoice w-6 text-slate-400"></i> Rekapitulasi
-          Laporan
+        <a href="laporan-data.html" class="block px-3 py-2.5 rounded-lg text-base font-medium text-slate-700 hover:bg-slate-50">
+          <i class="fas fa-file-invoice w-6 text-slate-400"></i> Rekapitulasi Laporan
         </a>
       </div>
     </header>
 
-    <!-- SECTION HEADER & BREADCRUMBS -->
+    <!-- SECTION BREADCRUMB & HEADER -->
     <section class="bg-white border-b border-slate-200 py-6">
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div
-          class="flex flex-col md:flex-row md:items-center justify-between gap-4"
-        >
+        <div class="flex flex-col md:flex-row md:items-center justify-between gap-4">
           <div>
-            <div
-              class="flex items-center gap-2 text-xs font-semibold text-med-blue mb-1"
-            >
+            <div class="flex items-center gap-2 text-xs font-semibold text-med-blue mb-1">
               <a href="index.html" class="hover:underline">Beranda</a>
               <span>/</span>
               <span class="text-slate-400">Modul Fitur Pendukung</span>
             </div>
-            <h1
-              class="font-heading font-black text-2xl sm:text-3xl text-med-dark tracking-tight"
-            >
-              Katalog Layanan, Jadwal Dokter & Kalkulator Biaya
+            <h1 class="font-heading font-black text-2xl sm:text-3xl text-med-dark tracking-tight">
+              Katalog Fasilitas Medis & Kalkulator Biaya
             </h1>
             <p class="text-xs sm:text-sm text-slate-500 mt-1">
-              Informasi lengkap fasilitas rawat jalan/inap, direktori jadwal
-              praktik dokter spesialis, dan simulasi estimasi biaya medis
-              transparan.
+              Informasi lengkap fasilitas rawat jalan/inap, direktori jadwal dokter spesialis interaktif, dan simulasi estimasi biaya medis transparan.
             </p>
           </div>
 
-          <div class="flex items-center gap-2">
+          <div class="flex items-center gap-2.5 self-start md:self-auto">
+            <a
+              href="#jadwalDokter"
+              class="px-4 py-2 rounded-xl text-xs font-bold text-slate-700 bg-slate-100 hover:bg-slate-200 transition flex items-center gap-1.5"
+            >
+              <i class="fas fa-user-md text-med-blue"></i>
+              <span>Jadwal Dokter</span>
+            </a>
             <a
               href="#kalkulator"
-              class="px-4 py-2.5 rounded-xl text-xs font-bold text-white bg-med-cyan hover:bg-sky-600 shadow-sm transition flex items-center gap-2"
+              class="px-4 py-2 rounded-xl text-xs font-bold text-white bg-gradient-to-r from-med-blue to-med-dark hover:from-blue-700 hover:to-slate-900 shadow-md shadow-blue-500/20 transition flex items-center gap-1.5"
             >
-              <i class="fas fa-calculator"></i> Buka Kalkulator Biaya
+              <i class="fas fa-calculator text-med-cyan"></i>
+              <span>Kalkulator Biaya</span>
             </a>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- MAIN CATALOG & CALCULATOR SHELL (Pondasi Tahap 1 - Siap Dikembangkan di Tahap 9) -->
-    <main
-      class="flex-grow max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-12"
-    >
-      <!-- 1. JADWAL DOKTER SPESIALIS (Doctor's Timetable Placeholder Shell) -->
-      <section
-        class="bg-white rounded-2xl p-6 sm:p-8 shadow-sm border border-slate-200 space-y-6"
-      >
-        <div
-          class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-slate-100 pb-4"
-        >
+    <!-- MAIN WORKSPACE -->
+    <main class="flex-grow max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-12">
+      <!-- ======================================================== -->
+      <!-- 1. KATALOG FASILITAS & LAYANAN RUMAH SAKIT              -->
+      <!-- ======================================================== -->
+      <section class="space-y-6">
+        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-slate-200/80 pb-4">
           <div>
-            <span
-              class="text-xs font-bold uppercase tracking-wider text-med-blue"
-              >Jadwal Praktik</span
-            >
-            <h2 class="font-heading font-bold text-xl text-med-dark">
-              Direktori Dokter Spesialis
+            <span class="text-xs font-bold uppercase tracking-wider text-med-blue flex items-center gap-1.5">
+              <i class="fas fa-clinic-medical"></i> Fasilitas Pelayanan Terpadu
+            </span>
+            <h2 class="font-heading font-black text-2xl text-med-dark tracking-tight mt-0.5">
+              Katalog Fasilitas & Unit Perawatan
             </h2>
           </div>
-          <div class="flex items-center gap-2">
-            <input
-              type="text"
-              placeholder="Cari nama dokter / spesialis..."
-              class="px-3.5 py-2 rounded-xl text-xs border border-slate-200 focus:ring-2 focus:ring-med-blue focus:outline-none w-56"
-            />
+          <!-- Category Tabs -->
+          <div class="flex flex-wrap gap-1.5 p-1 bg-slate-100 rounded-xl text-xs font-semibold">
             <button
-              class="px-4 py-2 rounded-xl bg-med-blue text-white text-xs font-bold hover:bg-blue-700 transition"
+              onclick="filterFacilityCategory('ALL')"
+              id="tabFacAll"
+              class="px-3 py-1.5 rounded-lg bg-white text-med-blue shadow-xs transition"
             >
-              Cari
+              Semua Fasilitas
+            </button>
+            <button
+              onclick="filterFacilityCategory('JALAN')"
+              id="tabFacJalan"
+              class="px-3 py-1.5 rounded-lg text-slate-600 hover:text-slate-900 transition"
+            >
+              Rawat Jalan
+            </button>
+            <button
+              onclick="filterFacilityCategory('INAP')"
+              id="tabFacInap"
+              class="px-3 py-1.5 rounded-lg text-slate-600 hover:text-slate-900 transition"
+            >
+              Rawat Inap & ICU
+            </button>
+            <button
+              onclick="filterFacilityCategory('PENUNJANG')"
+              id="tabFacPenunjang"
+              class="px-3 py-1.5 rounded-lg text-slate-600 hover:text-slate-900 transition"
+            >
+              Penunjang Medis
             </button>
           </div>
         </div>
 
-        <!-- Doctor Cards Grid Preview -->
-        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-          <!-- Doctor 1 -->
-          <div
-            class="p-5 rounded-2xl border border-slate-100 bg-slate-50/50 hover:border-med-blue hover:bg-white hover:shadow-md transition space-y-4"
-          >
-            <div class="flex items-center gap-4">
-              <img
-                src="https://images.unsplash.com/photo-1622253692010-333f2da6031d?auto=format&fit=crop&w=200&q=80"
-                alt="dr. Jonathan"
-                class="w-16 h-16 rounded-2xl object-cover"
-              />
-              <div>
-                <h4 class="font-heading font-bold text-med-dark text-sm">
-                  dr. Jonathan Barnes, Sp.PD
-                </h4>
-                <p class="text-xs text-med-blue font-semibold">
-                  Spesialis Penyakit Dalam
-                </p>
-                <span
-                  class="inline-block mt-1 px-2 py-0.5 rounded-full bg-emerald-50 text-med-emerald text-[10px] font-bold"
-                  >Praktik Hari Ini</span
-                >
-              </div>
+        <!-- Facilities Grid -->
+        <div id="facilitiesGrid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+          <!-- Card 1: IGD 24 Jam -->
+          <div class="facility-card bg-white rounded-2xl p-5 border border-slate-200/80 hover:shadow-lg hover:border-blue-200 transition group space-y-3" data-cat="JALAN">
+            <div class="w-12 h-12 rounded-xl bg-rose-50 text-med-rose flex items-center justify-center text-xl shadow-xs group-hover:scale-105 transition">
+              <i class="fas fa-ambulance"></i>
             </div>
-            <div
-              class="text-xs text-slate-500 pt-2 border-t border-slate-200/60 flex justify-between"
-            >
-              <span>Senin - Kamis</span>
-              <strong>09:00 - 14:00 WIB</strong>
+            <div>
+              <span class="text-[10px] font-bold uppercase tracking-wider text-rose-600 bg-rose-50 px-2 py-0.5 rounded">24/7 Siaga</span>
+              <h3 class="font-heading font-bold text-base text-med-dark mt-1">Instalasi Gawat Darurat (IGD)</h3>
+              <p class="text-xs text-slate-500 mt-1">
+                Layanan penanganan trauma dan kegawatdaruratan medis darurat 24 jam dengan tim dokter & perawat bersertifikasi ACLS.
+              </p>
+            </div>
+            <div class="pt-2 border-t border-slate-100 flex items-center justify-between text-[11px] text-slate-400">
+              <span>Hotline Darurat:</span>
+              <strong class="text-med-rose">(021) 800-911</strong>
             </div>
           </div>
 
-          <!-- Doctor 2 -->
-          <div
-            class="p-5 rounded-2xl border border-slate-100 bg-slate-50/50 hover:border-med-blue hover:bg-white hover:shadow-md transition space-y-4"
-          >
-            <div class="flex items-center gap-4">
-              <img
-                src="https://images.unsplash.com/photo-1623854767648-e7bb8009f0db?auto=format&fit=crop&w=400&q=80"
-                alt="dr. Sarah Wijaya"
-                onerror="
-                  this.onerror = null;
-                  this.src =
-                    'https://plus.unsplash.com/premium_photo-1661580574627-9211124e5c3f?auto=format&fit=crop&w=400&q=80';
-                "
-                class="w-16 h-16 rounded-2xl object-cover"
-              />
-              <div>
-                <h4 class="font-heading font-bold text-med-dark text-sm">
-                  dr. Sarah Wijaya, Sp.JP
-                </h4>
-                <p class="text-xs text-med-blue font-semibold">
-                  Spesialis Jantung & Pembuluh
-                </p>
-                <span
-                  class="inline-block mt-1 px-2 py-0.5 rounded-full bg-amber-50 text-med-amber text-[10px] font-bold"
-                  >Praktik Sore</span
-                >
-              </div>
+          <!-- Card 2: Rawat Jalan Poliklinik -->
+          <div class="facility-card bg-white rounded-2xl p-5 border border-slate-200/80 hover:shadow-lg hover:border-blue-200 transition group space-y-3" data-cat="JALAN">
+            <div class="w-12 h-12 rounded-xl bg-blue-50 text-med-blue flex items-center justify-center text-xl shadow-xs group-hover:scale-105 transition">
+              <i class="fas fa-stethoscope"></i>
             </div>
-            <div
-              class="text-xs text-slate-500 pt-2 border-t border-slate-200/60 flex justify-between"
-            >
-              <span>Senin - Jumat</span>
-              <strong>16:00 - 20:00 WIB</strong>
+            <div>
+              <span class="text-[10px] font-bold uppercase tracking-wider text-blue-600 bg-blue-50 px-2 py-0.5 rounded">8 Spesialisasi</span>
+              <h3 class="font-heading font-bold text-base text-med-dark mt-1">Poliklinik Spesialis Terpadu</h3>
+              <p class="text-xs text-slate-500 mt-1">
+                Konsultasi rawat jalan dokter spesialis umum, jantung, anak, gigi, bedah, saraf, dan penyakit dalam dengan rekam medis digital.
+              </p>
+            </div>
+            <div class="pt-2 border-t border-slate-100 flex items-center justify-between text-[11px] text-slate-400">
+              <span>Jadwal Operasional:</span>
+              <strong class="text-slate-700">08:00 - 20:00 WIB</strong>
             </div>
           </div>
 
-          <!-- Doctor 3 -->
-          <div
-            class="p-5 rounded-2xl border border-slate-100 bg-slate-50/50 hover:border-med-blue hover:bg-white hover:shadow-md transition space-y-4"
-          >
-            <div class="flex items-center gap-4">
-              <img
-                src="https://images.unsplash.com/photo-1537368910025-700350fe46c7?auto=format&fit=crop&w=200&q=80"
-                alt="dr. Hendra"
-                class="w-16 h-16 rounded-2xl object-cover"
-              />
-              <div>
-                <h4 class="font-heading font-bold text-med-dark text-sm">
-                  dr. Hendra Gunawan, Sp.A
-                </h4>
-                <p class="text-xs text-med-blue font-semibold">
-                  Spesialis Anak (Pediatri)
-                </p>
-                <span
-                  class="inline-block mt-1 px-2 py-0.5 rounded-full bg-emerald-50 text-med-emerald text-[10px] font-bold"
-                  >Praktik Hari Ini</span
-                >
-              </div>
+          <!-- Card 3: Rawat Inap & ICU -->
+          <div class="facility-card bg-white rounded-2xl p-5 border border-slate-200/80 hover:shadow-lg hover:border-blue-200 transition group space-y-3" data-cat="INAP">
+            <div class="w-12 h-12 rounded-xl bg-emerald-50 text-med-emerald flex items-center justify-center text-xl shadow-xs group-hover:scale-105 transition">
+              <i class="fas fa-bed"></i>
             </div>
-            <div
-              class="text-xs text-slate-500 pt-2 border-t border-slate-200/60 flex justify-between"
-            >
-              <span>Selasa - Sabtu</span>
-              <strong>08:30 - 13:00 WIB</strong>
+            <div>
+              <span class="text-[10px] font-bold uppercase tracking-wider text-emerald-600 bg-emerald-50 px-2 py-0.5 rounded">120 Kapasitas Bed</span>
+              <h3 class="font-heading font-bold text-base text-med-dark mt-1">Kamar Rawat Inap & ICU</h3>
+              <p class="text-xs text-slate-500 mt-1">
+                Pilihan kamar VVIP Suite, VIP Deluxe, Kelas 1, 2, dan Intensive Care Unit (ICU/NICU) dengan fasilitas penunggu lengkap.
+              </p>
+            </div>
+            <div class="pt-2 border-t border-slate-100 flex items-center justify-between text-[11px] text-slate-400">
+              <span>Tarif Mulai Dari:</span>
+              <strong class="text-med-emerald">Rp 300.000 / hari</strong>
+            </div>
+          </div>
+
+          <!-- Card 4: Radiologi & CT-Scan -->
+          <div class="facility-card bg-white rounded-2xl p-5 border border-slate-200/80 hover:shadow-lg hover:border-blue-200 transition group space-y-3" data-cat="PENUNJANG">
+            <div class="w-12 h-12 rounded-xl bg-cyan-50 text-med-cyan flex items-center justify-center text-xl shadow-xs group-hover:scale-105 transition">
+              <i class="fas fa-x-ray"></i>
+            </div>
+            <div>
+              <span class="text-[10px] font-bold uppercase tracking-wider text-cyan-600 bg-cyan-50 px-2 py-0.5 rounded">Digital Imaging</span>
+              <h3 class="font-heading font-bold text-base text-med-dark mt-1">Radiologi & Diagnostic Imaging</h3>
+              <p class="text-xs text-slate-500 mt-1">
+                Pemeriksaan CT-Scan 128 Slices, X-Ray Thorax Digital, USG 4D Abdomen & Fetomaternal dengan hasil bacaan cepat.
+              </p>
+            </div>
+            <div class="pt-2 border-t border-slate-100 flex items-center justify-between text-[11px] text-slate-400">
+              <span>Hasil Digital DICOM:</span>
+              <strong class="text-med-blue">&lt; 60 Menit</strong>
+            </div>
+          </div>
+
+          <!-- Card 5: Laboratorium Otomatis 24 Jam -->
+          <div class="facility-card bg-white rounded-2xl p-5 border border-slate-200/80 hover:shadow-lg hover:border-blue-200 transition group space-y-3" data-cat="PENUNJANG">
+            <div class="w-12 h-12 rounded-xl bg-amber-50 text-med-amber flex items-center justify-center text-xl shadow-xs group-hover:scale-105 transition">
+              <i class="fas fa-vial"></i>
+            </div>
+            <div>
+              <span class="text-[10px] font-bold uppercase tracking-wider text-amber-600 bg-amber-50 px-2 py-0.5 rounded">Akreditasi Kemenkes</span>
+              <h3 class="font-heading font-bold text-base text-med-dark mt-1">Laboratorium Patologi Klinis</h3>
+              <p class="text-xs text-slate-500 mt-1">
+                Uji darah lengkap, profil lipid kolesterol, fungsi hati/ginjal, gula darah HbA1c, dan urinalisis otomatis 24 jam.
+              </p>
+            </div>
+            <div class="pt-2 border-t border-slate-100 flex items-center justify-between text-[11px] text-slate-400">
+              <span>Hasil Cepat:</span>
+              <strong class="text-slate-700">Online via WhatsApp</strong>
+            </div>
+          </div>
+
+          <!-- Card 6: Farmasi 24 Jam -->
+          <div class="facility-card bg-white rounded-2xl p-5 border border-slate-200/80 hover:shadow-lg hover:border-blue-200 transition group space-y-3" data-cat="PENUNJANG">
+            <div class="w-12 h-12 rounded-xl bg-purple-50 text-purple-600 flex items-center justify-center text-xl shadow-xs group-hover:scale-105 transition">
+              <i class="fas fa-pills"></i>
+            </div>
+            <div>
+              <span class="text-[10px] font-bold uppercase tracking-wider text-purple-600 bg-purple-50 px-2 py-0.5 rounded">Resep Resmi</span>
+              <h3 class="font-heading font-bold text-base text-med-dark mt-1">Instalasi Farmasi 24 Jam</h3>
+              <p class="text-xs text-slate-500 mt-1">
+                Apotek klinik lengkap obat generik, paten, dan racikan steril berstandar BPOM dengan sistem resep digital otomatis.
+              </p>
+            </div>
+            <div class="pt-2 border-t border-slate-100 flex items-center justify-between text-[11px] text-slate-400">
+              <span>Layanan:</span>
+              <strong class="text-slate-700">24 Jam Non-Stop</strong>
+            </div>
+          </div>
+
+          <!-- Card 7: Ruang VVIP Presidential Suite -->
+          <div class="facility-card bg-white rounded-2xl p-5 border border-slate-200/80 hover:shadow-lg hover:border-blue-200 transition group space-y-3" data-cat="INAP">
+            <div class="w-12 h-12 rounded-xl bg-indigo-50 text-indigo-600 flex items-center justify-center text-xl shadow-xs group-hover:scale-105 transition">
+              <i class="fas fa-star"></i>
+            </div>
+            <div>
+              <span class="text-[10px] font-bold uppercase tracking-wider text-indigo-600 bg-indigo-50 px-2 py-0.5 rounded">Executive Suite</span>
+              <h3 class="font-heading font-bold text-base text-med-dark mt-1">VVIP Presidential Suite</h3>
+              <p class="text-xs text-slate-500 mt-1">
+                Kamar privat mewah dengan Smart TV 55", sofa bed keluarga, kulkas mini, microwave, dan 3x menu khusus nutrisionis chef.
+              </p>
+            </div>
+            <div class="pt-2 border-t border-slate-100 flex items-center justify-between text-[11px] text-slate-400">
+              <span>Tarif Eksekutif:</span>
+              <strong class="text-indigo-600">Rp 1.500.000 / hari</strong>
+            </div>
+          </div>
+
+          <!-- Card 8: Fisioterapi & Rehab Medis -->
+          <div class="facility-card bg-white rounded-2xl p-5 border border-slate-200/80 hover:shadow-lg hover:border-blue-200 transition group space-y-3" data-cat="JALAN">
+            <div class="w-12 h-12 rounded-xl bg-teal-50 text-teal-600 flex items-center justify-center text-xl shadow-xs group-hover:scale-105 transition">
+              <i class="fas fa-walking"></i>
+            </div>
+            <div>
+              <span class="text-[10px] font-bold uppercase tracking-wider text-teal-600 bg-teal-50 px-2 py-0.5 rounded">Rehabilitasi</span>
+              <h3 class="font-heading font-bold text-base text-med-dark mt-1">Fisioterapi & Rehab Medis</h3>
+              <p class="text-xs text-slate-500 mt-1">
+                Pemulihan pasca operasi, cedera olahraga, stroke, terapi ultrasound, diatermi, dan latihan gerak aktif bersama fisioterapis.
+              </p>
+            </div>
+            <div class="pt-2 border-t border-slate-100 flex items-center justify-between text-[11px] text-slate-400">
+              <span>Konsultasi:</span>
+              <strong class="text-slate-700">Senin - Sabtu</strong>
             </div>
           </div>
         </div>
       </section>
 
-      <!-- 2. KALKULATOR BIAYA MEDIS INTERAKTIF (Shell Placeholder Tahap 9) -->
+      <!-- ======================================================== -->
+      <!-- 2. JADWAL PRAKTIK DOKTER SPESIALIS (DOCTOR'S TIMETABLE)  -->
+      <!-- ======================================================== -->
+      <section id="jadwalDokter" class="bg-white rounded-3xl p-6 sm:p-8 shadow-sm border border-slate-200/90 space-y-6">
+        <div class="flex flex-col lg:flex-row lg:items-center justify-between gap-4 border-b border-slate-100 pb-5">
+          <div>
+            <span class="text-xs font-bold uppercase tracking-wider text-med-blue flex items-center gap-1.5">
+              <i class="fas fa-calendar-alt"></i> Doctor's Timetable
+            </span>
+            <h2 class="font-heading font-black text-2xl text-med-dark tracking-tight mt-0.5">
+              Direktori & Jadwal Praktik Dokter Spesialis
+            </h2>
+            <p class="text-xs text-slate-400 mt-1">
+              Cari jadwal konsultasi dokter spesialis aktif di Klinika.id dan daftar antrean langsung
+            </p>
+          </div>
+
+          <!-- Search & Filter Controls -->
+          <div class="flex flex-col sm:flex-row items-stretch sm:items-center gap-3">
+            <!-- Search Box -->
+            <div class="relative w-full sm:w-64">
+              <span class="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-slate-400 text-xs">
+                <i class="fas fa-search"></i>
+              </span>
+              <input
+                type="text"
+                id="doctorSearchInput"
+                placeholder="Cari dokter / spesialis..."
+                onkeyup="filterDoctors()"
+                class="w-full pl-9 pr-3.5 py-2 text-xs rounded-xl border border-slate-200 focus:outline-none focus:ring-2 focus:ring-med-blue/20 focus:border-med-blue"
+              />
+            </div>
+
+            <!-- Polyclinic Filter Dropdown -->
+            <select
+              id="polyFilterSelect"
+              onchange="filterDoctors()"
+              class="text-xs font-semibold bg-slate-50 border border-slate-200 rounded-xl px-3.5 py-2 text-slate-700 focus:outline-none focus:ring-1 focus:ring-med-blue"
+            >
+              <option value="ALL">Semua Poliklinik</option>
+              <option value="POLI-UMUM">Poli Umum</option>
+              <option value="POLI-JANTUNG">Poli Jantung & Pembuluh</option>
+              <option value="POLI-ANAK">Poli Anak (Pediatri)</option>
+              <option value="POLI-GIGI">Poli Gigi & Mulut</option>
+              <option value="POLI-DALAM">Poli Penyakit Dalam</option>
+              <option value="POLI-SARAF">Poli Neurologi / Saraf</option>
+              <option value="POLI-KANDUNGAN">Poli Kebidanan & Kandungan</option>
+              <option value="POLI-BEDAH">Poli Bedah Umum</option>
+              <option value="POLI-RADIOLOGI">Instalasi Radiologi</option>
+            </select>
+          </div>
+        </div>
+
+        <!-- Filter Day Tabs -->
+        <div class="flex flex-wrap gap-1.5 p-1 bg-slate-100 rounded-xl text-xs font-semibold" id="dayFilterTabs">
+          <button onclick="filterByDay('ALL', this)" class="day-tab px-3.5 py-1.5 rounded-lg bg-white text-med-blue shadow-xs transition">
+            Semua Hari
+          </button>
+          <button onclick="filterByDay('Senin', this)" class="day-tab px-3.5 py-1.5 rounded-lg text-slate-600 hover:text-slate-900 transition">
+            Senin
+          </button>
+          <button onclick="filterByDay('Selasa', this)" class="day-tab px-3.5 py-1.5 rounded-lg text-slate-600 hover:text-slate-900 transition">
+            Selasa
+          </button>
+          <button onclick="filterByDay('Rabu', this)" class="day-tab px-3.5 py-1.5 rounded-lg text-slate-600 hover:text-slate-900 transition">
+            Rabu
+          </button>
+          <button onclick="filterByDay('Kamis', this)" class="day-tab px-3.5 py-1.5 rounded-lg text-slate-600 hover:text-slate-900 transition">
+            Kamis
+          </button>
+          <button onclick="filterByDay('Jumat', this)" class="day-tab px-3.5 py-1.5 rounded-lg text-slate-600 hover:text-slate-900 transition">
+            Jumat
+          </button>
+          <button onclick="filterByDay('Sabtu', this)" class="day-tab px-3.5 py-1.5 rounded-lg text-slate-600 hover:text-slate-900 transition">
+            Sabtu
+          </button>
+        </div>
+
+        <!-- Doctor Cards Grid Container (Rendered dynamically via JS from KlinikaEngine) -->
+        <div id="doctorCardsGrid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+          <!-- Rendered via JavaScript -->
+        </div>
+      </section>
+
+      <!-- ======================================================== -->
+      <!-- 3. KALKULATOR BIAYA MEDIS INTERAKTIF (MEDICAL ESTIMATOR) -->
+      <!-- ======================================================== -->
       <section
         id="kalkulator"
-        class="bg-gradient-to-br from-slate-900 via-med-dark to-slate-900 text-white rounded-3xl p-6 sm:p-10 shadow-2xl space-y-8"
+        class="bg-gradient-to-br from-slate-900 via-med-dark to-slate-900 text-white rounded-3xl p-6 sm:p-10 shadow-2xl space-y-8 relative overflow-hidden"
       >
-        <div class="max-w-3xl">
-          <div
-            class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-med-cyan/20 text-med-cyan text-xs font-bold"
-          >
+        <!-- Background Ambient Glow -->
+        <div class="absolute -right-16 -top-16 w-80 h-80 rounded-full bg-med-cyan/10 blur-3xl pointer-events-none"></div>
+        <div class="absolute left-1/3 -bottom-16 w-64 h-64 rounded-full bg-blue-500/10 blur-3xl pointer-events-none"></div>
+
+        <div class="max-w-3xl relative z-10">
+          <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-med-cyan/20 text-cyan-300 text-xs font-bold border border-cyan-400/20">
             <i class="fas fa-calculator"></i> Fitur Unggulan Simulasi Biaya
           </div>
-          <h2
-            class="font-heading font-black text-2xl sm:text-3xl text-white mt-2"
-          >
-            Kalkulator Estimasi Biaya & Billing Pasien
+          <h2 class="font-heading font-black text-2xl sm:text-3xl text-white mt-2 tracking-tight">
+            Kalkulator Estimasi Biaya Medis & Penjaminan
           </h2>
-          <p class="text-slate-300 text-xs sm:text-sm mt-1">
-            Dapatkan transparansi estimasi total biaya perawatan secara instan
-            sebelum melakukan konsultasi medis atau tindakan rawat inap.
+          <p class="text-slate-300 text-xs sm:text-sm mt-1 leading-relaxed">
+            Dapatkan transparansi estimasi total tagihan tindakan medis secara instan sebelum melakukan pemeriksaan rawat jalan atau tindakan rawat inap.
           </p>
         </div>
 
-        <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
-          <!-- Left: Form Input Parameter Kalkulator -->
-          <div
-            class="lg:col-span-7 bg-white/10 backdrop-blur-md rounded-2xl p-6 border border-white/10 space-y-4 text-xs"
-          >
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start relative z-10">
+          <!-- Left: Input Form Parameters -->
+          <div class="lg:col-span-7 bg-white/10 backdrop-blur-md rounded-2xl p-6 border border-white/10 space-y-5 text-xs">
+            <!-- 1. Tipe Layanan Perawatan -->
             <div>
-              <label class="block font-bold text-slate-200 mb-1"
-                >Tipe Layanan Perawatan</label
-              >
+              <label class="block font-bold text-slate-200 mb-2">1. Jenis Layanan Perawatan</label>
               <div class="grid grid-cols-2 gap-3">
-                <label
-                  class="p-3 rounded-xl border border-white/20 bg-white/5 cursor-pointer flex items-center gap-2 hover:bg-white/15"
-                >
+                <label class="p-3 rounded-xl border border-white/20 bg-white/5 cursor-pointer flex items-center gap-2.5 hover:bg-white/15 transition has-[:checked]:border-med-cyan has-[:checked]:bg-cyan-500/20">
                   <input
                     type="radio"
-                    name="calcType"
+                    name="calcCareType"
+                    value="RAWAT-JALAN"
                     checked
-                    class="text-med-cyan"
+                    onchange="handleCareTypeChange('RAWAT-JALAN')"
+                    class="text-med-cyan focus:ring-med-cyan"
                   />
-                  <span class="font-semibold">Rawat Jalan (Poli)</span>
+                  <div>
+                    <span class="font-bold text-white block">Rawat Jalan (Poli)</span>
+                    <span class="text-[10px] text-slate-300">Konsultasi Poliklinik</span>
+                  </div>
                 </label>
-                <label
-                  class="p-3 rounded-xl border border-white/20 bg-white/5 cursor-pointer flex items-center gap-2 hover:bg-white/15"
-                >
-                  <input type="radio" name="calcType" class="text-med-cyan" />
-                  <span class="font-semibold">Rawat Inap (Kamar)</span>
+
+                <label class="p-3 rounded-xl border border-white/20 bg-white/5 cursor-pointer flex items-center gap-2.5 hover:bg-white/15 transition has-[:checked]:border-med-cyan has-[:checked]:bg-cyan-500/20">
+                  <input
+                    type="radio"
+                    name="calcCareType"
+                    value="RAWAT-INAP"
+                    onchange="handleCareTypeChange('RAWAT-INAP')"
+                    class="text-med-cyan focus:ring-med-cyan"
+                  />
+                  <div>
+                    <span class="font-bold text-white block">Rawat Inap (Kamar)</span>
+                    <span class="text-[10px] text-slate-300">Menginap & Bed Care</span>
+                  </div>
                 </label>
               </div>
             </div>
 
+            <!-- 2. Pilihan Konsultasi Dokter -->
             <div>
-              <label class="block font-bold text-slate-200 mb-1"
-                >Poliklinik & Spesialisasi</label
-              >
+              <label class="block font-bold text-slate-200 mb-1">2. Konsultasi Dokter & Poliklinik</label>
               <select
-                class="w-full px-3.5 py-2.5 rounded-xl bg-slate-800 border border-slate-700 text-white focus:outline-none focus:border-med-cyan"
+                id="calcDoctorSelect"
+                onchange="recalculateBill()"
+                class="w-full px-3.5 py-2.5 rounded-xl bg-slate-800 border border-slate-700 text-white focus:outline-none focus:border-med-cyan transition"
               >
-                <option>Dokter Umum (Rp 75.000)</option>
-                <option selected>
-                  Dokter Spesialis Penyakit Dalam / Jantung (Rp 200.000)
-                </option>
-                <option>Dokter Subspesialis / Konsultan (Rp 350.000)</option>
+                <option value="75000">Dokter Umum (Rp 75.000)</option>
+                <option value="200000" selected>Dokter Spesialis - Penyakit Dalam / Jantung / Bedah (Rp 200.000)</option>
+                <option value="350000">Dokter Subspesialis / Konsultan Ahli (Rp 350.000)</option>
               </select>
             </div>
 
+            <!-- 3. Pilihan Tindakan Medis Tambahan (Multi-Select Checkbox) -->
             <div>
-              <label class="block font-bold text-slate-200 mb-2"
-                >Pemeriksaan / Tindakan Tambahan</label
-              >
-              <div class="space-y-2">
-                <label
-                  class="flex items-center justify-between p-2.5 rounded-xl bg-white/5 border border-white/10 cursor-pointer hover:bg-white/10"
-                >
-                  <div class="flex items-center gap-2">
+              <label class="block font-bold text-slate-200 mb-2">3. Pemeriksaan Medis Tambahan (Opsional)</label>
+              <div class="space-y-2" id="medicalProceduresList">
+                <label class="flex items-center justify-between p-2.5 rounded-xl bg-white/5 border border-white/10 cursor-pointer hover:bg-white/10 transition">
+                  <div class="flex items-center gap-2.5">
                     <input
                       type="checkbox"
+                      value="120000"
+                      data-name="Pemeriksaan EKG Jantung"
+                      onchange="recalculateBill()"
+                      class="rounded text-med-cyan focus:ring-med-cyan"
                       checked
-                      class="rounded text-med-cyan"
                     />
-                    <span>Pemeriksaan EKG Jantung</span>
+                    <span class="text-slate-200">Pemeriksaan Rekam Jantung (EKG)</span>
                   </div>
                   <strong class="text-med-cyan">+ Rp 120.000</strong>
                 </label>
-                <label
-                  class="flex items-center justify-between p-2.5 rounded-xl bg-white/5 border border-white/10 cursor-pointer hover:bg-white/10"
-                >
-                  <div class="flex items-center gap-2">
+
+                <label class="flex items-center justify-between p-2.5 rounded-xl bg-white/5 border border-white/10 cursor-pointer hover:bg-white/10 transition">
+                  <div class="flex items-center gap-2.5">
                     <input
                       type="checkbox"
-                      checked
-                      class="rounded text-med-cyan"
+                      value="180000"
+                      data-name="Rontgen Thorax Digital"
+                      onchange="recalculateBill()"
+                      class="rounded text-med-cyan focus:ring-med-cyan"
                     />
-                    <span>Laboratorium Darah Lengkap</span>
+                    <span class="text-slate-200">Rontgen Thorax Digital (Paru/Jantung)</span>
+                  </div>
+                  <strong class="text-med-cyan">+ Rp 180.000</strong>
+                </label>
+
+                <label class="flex items-center justify-between p-2.5 rounded-xl bg-white/5 border border-white/10 cursor-pointer hover:bg-white/10 transition">
+                  <div class="flex items-center gap-2.5">
+                    <input
+                      type="checkbox"
+                      value="150000"
+                      data-name="Lab Darah Lengkap"
+                      onchange="recalculateBill()"
+                      class="rounded text-med-cyan focus:ring-med-cyan"
+                      checked
+                    />
+                    <span class="text-slate-200">Cek Laboratorium Darah Lengkap (CBC)</span>
                   </div>
                   <strong class="text-med-cyan">+ Rp 150.000</strong>
+                </label>
+
+                <label class="flex items-center justify-between p-2.5 rounded-xl bg-white/5 border border-white/10 cursor-pointer hover:bg-white/10 transition">
+                  <div class="flex items-center gap-2.5">
+                    <input
+                      type="checkbox"
+                      value="85000"
+                      data-name="Tes Gula Darah & Kolesterol"
+                      onchange="recalculateBill()"
+                      class="rounded text-med-cyan focus:ring-med-cyan"
+                    />
+                    <span class="text-slate-200">Tes Gula Darah & Profil Kolesterol</span>
+                  </div>
+                  <strong class="text-med-cyan">+ Rp 85.000</strong>
+                </label>
+
+                <label class="flex items-center justify-between p-2.5 rounded-xl bg-white/5 border border-white/10 cursor-pointer hover:bg-white/10 transition">
+                  <div class="flex items-center gap-2.5">
+                    <input
+                      type="checkbox"
+                      value="250000"
+                      data-name="USG Abdomen 4D"
+                      onchange="recalculateBill()"
+                      class="rounded text-med-cyan focus:ring-med-cyan"
+                    />
+                    <span class="text-slate-200">USG Abdomen 4D / Kandungan</span>
+                  </div>
+                  <strong class="text-med-cyan">+ Rp 250.000</strong>
+                </label>
+
+                <label class="flex items-center justify-between p-2.5 rounded-xl bg-white/5 border border-white/10 cursor-pointer hover:bg-white/10 transition">
+                  <div class="flex items-center gap-2.5">
+                    <input
+                      type="checkbox"
+                      value="95000"
+                      data-name="Nebulizer Terapi Uap"
+                      onchange="recalculateBill()"
+                      class="rounded text-med-cyan focus:ring-med-cyan"
+                    />
+                    <span class="text-slate-200">Nebulizer Terapi Uap Pernafasan</span>
+                  </div>
+                  <strong class="text-med-cyan">+ Rp 95.000</strong>
                 </label>
               </div>
             </div>
 
+            <!-- 4. Pilihan Kamar Rawat Inap (Dinamis: Hanya Aktif Jika Rawat Inap) -->
+            <div id="inpatientSection" class="hidden p-4 rounded-xl bg-cyan-950/40 border border-cyan-500/30 space-y-3">
+              <span class="font-bold text-cyan-300 block">
+                <i class="fas fa-bed mr-1"></i> 4. Pilihan Kamar & Durasi Rawat Inap
+              </span>
+              <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                <div>
+                  <label class="block text-slate-300 text-[11px] mb-1">Kelas Kamar</label>
+                  <select
+                    id="calcRoomClassSelect"
+                    onchange="recalculateBill()"
+                    class="w-full px-3 py-2 rounded-lg bg-slate-800 border border-slate-700 text-white focus:outline-none focus:border-med-cyan text-xs"
+                  >
+                    <option value="1500000">VVIP Presidential Suite (Rp 1.500.000/hari)</option>
+                    <option value="950000" selected>VIP Deluxe Room (Rp 950.000/hari)</option>
+                    <option value="500000">Rawat Inap Kelas 1 (Rp 500.000/hari)</option>
+                    <option value="300000">Rawat Inap Kelas 2 & 3 (Rp 300.000/hari)</option>
+                  </select>
+                </div>
+                <div>
+                  <label class="block text-slate-300 text-[11px] mb-1">Durasi Rawat (Hari)</label>
+                  <div class="flex items-center gap-2">
+                    <button
+                      type="button"
+                      onclick="changeStayDays(-1)"
+                      class="w-8 h-8 rounded-lg bg-slate-800 border border-slate-700 hover:bg-slate-700 font-bold text-white text-sm"
+                    >
+                      -
+                    </button>
+                    <input
+                      type="number"
+                      id="calcStayDays"
+                      value="2"
+                      min="1"
+                      max="30"
+                      onchange="recalculateBill()"
+                      class="w-16 text-center py-1.5 rounded-lg bg-slate-800 border border-slate-700 text-white font-bold text-xs focus:outline-none"
+                    />
+                    <button
+                      type="button"
+                      onclick="changeStayDays(1)"
+                      class="w-8 h-8 rounded-lg bg-slate-800 border border-slate-700 hover:bg-slate-700 font-bold text-white text-sm"
+                    >
+                      +
+                    </button>
+                    <span class="text-slate-300 text-xs">Hari</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- 5. Paket Obat & Farmasi -->
             <div>
-              <label class="block font-bold text-slate-200 mb-1"
-                >Skema Penjaminan Biaya</label
-              >
+              <label class="block font-bold text-slate-200 mb-1">5. Paket Obat & Farmasi Standar</label>
               <select
-                class="w-full px-3.5 py-2.5 rounded-xl bg-slate-800 border border-slate-700 text-white focus:outline-none focus:border-med-cyan"
+                id="calcPharmacySelect"
+                onchange="recalculateBill()"
+                class="w-full px-3.5 py-2.5 rounded-xl bg-slate-800 border border-slate-700 text-white focus:outline-none focus:border-med-cyan transition"
               >
-                <option>Pasien Umum / Pribadi (100% Mandiri)</option>
-                <option selected>BPJS Kesehatan (Sesuai Plafon Kover)</option>
-                <option>Asuransi Swasta (Co-pay 20%)</option>
+                <option value="0">Tanpa Obat Farmasi (Rp 0)</option>
+                <option value="75000">Paket Obat Ringan / Analgetik & Vitamin (+ Rp 75.000)</option>
+                <option value="150000" selected>Paket Obat Sedang / Antibiotik & Terapi Standar (+ Rp 150.000)</option>
+                <option value="350000">Paket Obat Intensif & Cairan Infus Khusus (+ Rp 350.000)</option>
+              </select>
+            </div>
+
+            <!-- 6. Skema Penjaminan Biaya (Coverage) -->
+            <div>
+              <label class="block font-bold text-slate-200 mb-1">6. Skema Penjaminan Biaya (Asuransi)</label>
+              <select
+                id="calcInsuranceSelect"
+                onchange="recalculateBill()"
+                class="w-full px-3.5 py-2.5 rounded-xl bg-slate-800 border border-slate-700 text-white focus:outline-none focus:border-med-cyan transition"
+              >
+                <option value="UMUM">Pasien Umum / Pribadi (100% Ditanggung Mandiri)</option>
+                <option value="BPJS" selected>BPJS Kesehatan (Plafon Pertanggungan BPJS)</option>
+                <option value="ASURANSI">Asuransi Swasta Komersial (Co-pay 20%)</option>
               </select>
             </div>
           </div>
 
-          <!-- Right: Summary Box Hasil Perhitungan -->
-          <div
-            class="lg:col-span-5 bg-white text-slate-800 rounded-2xl p-6 shadow-2xl space-y-4"
-          >
-            <div
-              class="border-b border-slate-100 pb-3 flex items-center justify-between"
-            >
-              <h3 class="font-heading font-bold text-lg text-med-dark">
-                Ringkasan Estimasi
-              </h3>
-              <span
-                class="px-2 py-0.5 rounded bg-blue-50 text-med-blue text-[11px] font-bold"
-                >Live Kalkulasi</span
-              >
+          <!-- Right: Live Estimation Summary Panel -->
+          <div class="lg:col-span-5 bg-white text-slate-800 rounded-3xl p-6 sm:p-7 shadow-2xl space-y-5 border border-slate-100 sticky top-28">
+            <div class="border-b border-slate-100 pb-3 flex items-center justify-between">
+              <div>
+                <h3 class="font-heading font-black text-lg text-med-dark tracking-tight">
+                  Ringkasan Estimasi Tagihan
+                </h3>
+                <p class="text-[11px] text-slate-400">Dihitung otomatis secara real-time</p>
+              </div>
+              <span class="px-2.5 py-1 rounded-full bg-blue-50 text-med-blue text-[10px] font-bold">
+                Live Calculator
+              </span>
             </div>
 
-            <div class="space-y-2 text-xs">
-              <div class="flex justify-between text-slate-600">
-                <span>Konsultasi Dokter:</span>
-                <span class="font-bold">Rp 200.000</span>
+            <!-- Itemized Costs -->
+            <div class="space-y-2 text-xs divide-y divide-slate-100">
+              <div class="flex justify-between pt-1">
+                <span class="text-slate-600">Jasa Konsultasi Dokter:</span>
+                <strong id="summaryDoctorFee" class="text-slate-800">Rp 200.000</strong>
               </div>
-              <div class="flex justify-between text-slate-600">
-                <span>Tindakan & Lab:</span>
-                <span class="font-bold">Rp 270.000</span>
+
+              <div class="flex justify-between pt-1.5">
+                <span class="text-slate-600">Tindakan Medis & Lab:</span>
+                <strong id="summaryProceduresFee" class="text-slate-800">Rp 270.000</strong>
               </div>
-              <div class="flex justify-between text-slate-600">
-                <span>Paket Farmasi:</span>
-                <span class="font-bold">Rp 85.000</span>
+
+              <div id="summaryRoomRow" class="hidden justify-between pt-1.5">
+                <span class="text-slate-600" id="summaryRoomLabel">Kamar Rawat Inap (2 Hari):</span>
+                <strong id="summaryRoomFee" class="text-slate-800">Rp 1.900.000</strong>
               </div>
-              <div
-                class="flex justify-between text-slate-600 pt-2 border-t border-slate-100"
-              >
-                <span>Subtotal:</span>
-                <span class="font-bold">Rp 555.000</span>
+
+              <div class="flex justify-between pt-1.5">
+                <span class="text-slate-600">Paket Farmasi / Obat:</span>
+                <strong id="summaryPharmacyFee" class="text-slate-800">Rp 150.000</strong>
               </div>
-              <div class="flex justify-between text-med-emerald font-semibold">
-                <span>Cover Jaminan (BPJS):</span>
-                <span>- Rp 555.000</span>
+
+              <div class="flex justify-between pt-2 border-t border-slate-200">
+                <span class="font-bold text-slate-700">Subtotal Tagihan Kotor:</span>
+                <strong id="summarySubtotal" class="font-bold text-slate-900">Rp 620.000</strong>
+              </div>
+
+              <div class="flex justify-between pt-1.5 text-med-emerald">
+                <span class="font-semibold" id="summaryDiscountLabel">Cover Jaminan (BPJS):</span>
+                <strong id="summaryDiscountCover">- Rp 620.000</strong>
               </div>
             </div>
 
-            <div
-              class="p-4 rounded-xl bg-blue-50 border border-blue-100 text-center"
-            >
-              <p
-                class="text-[11px] uppercase font-bold tracking-wider text-slate-400"
-              >
-                Total Estimasi Pasien
+            <!-- Big Final Due Box -->
+            <div class="p-4 rounded-2xl bg-gradient-to-br from-blue-50 to-indigo-50/50 border border-blue-100 text-center">
+              <p class="text-[10px] uppercase font-bold tracking-wider text-slate-400">
+                Total Estimasi Harus Dibayar Pasien
               </p>
-              <h3 class="font-heading font-black text-3xl text-med-blue mt-1">
+              <h3 id="summaryFinalDue" class="font-heading font-black text-3xl sm:text-4xl text-med-blue my-1">
                 Rp 0
               </h3>
-              <p class="text-[10px] text-med-emerald font-bold mt-1">
-                Ditanggung Penuh oleh Penjamin BPJS
+              <p id="summaryFinalNote" class="text-[11px] font-bold text-med-emerald">
+                Ditanggung Penuh oleh Jaminan BPJS Kesehatan
               </p>
             </div>
 
-            <button
-              class="w-full py-3 rounded-xl bg-med-blue text-white font-bold text-xs hover:bg-blue-700 transition flex items-center justify-center gap-2"
-            >
-              <i class="fas fa-print"></i> Cetak Lembar Estimasi
-            </button>
+            <!-- Action Buttons -->
+            <div class="space-y-2 pt-1 no-print">
+              <button
+                type="button"
+                id="btnPrintEstimate"
+                onclick="openEstimateModal()"
+                class="w-full py-3 rounded-xl bg-med-blue hover:bg-blue-700 text-white font-bold text-xs shadow-md shadow-blue-500/20 transition flex items-center justify-center gap-2"
+              >
+                <i class="fas fa-print"></i>
+                <span>Cetak / Simpan Lembar Estimasi</span>
+              </button>
+
+              <button
+                type="button"
+                id="btnGoToRegistration"
+                onclick="proceedToRegistration()"
+                class="w-full py-2.5 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-700 font-semibold text-xs transition flex items-center justify-center gap-2"
+              >
+                <i class="fas fa-arrow-right text-med-blue"></i>
+                <span>Lanjutkan ke Pendaftaran Antrean</span>
+              </button>
+            </div>
           </div>
         </div>
       </section>
     </main>
 
-    <!-- MASTER HOSPITAL FOOTER -->
-    <footer
-      class="bg-slate-900 text-slate-300 pt-12 pb-6 border-t border-slate-800 mt-auto"
+    <!-- ======================================================== -->
+    <!-- MODAL PRATINJAU LEMBAR ESTIMASI BIAYA (PRINTABLE SHEET) -->
+    <!-- ======================================================== -->
+    <div
+      id="estimateSheetModal"
+      class="fixed inset-0 z-50 flex items-center justify-center p-4 hidden"
     >
+      <div
+        id="estimateModalBackdrop"
+        onclick="closeEstimateModal()"
+        class="fixed inset-0 bg-slate-900/60 backdrop-blur-xs transition-opacity"
+      ></div>
+
+      <div class="relative bg-white rounded-3xl shadow-2xl max-w-xl w-full z-10 overflow-hidden border border-slate-200 max-h-[90vh] flex flex-col animate-in fade-in zoom-in-95 duration-200">
+        <!-- Modal Topbar -->
+        <div class="p-4 bg-slate-50 border-b border-slate-100 flex items-center justify-between no-print">
+          <span class="text-xs font-bold text-slate-700 flex items-center gap-1.5">
+            <i class="fas fa-file-invoice text-med-blue"></i> Lembar Estimasi Biaya Medis
+          </span>
+          <button onclick="closeEstimateModal()" class="text-slate-400 hover:text-slate-700 p-1 rounded-lg">
+            <i class="fas fa-times text-sm"></i>
+          </button>
+        </div>
+
+        <!-- Printable Document Body -->
+        <div id="printableEstimateSheet" class="p-6 sm:p-8 overflow-y-auto space-y-5 text-slate-800">
+          <!-- Kop Rumah Sakit -->
+          <div class="border-b-2 border-slate-800 pb-4 text-center">
+            <div class="flex items-center justify-center gap-2">
+              <div class="w-8 h-8 rounded-lg bg-med-blue text-white flex items-center justify-center text-sm font-bold">
+                <i class="fas fa-hospital-alt"></i>
+              </div>
+              <h2 class="font-heading font-black text-xl text-med-dark tracking-tight">RUMAH SAKIT KLINIKA.ID</h2>
+            </div>
+            <p class="text-[11px] text-slate-600 mt-1">
+              Jl. Kesehatan Medika No. 128, Jakarta &bull; Telp: (021) 800-KLINIK &bull; Email: billing@klinika.id
+            </p>
+            <p class="text-[10px] text-slate-500 uppercase tracking-widest font-mono mt-0.5">
+              LEMBAR SIMULASI ESTIMASI BIAYA & PENJAMINAN MEDIS
+            </p>
+          </div>
+
+          <!-- Meta Info -->
+          <div class="grid grid-cols-2 text-xs border-b border-slate-100 pb-3">
+            <div>
+              <p class="text-slate-400 text-[10px]">TANGGAL CETAK:</p>
+              <p id="modalEstimateDate" class="font-bold text-slate-700">-</p>
+            </div>
+            <div class="text-right">
+              <p class="text-slate-400 text-[10px]">SKEMA PENJAMIN:</p>
+              <p id="modalEstimateInsurance" class="font-bold text-med-blue">-</p>
+            </div>
+          </div>
+
+          <!-- Items Table -->
+          <div>
+            <table class="w-full text-xs">
+              <thead class="bg-slate-50 text-slate-500 font-bold uppercase text-[10px] border-b border-slate-200">
+                <tr>
+                  <th class="py-2 px-2 text-left">Komponen Layanan</th>
+                  <th class="py-2 px-2 text-right">Biaya Satuan</th>
+                </tr>
+              </thead>
+              <tbody id="modalEstimateItemsBody" class="divide-y divide-slate-100">
+                <!-- Injected via JS -->
+              </tbody>
+            </table>
+          </div>
+
+          <!-- Final Calculation Box -->
+          <div class="pt-3 border-t-2 border-slate-200 space-y-1.5 text-xs">
+            <div class="flex justify-between">
+              <span class="text-slate-600">Subtotal Tagihan Kotor:</span>
+              <strong id="modalEstimateSubtotal" class="text-slate-900">-</strong>
+            </div>
+            <div class="flex justify-between text-med-emerald">
+              <span id="modalEstimateCoverLabel">Kover Penjamin:</span>
+              <strong id="modalEstimateCover">-</strong>
+            </div>
+            <div class="flex justify-between text-base font-bold text-med-dark pt-2 border-t border-slate-200">
+              <span>Total Estimasi Bayar Pasien:</span>
+              <span id="modalEstimateFinalDue" class="text-med-blue font-black">-</span>
+            </div>
+          </div>
+
+          <p class="text-[10px] text-slate-400 italic text-center pt-2">
+            *Catatan: Lembar ini merupakan estimasi awal berdasarkan tarif resmi. Biaya aktual dapat disesuaikan dengan kondisi medis klinis saat penanganan.
+          </p>
+        </div>
+
+        <!-- Modal Footer Actions -->
+        <div class="p-4 bg-slate-50 border-t border-slate-100 flex items-center justify-end gap-2 no-print">
+          <button
+            type="button"
+            onclick="window.print()"
+            class="px-5 py-2.5 rounded-xl font-bold text-white bg-med-blue hover:bg-blue-700 transition flex items-center gap-1.5 text-xs shadow-sm"
+          >
+            <i class="fas fa-print"></i> Cetak Dokumen
+          </button>
+          <button
+            type="button"
+            onclick="closeEstimateModal()"
+            class="px-4 py-2.5 rounded-xl font-semibold text-slate-600 bg-white border border-slate-200 hover:bg-slate-100 transition text-xs"
+          >
+            Tutup
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- MASTER HOSPITAL FOOTER -->
+    <footer class="bg-slate-900 text-slate-300 pt-12 pb-6 border-t border-slate-800 mt-auto">
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div
-          class="flex flex-col sm:flex-row items-center justify-between text-xs text-slate-500 gap-3"
-        >
+        <div class="flex flex-col sm:flex-row items-center justify-between text-xs text-slate-500 gap-3">
           <p>
-            &copy; 2026 <strong>Klinika.id</strong> — Hospital & Clinic
-            Management System. All Rights Reserved.
+            &copy; 2026 <strong>Klinika.id</strong> &mdash; Hospital & Clinic Management System (Tahap 9: Katalog & Kalkulator Biaya Medis).
           </p>
           <p class="flex items-center gap-2">
             <span>Keamanan:</span>
-            <span
-              class="px-2 py-0.5 rounded bg-slate-800 text-slate-400 text-[11px] font-mono"
-              >robots: noindex, nofollow</span
-            >
+            <span class="px-2 py-0.5 rounded bg-slate-800 text-slate-400 text-[11px] font-mono">
+              robots: noindex, nofollow
+            </span>
           </p>
         </div>
       </div>
     </footer>
 
-    <!-- Shared Klinika Data Engine -->
+    <!-- SHARED KLINIKA DATA ENGINE -->
     <script src="klinika-engine.js"></script>
 
-    <!-- Scripts -->
+    <!-- CLIENT LOGIC SCRIPTS (TAHAP 9: KATALOG & KALKULATOR BIAYA) -->
     <script>
+      // ==========================================
+      // 1. MOBILE MENU & REALTIME CLOCK
+      // ==========================================
       const mobileMenuBtn = document.getElementById("mobileMenuBtn");
       const mobileMenu = document.getElementById("mobileMenu");
       if (mobileMenuBtn && mobileMenu) {
@@ -601,6 +999,409 @@
           mobileMenu.classList.toggle("hidden");
         });
       }
+
+      function updateClock() {
+        const now = new Date();
+        const timeStr =
+          now.toLocaleTimeString("id-ID", {
+            hour: "2-digit",
+            minute: "2-digit",
+            second: "2-digit",
+          }) + " WIB";
+        const el = document.getElementById("currentTime");
+        if (el) el.textContent = timeStr;
+      }
+      setInterval(updateClock, 1000);
+      updateClock();
+
+      // ==========================================
+      // 2. FILTER FASILITAS RUMAH SAKIT
+      // ==========================================
+      function filterFacilityCategory(category) {
+        const cards = document.querySelectorAll(".facility-card");
+        const tabs = ["tabFacAll", "tabFacJalan", "tabFacInap", "tabFacPenunjang"];
+
+        tabs.forEach((tabId) => {
+          const tab = document.getElementById(tabId);
+          if (tab) {
+            tab.className = "px-3 py-1.5 rounded-lg text-slate-600 hover:text-slate-900 transition";
+          }
+        });
+
+        let activeTabId = "tabFacAll";
+        if (category === "JALAN") activeTabId = "tabFacJalan";
+        else if (category === "INAP") activeTabId = "tabFacInap";
+        else if (category === "PENUNJANG") activeTabId = "tabFacPenunjang";
+
+        const activeTab = document.getElementById(activeTabId);
+        if (activeTab) {
+          activeTab.className = "px-3 py-1.5 rounded-lg bg-white text-med-blue shadow-xs transition";
+        }
+
+        cards.forEach((card) => {
+          const cardCat = card.getAttribute("data-cat");
+          if (category === "ALL" || cardCat === category) {
+            card.classList.remove("hidden");
+          } else {
+            card.classList.add("hidden");
+          }
+        });
+      }
+
+      // ==========================================
+      // 3. JADWAL DOKTER SPESIALIS (TIMETABLE)
+      // ==========================================
+      let activeDayFilter = "ALL";
+
+      function renderDoctorCards(doctorsList = null) {
+        const container = document.getElementById("doctorCardsGrid");
+        if (!container || typeof KlinikaEngine === "undefined") return;
+
+        const doctors = doctorsList !== null ? doctorsList : KlinikaEngine.getDoctors();
+
+        if (doctors.length === 0) {
+          container.innerHTML = `
+            <div class="col-span-1 md:col-span-2 lg:col-span-4 p-8 text-center text-slate-400 bg-slate-50 rounded-2xl border border-dashed border-slate-200">
+              <i class="far fa-user text-3xl mb-2 text-slate-300"></i>
+              <p class="font-bold text-slate-700">Tidak ada dokter yang sesuai kriteria pencarian.</p>
+              <p class="text-xs text-slate-400 mt-1">Coba ubah kata kunci atau pilih poliklinik lain.</p>
+            </div>
+          `;
+          return;
+        }
+
+        let html = "";
+        doctors.forEach((doc) => {
+          let badgeStatus = "bg-emerald-50 text-med-emerald border border-emerald-200";
+          if (doc.status === "Praktik Sore") badgeStatus = "bg-amber-50 text-med-amber border border-amber-200";
+
+          const daysFormatted = doc.days ? doc.days.join(", ") : "Senin - Jumat";
+
+          html += `
+            <div class="p-5 rounded-2xl border border-slate-200/80 bg-white hover:border-med-blue hover:shadow-lg transition space-y-4 flex flex-col justify-between group">
+              <div>
+                <div class="flex items-center gap-3.5">
+                  <img
+                    src="${doc.avatar}"
+                    alt="${doc.name}"
+                    onerror="this.onerror=null; this.src='https://plus.unsplash.com/premium_photo-1661580574627-9211124e5c3f?auto=format&fit=crop&w=400&q=80';"
+                    class="w-14 h-14 rounded-2xl object-cover border border-slate-200 shrink-0 group-hover:scale-105 transition"
+                  />
+                  <div>
+                    <h4 class="font-heading font-bold text-med-dark text-sm leading-snug">
+                      ${doc.name}
+                    </h4>
+                    <p class="text-xs text-med-blue font-medium mt-0.5">
+                      ${doc.specialty}
+                    </p>
+                    <span class="inline-block mt-1 px-2 py-0.5 rounded-full text-[10px] font-bold ${badgeStatus}">
+                      ${doc.status}
+                    </span>
+                  </div>
+                </div>
+
+                <div class="text-xs text-slate-500 pt-3 mt-3 border-t border-slate-100 space-y-1.5">
+                  <div class="flex items-center justify-between">
+                    <span class="text-slate-400">Ruangan:</span>
+                    <strong class="text-slate-700">${doc.room}</strong>
+                  </div>
+                  <div class="flex items-center justify-between">
+                    <span class="text-slate-400">Jadwal:</span>
+                    <strong class="text-slate-700 text-right">${doc.schedule.split("(")[0]}</strong>
+                  </div>
+                  <div class="flex items-center justify-between">
+                    <span class="text-slate-400">Biaya Konsul:</span>
+                    <strong class="text-med-emerald">${KlinikaEngine.formatRupiah(doc.fee)}</strong>
+                  </div>
+                </div>
+              </div>
+
+              <div class="pt-2">
+                <a
+                  href="fitur-sistem.html"
+                  class="w-full py-2 rounded-xl bg-blue-50 hover:bg-med-blue hover:text-white text-med-blue font-bold text-xs transition flex items-center justify-center gap-1.5"
+                >
+                  <i class="fas fa-calendar-plus text-xs"></i>
+                  <span>Daftar ke Dokter Ini</span>
+                </a>
+              </div>
+            </div>
+          `;
+        });
+
+        container.innerHTML = html;
+      }
+
+      function filterDoctors() {
+        if (typeof KlinikaEngine === "undefined") return;
+
+        const allDocs = KlinikaEngine.getDoctors();
+        const searchInput = (document.getElementById("doctorSearchInput")?.value || "").toLowerCase().trim();
+        const polySelect = document.getElementById("polyFilterSelect")?.value || "ALL";
+
+        const filtered = allDocs.filter((doc) => {
+          const matchSearch =
+            !searchInput ||
+            doc.name.toLowerCase().includes(searchInput) ||
+            doc.specialty.toLowerCase().includes(searchInput) ||
+            doc.polyName.toLowerCase().includes(searchInput);
+
+          const matchPoly = polySelect === "ALL" || doc.polyCode === polySelect;
+
+          const matchDay =
+            activeDayFilter === "ALL" ||
+            (doc.days && doc.days.some((d) => d.toLowerCase() === activeDayFilter.toLowerCase()));
+
+          return matchSearch && matchPoly && matchDay;
+        });
+
+        renderDoctorCards(filtered);
+      }
+
+      function filterByDay(day, btnEl) {
+        activeDayFilter = day;
+        const allDayTabs = document.querySelectorAll(".day-tab");
+        allDayTabs.forEach((tab) => {
+          tab.className = "day-tab px-3.5 py-1.5 rounded-lg text-slate-600 hover:text-slate-900 transition";
+        });
+        if (btnEl) {
+          btnEl.className = "day-tab px-3.5 py-1.5 rounded-lg bg-white text-med-blue shadow-xs transition";
+        }
+        filterDoctors();
+      }
+
+      // ==========================================
+      // 4. KALKULATOR BIAYA MEDIS INTERAKTIF
+      // ==========================================
+      let calculatedEstimationData = null;
+
+      function handleCareTypeChange(type) {
+        const inpatientBox = document.getElementById("inpatientSection");
+        const roomRow = document.getElementById("summaryRoomRow");
+
+        if (type === "RAWAT-INAP") {
+          if (inpatientBox) inpatientBox.classList.remove("hidden");
+          if (roomRow) roomRow.classList.remove("hidden");
+        } else {
+          if (inpatientBox) inpatientBox.classList.add("hidden");
+          if (roomRow) roomRow.classList.add("hidden");
+        }
+        recalculateBill();
+      }
+
+      function changeStayDays(delta) {
+        const daysInput = document.getElementById("calcStayDays");
+        if (!daysInput) return;
+        let current = parseInt(daysInput.value) || 1;
+        current = Math.max(1, Math.min(30, current + delta));
+        daysInput.value = current;
+        recalculateBill();
+      }
+
+      function recalculateBill() {
+        if (typeof KlinikaEngine === "undefined") return;
+
+        // 1. Care Type
+        const careType = document.querySelector('input[name="calcCareType"]:checked')?.value || "RAWAT-JALAN";
+
+        // 2. Doctor Fee
+        const docSelect = document.getElementById("calcDoctorSelect");
+        const docFee = parseInt(docSelect?.value || "200000");
+
+        // 3. Medical Procedures
+        let proceduresFee = 0;
+        const procedureCheckboxes = document.querySelectorAll('#medicalProceduresList input[type="checkbox"]:checked');
+        const selectedProcedureNames = [];
+
+        procedureCheckboxes.forEach((cb) => {
+          const fee = parseInt(cb.value) || 0;
+          proceduresFee += fee;
+          selectedProcedureNames.push(cb.getAttribute("data-name") || "Tindakan Medis");
+        });
+
+        // 4. Inpatient Room
+        let roomFee = 0;
+        let stayDays = 0;
+        let roomClassName = "";
+
+        if (careType === "RAWAT-INAP") {
+          const roomSelect = document.getElementById("calcRoomClassSelect");
+          const ratePerDay = parseInt(roomSelect?.value || "950000");
+          roomClassName = roomSelect?.options[roomSelect.selectedIndex]?.text?.split("(")[0]?.trim() || "Kamar Rawat Inap";
+          stayDays = parseInt(document.getElementById("calcStayDays")?.value || "1");
+          roomFee = ratePerDay * stayDays;
+        }
+
+        // 5. Pharmacy Fee
+        const pharmacySelect = document.getElementById("calcPharmacySelect");
+        const pharmacyFee = parseInt(pharmacySelect?.value || "150000");
+
+        // 6. Subtotal
+        const grossSubtotal = docFee + proceduresFee + roomFee + pharmacyFee;
+
+        // 7. Insurance Coverage Calculation
+        const insuranceType = document.getElementById("calcInsuranceSelect")?.value || "BPJS";
+        let discountCover = 0;
+        let finalDue = 0;
+        let noteText = "";
+
+        if (insuranceType === "UMUM") {
+          discountCover = 0;
+          finalDue = grossSubtotal;
+          noteText = "100% Ditanggung Pasien secara Mandiri";
+        } else if (insuranceType === "BPJS") {
+          if (careType === "RAWAT-JALAN") {
+            // Rawat jalan ditanggung penuh untuk pemeriksaan standar
+            discountCover = grossSubtotal;
+            finalDue = 0;
+            noteText = "Ditanggung Penuh oleh Jaminan BPJS Kesehatan";
+          } else {
+            // Rawat inap: Hak kelas BPJS kover tarif dasar kelas 3 (Rp 300.000/hari + tindakan dasar)
+            const bpjsBaseCover = (300000 * stayDays) + docFee + proceduresFee + (pharmacyFee > 150000 ? 150000 : pharmacyFee);
+            discountCover = Math.min(bpjsBaseCover, grossSubtotal);
+            finalDue = Math.max(0, grossSubtotal - discountCover);
+
+            if (finalDue > 0) {
+              noteText = `Selisih Biaya Naik Kelas Kamar (${roomClassName})`;
+            } else {
+              noteText = "Ditanggung Penuh oleh Jaminan BPJS Kesehatan";
+            }
+          }
+        } else if (insuranceType === "ASURANSI") {
+          // Asuransi cover 80%, Pasien Co-pay 20%
+          discountCover = Math.round(grossSubtotal * 0.8);
+          finalDue = grossSubtotal - discountCover;
+          noteText = "Co-Pay Pasien 20% (80% Dikover Asuransi Swasta)";
+        }
+
+        // Update Summary DOM Elements
+        document.getElementById("summaryDoctorFee").textContent = KlinikaEngine.formatRupiah(docFee);
+        document.getElementById("summaryProceduresFee").textContent = KlinikaEngine.formatRupiah(proceduresFee);
+        document.getElementById("summaryPharmacyFee").textContent = KlinikaEngine.formatRupiah(pharmacyFee);
+        document.getElementById("summarySubtotal").textContent = KlinikaEngine.formatRupiah(grossSubtotal);
+        document.getElementById("summaryDiscountCover").textContent = `- ${KlinikaEngine.formatRupiah(discountCover)}`;
+        document.getElementById("summaryFinalDue").textContent = KlinikaEngine.formatRupiah(finalDue);
+        document.getElementById("summaryFinalNote").textContent = noteText;
+
+        if (careType === "RAWAT-INAP") {
+          document.getElementById("summaryRoomRow").classList.remove("hidden");
+          document.getElementById("summaryRoomLabel").textContent = `Kamar ${roomClassName} (${stayDays} Hari):`;
+          document.getElementById("summaryRoomFee").textContent = KlinikaEngine.formatRupiah(roomFee);
+        } else {
+          document.getElementById("summaryRoomRow").classList.add("hidden");
+        }
+
+        // Save state for print modal & registration transition
+        calculatedEstimationData = {
+          careType: careType,
+          docFee: docFee,
+          proceduresFee: proceduresFee,
+          procedureNames: selectedProcedureNames,
+          roomFee: roomFee,
+          roomClassName: roomClassName,
+          stayDays: stayDays,
+          pharmacyFee: pharmacyFee,
+          grossSubtotal: grossSubtotal,
+          discountCover: discountCover,
+          finalDue: finalDue,
+          insuranceType: insuranceType,
+          noteText: noteText
+        };
+      }
+
+      // ==========================================
+      // 5. ESTIMATION PRINT MODAL
+      // ==========================================
+      function openEstimateModal() {
+        if (!calculatedEstimationData) recalculateBill();
+        const data = calculatedEstimationData;
+
+        const modal = document.getElementById("estimateSheetModal");
+        if (!modal) return;
+
+        // Date & Insurance
+        const now = new Date();
+        document.getElementById("modalEstimateDate").textContent = now.toLocaleDateString("id-ID", {
+          day: "numeric",
+          month: "long",
+          year: "numeric"
+        }) + " - " + now.toLocaleTimeString("id-ID", { hour: "2-digit", minute: "2-digit" }) + " WIB";
+
+        let insLabel = "Pasien Umum (Mandiri)";
+        if (data.insuranceType === "BPJS") insLabel = "BPJS Kesehatan";
+        else if (data.insuranceType === "ASURANSI") insLabel = "Asuransi Swasta";
+        document.getElementById("modalEstimateInsurance").textContent = insLabel;
+
+        // Populate Items Table
+        const tbody = document.getElementById("modalEstimateItemsBody");
+        let html = `
+          <tr>
+            <td class="py-2 px-2">Jasa Konsultasi & Visite Dokter</td>
+            <td class="py-2 px-2 text-right font-semibold">${KlinikaEngine.formatRupiah(data.docFee)}</td>
+          </tr>
+        `;
+
+        if (data.procedureNames && data.procedureNames.length > 0) {
+          data.procedureNames.forEach((pName) => {
+            html += `
+              <tr>
+                <td class="py-2 px-2 text-slate-600 pl-4">&bull; ${pName}</td>
+                <td class="py-2 px-2 text-right text-slate-600">-</td>
+              </tr>
+            `;
+          });
+          html += `
+            <tr class="bg-slate-50/50">
+              <td class="py-2 px-2 font-medium">Subtotal Tindakan & Pemeriksaan Lab</td>
+              <td class="py-2 px-2 text-right font-semibold">${KlinikaEngine.formatRupiah(data.proceduresFee)}</td>
+            </tr>
+          `;
+        }
+
+        if (data.careType === "RAWAT-INAP" && data.roomFee > 0) {
+          html += `
+            <tr>
+              <td class="py-2 px-2">${data.roomClassName} (${data.stayDays} Hari)</td>
+              <td class="py-2 px-2 text-right font-semibold">${KlinikaEngine.formatRupiah(data.roomFee)}</td>
+            </tr>
+          `;
+        }
+
+        if (data.pharmacyFee > 0) {
+          html += `
+            <tr>
+              <td class="py-2 px-2">Paket Farmasi & Obat-obatan Standar</td>
+              <td class="py-2 px-2 text-right font-semibold">${KlinikaEngine.formatRupiah(data.pharmacyFee)}</td>
+            </tr>
+          `;
+        }
+
+        tbody.innerHTML = html;
+
+        // Subtotal & Due
+        document.getElementById("modalEstimateSubtotal").textContent = KlinikaEngine.formatRupiah(data.grossSubtotal);
+        document.getElementById("modalEstimateCover").textContent = `- ${KlinikaEngine.formatRupiah(data.discountCover)}`;
+        document.getElementById("modalEstimateFinalDue").textContent = KlinikaEngine.formatRupiah(data.finalDue);
+
+        modal.classList.remove("hidden");
+      }
+
+      function closeEstimateModal() {
+        const modal = document.getElementById("estimateSheetModal");
+        if (modal) modal.classList.add("hidden");
+      }
+
+      function proceedToRegistration() {
+        window.location.href = "fitur-sistem.html";
+      }
+
+      // ==========================================
+      // 6. INITIALIZATION
+      // ==========================================
+      document.addEventListener("DOMContentLoaded", () => {
+        renderDoctorCards();
+        recalculateBill();
+      });
     </script>
   </body>
 </html>
