@@ -58,6 +58,15 @@
   <body
     class="bg-slate-100 font-sans text-slate-700 antialiased flex min-h-screen"
   >
+    <!-- PROTEKSI AKSES: Modal Akses Ditolak -->
+    <div id="accessDeniedModal" class="hidden fixed inset-0 z-[999] flex items-center justify-center p-4 bg-slate-900/70 backdrop-blur-sm">
+      <div class="bg-white rounded-3xl shadow-2xl p-8 text-center max-w-sm">
+        <div class="w-16 h-16 rounded-2xl bg-rose-100 text-rose-500 flex items-center justify-center text-3xl mx-auto mb-4"><i class="fas fa-shield-alt"></i></div>
+        <h3 class="font-heading font-bold text-xl text-med-dark mb-2">Akses Terbatas</h3>
+        <p class="text-sm text-slate-500 mb-6">Halaman ini memerlukan login administrator. Silakan kembali ke beranda dan login terlebih dahulu.</p>
+        <a href="index.html?auth=required" class="inline-flex items-center gap-2 px-6 py-3 rounded-xl font-bold text-white bg-med-blue hover:bg-blue-700 shadow-md transition text-sm"><i class="fas fa-arrow-left"></i> Kembali & Login</a>
+      </div>
+    </div>
     <!-- MOBILE SIDEBAR BACKDROP OVERLAY -->
     <div
       id="sidebarBackdrop"
@@ -453,19 +462,23 @@
             </div>
 
             <!-- Profile Badge -->
-            <div class="flex items-center gap-2 pl-2 border-l border-slate-200">
+            <div id="topbarAdminBox" class="flex items-center gap-2 pl-2 border-l border-slate-200 cursor-pointer hover:bg-slate-50 p-1.5 rounded-xl transition" onclick="handleDashboardAdminLogout()">
               <div
+                id="topbarAdminAvatar"
                 class="w-9 h-9 rounded-xl bg-gradient-to-br from-med-blue to-med-dark text-white flex items-center justify-center font-bold text-sm shadow-sm"
               >
                 JB
               </div>
-              <div class="hidden sm:block text-left">
-                <p class="text-xs font-bold text-slate-800 leading-tight">
+              <div class="hidden sm:block text-left pr-2">
+                <p id="topbarAdminName" class="text-xs font-bold text-slate-800 leading-tight">
                   dr. J. Barnes
                 </p>
-                <p class="text-[10px] text-slate-400 leading-tight">
+                <p id="topbarAdminRole" class="text-[10px] text-slate-400 leading-tight">
                   CMO / On Duty
                 </p>
+              </div>
+              <div class="text-slate-400 hover:text-rose-500">
+                <i class="fas fa-sign-out-alt"></i>
               </div>
             </div>
           </div>
@@ -1938,9 +1951,42 @@
       }
 
       // ==========================================
+      // Auth Guard - Cek login admin sebelum menampilkan konten
+      // ==========================================
+      function checkDashboardAdminAuth() {
+        if (typeof KlinikaEngine !== 'undefined' && KlinikaEngine.isAdminLoggedIn) {
+          if (!KlinikaEngine.isAdminLoggedIn()) {
+            const modal = document.getElementById('accessDeniedModal');
+            if (modal) modal.classList.remove('hidden');
+            return false;
+          }
+          // Populate topbar admin info
+          const session = KlinikaEngine.getAdminSession();
+          const nameEl = document.getElementById('topbarAdminName');
+          const roleEl = document.getElementById('topbarAdminRole');
+          const avatarEl = document.getElementById('topbarAdminAvatar');
+          if (nameEl && session) nameEl.textContent = session.name;
+          if (roleEl && session) roleEl.textContent = session.role;
+          if (avatarEl && session) avatarEl.textContent = session.name.substring(0,2).toUpperCase();
+          return true;
+        }
+        // Engine not loaded, redirect
+        window.location.href = 'index.html?auth=required';
+        return false;
+      }
+
+      function handleDashboardAdminLogout() {
+        if (confirm('Apakah Anda yakin ingin keluar dari sesi administrator?')) {
+          if (typeof KlinikaEngine !== 'undefined') KlinikaEngine.logoutAdmin();
+          window.location.href = 'index.html?logged_out=1';
+        }
+      }
+
+      // ==========================================
       // 7. INITIALIZATION ON DOM READY
       // ==========================================
       document.addEventListener("DOMContentLoaded", () => {
+        if (!checkDashboardAdminAuth()) return;
         syncDashboardMetrics();
         initWeeklyVisitChart();
         initPolyDistributionChart();

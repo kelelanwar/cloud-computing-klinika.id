@@ -9,6 +9,7 @@ const KlinikaEngine = (function () {
 
   // Kunci Penyimpanan LocalStorage
   const KEYS = {
+    ADMIN_AUTH: "klinika_admin_auth",
     QUEUES: "klinika_queues",
     TRANSACTIONS: "klinika_transactions",
     DOCTORS: "klinika_doctors",
@@ -16,6 +17,12 @@ const KlinikaEngine = (function () {
     SERVICES: "klinika_services",
     SETTINGS: "klinika_settings",
   };
+
+  // Kredensial Demo Administrator
+  const ADMIN_CREDENTIALS = [
+    { username: 'admin', password: 'admin123', name: 'dr. Jonathan Barnes, Sp.PD', role: 'Administrator Medis' },
+    { username: 'dokter', password: 'dokter123', name: 'dr. Hendra Gunawan, Sp.A', role: 'Kepala Medis' }
+  ];
 
   // 1. DEFAULT MASTER DATA: DOKTER SPESIALIS (8 Dokter)
   const DEFAULT_DOCTORS = [
@@ -1095,11 +1102,78 @@ const KlinikaEngine = (function () {
     document.body.removeChild(link);
   }
 
+  // ==========================================
+  // AUTHENTICATION & SESSION MANAGEMENT
+  // ==========================================
+
+  function isAdminLoggedIn() {
+    try {
+      const auth = JSON.parse(localStorage.getItem(KEYS.ADMIN_AUTH));
+      return auth && auth.isLoggedIn === true;
+    } catch (e) {
+      return false;
+    }
+  }
+
+  function getAdminSession() {
+    try {
+      const auth = JSON.parse(localStorage.getItem(KEYS.ADMIN_AUTH));
+      return (auth && auth.isLoggedIn) ? auth : null;
+    } catch (e) {
+      return null;
+    }
+  }
+
+  function loginAdmin(username, password) {
+    const found = ADMIN_CREDENTIALS.find(
+      (c) => c.username === username && c.password === password
+    );
+    if (!found) {
+      return { success: false, message: 'Username atau password salah.' };
+    }
+    const session = {
+      isLoggedIn: true,
+      username: found.username,
+      name: found.name,
+      role: found.role,
+      loginAt: new Date().toISOString()
+    };
+    localStorage.setItem(KEYS.ADMIN_AUTH, JSON.stringify(session));
+    // Dispatch event agar halaman lain bisa reaktif
+    if (typeof window !== 'undefined') {
+      window.dispatchEvent(new Event('klinika_auth_changed'));
+    }
+    return { success: true, session: session };
+  }
+
+  function logoutAdmin() {
+    localStorage.removeItem(KEYS.ADMIN_AUTH);
+    if (typeof window !== 'undefined') {
+      window.dispatchEvent(new Event('klinika_auth_changed'));
+    }
+  }
+
+  function requireAdminAuth(redirectUrl) {
+    if (!isAdminLoggedIn()) {
+      const target = redirectUrl || 'index.html?auth=required';
+      if (typeof window !== 'undefined') {
+        window.location.href = target;
+      }
+      return false;
+    }
+    return true;
+  }
+
   // Otomatis jalankan inisialisasi
   init();
 
   // Public API
   return {
+    isAdminLoggedIn: isAdminLoggedIn,
+    getAdminSession: getAdminSession,
+    loginAdmin: loginAdmin,
+    logoutAdmin: logoutAdmin,
+    requireAdminAuth: requireAdminAuth,
     init: init,
     resetToDefaults: resetToDefaults,
     formatRupiah: formatRupiah,

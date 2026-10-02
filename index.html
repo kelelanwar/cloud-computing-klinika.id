@@ -53,7 +53,7 @@
     </script>
   </head>
   <body
-    class="bg-med-light font-sans text-slate-700 antialiased flex flex-col min-h-screen"
+    class="bg-med-light font-sans text-slate-700 antialiased flex flex-col min-h-screen overflow-x-hidden"
   >
     <!-- 1. TOP HEADER STRIP (MedService Style) -->
     <div
@@ -131,27 +131,27 @@
     <header
       class="bg-white/95 backdrop-blur-md sticky top-0 z-50 shadow-sm border-b border-slate-100 transition-all"
     >
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="flex justify-between items-center h-20">
+      <div class="max-w-7xl mx-auto px-2.5 sm:px-4 lg:px-6 xl:px-8">
+        <div class="flex justify-between items-center h-20 gap-1 sm:gap-2 xl:gap-4">
           <!-- Brand Logo -->
-          <a href="index.html" class="flex items-center gap-3.5 group">
+          <a href="index.html" class="flex items-center gap-2 xl:gap-3 group shrink-0">
             <div
-              class="w-12 h-12 rounded-2xl bg-gradient-to-br from-med-blue via-blue-700 to-med-dark flex items-center justify-center shadow-lg shadow-blue-500/25 text-white text-2xl group-hover:scale-105 transition-transform duration-300"
+              class="w-10 h-10 xl:w-11 xl:h-11 rounded-xl bg-gradient-to-br from-med-blue via-blue-700 to-med-dark flex items-center justify-center shadow-md shadow-blue-500/20 text-white text-xl group-hover:scale-105 transition-transform duration-300 shrink-0"
             >
               <i class="fas fa-hospital-alt"></i>
             </div>
-            <div>
-              <div class="flex items-center gap-1">
+            <div class="shrink-0">
+              <div class="flex items-center gap-0.5">
                 <span
-                  class="font-heading font-black text-2xl tracking-tight text-med-dark group-hover:text-med-blue transition-colors"
+                  class="font-heading font-black text-xl xl:text-2xl tracking-tight text-med-dark group-hover:text-med-blue transition-colors"
                   >Klinika</span
                 >
-                <span class="font-heading font-black text-2xl text-med-cyan"
+                <span class="font-heading font-black text-xl xl:text-2xl text-med-cyan"
                   >.id</span
                 >
               </div>
               <p
-                class="text-[10px] uppercase font-bold tracking-widest text-slate-400"
+                class="hidden xl:block text-[9px] uppercase font-bold tracking-widest text-slate-400"
               >
                 Hospital & Clinic Management
               </p>
@@ -159,49 +159,84 @@
           </a>
 
           <!-- Desktop Navigation Links (5 Master Modules) -->
-          <nav class="hidden lg:flex items-center gap-1.5">
-            <a
-              href="index.html"
-              class="px-3.5 py-2 rounded-xl text-sm font-bold text-med-blue bg-blue-50/90 shadow-sm shadow-blue-500/10 transition flex items-center gap-2"
-            >
-              <i class="fas fa-home text-xs"></i>
-              <span>Beranda</span>
+          <nav class="hidden lg:flex items-center gap-0.5 xl:gap-1.5 shrink-0" id="mainDesktopNav">
+            <!-- 1. Beranda (always visible) -->
+            <a href="index.html" class="px-2 xl:px-3 py-1.5 xl:py-2 rounded-xl text-xs xl:text-sm font-bold text-med-blue bg-blue-50/90 shadow-sm shadow-blue-500/10 transition flex items-center gap-1.5 shrink-0">
+              <i class="fas fa-home text-[11px] xl:text-xs"></i><span>Beranda</span>
             </a>
-            <a
-              href="dashboard.html"
-              class="px-3.5 py-2 rounded-xl text-sm font-medium text-slate-600 hover:text-med-blue hover:bg-slate-50 transition flex items-center gap-2"
-            >
-              <i class="fas fa-chart-line text-xs text-slate-400"></i>
-              <span>Dashboard</span>
+            <!-- 2. Dashboard (hidden by default, shown when admin logged in) -->
+            <a href="dashboard.html" id="navLinkDashboard" class="hidden px-2 xl:px-3 py-1.5 xl:py-2 rounded-xl text-xs xl:text-sm font-medium text-slate-600 hover:text-med-blue hover:bg-slate-50 transition items-center gap-1.5 shrink-0">
+              <i class="fas fa-chart-line text-[11px] xl:text-xs text-slate-400"></i><span>Dashboard</span>
+              <span class="bg-blue-100 text-med-blue text-[8px] xl:text-[9px] font-extrabold px-1 py-0.2 rounded">ADMIN</span>
             </a>
-            <a
-              href="fitur-sistem.html"
-              class="px-3.5 py-2 rounded-xl text-sm font-medium text-slate-600 hover:text-med-blue hover:bg-slate-50 transition flex items-center gap-2"
-            >
-              <i class="fas fa-user-plus text-xs text-slate-400"></i>
-              <span>Pendaftaran & Antrean</span>
+            <!-- 3. Pendaftaran & Antrean (always visible) -->
+            <a href="fitur-sistem.html" class="px-2 xl:px-3 py-1.5 xl:py-2 rounded-xl text-xs xl:text-sm font-medium text-slate-600 hover:text-med-blue hover:bg-slate-50 transition flex items-center gap-1.5 shrink-0">
+              <i class="fas fa-user-plus text-[11px] xl:text-xs text-slate-400"></i><span>Pendaftaran & Antrean</span>
             </a>
-            <a
-              href="detail-layanan.html"
-              class="px-3.5 py-2 rounded-xl text-sm font-medium text-slate-600 hover:text-med-blue hover:bg-slate-50 transition flex items-center gap-2"
-            >
-              <i class="fas fa-calculator text-xs text-slate-400"></i>
-              <span>Layanan & Tarif</span>
+            <!-- 4. Layanan & Tarif (always visible) -->
+            <a href="detail-layanan.html" class="px-2 xl:px-3 py-1.5 xl:py-2 rounded-xl text-xs xl:text-sm font-medium text-slate-600 hover:text-med-blue hover:bg-slate-50 transition flex items-center gap-1.5 shrink-0">
+              <i class="fas fa-calculator text-[11px] xl:text-xs text-slate-400"></i><span>Layanan & Tarif</span>
             </a>
-            <a
-              href="laporan-data.html"
-              class="px-3.5 py-2 rounded-xl text-sm font-medium text-slate-600 hover:text-med-blue hover:bg-slate-50 transition flex items-center gap-2"
-            >
-              <i class="fas fa-file-invoice-dollar text-xs text-slate-400"></i>
-              <span>Rekapitulasi Laporan</span>
+            <!-- 5. Rekapitulasi Laporan (hidden by default, shown when admin logged in) -->
+            <a href="laporan-data.html" id="navLinkLaporan" class="hidden px-2 xl:px-3 py-1.5 xl:py-2 rounded-xl text-xs xl:text-sm font-medium text-slate-600 hover:text-med-blue hover:bg-slate-50 transition items-center gap-1.5 shrink-0">
+              <i class="fas fa-file-invoice-dollar text-[11px] xl:text-xs text-slate-400"></i><span>Rekapitulasi Laporan</span>
+              <span class="bg-blue-100 text-med-blue text-[8px] xl:text-[9px] font-extrabold px-1 py-0.2 rounded">ADMIN</span>
             </a>
           </nav>
 
           <!-- Right Action Button -->
-          <div class="hidden sm:flex items-center gap-3">
+          <div class="hidden sm:flex items-center gap-1.5 xl:gap-2.5 shrink-0">
+            <!-- Tombol Login Admin (visible when NOT logged in) -->
+            <button
+              type="button"
+              id="btnOpenLoginAdmin"
+              onclick="openAdminLoginModal()"
+              class="inline-flex items-center justify-center gap-1.5 px-3.5 h-[44px] rounded-xl text-xs font-bold text-slate-700 bg-slate-100 hover:bg-blue-50 hover:text-med-blue border border-slate-200 transition shrink-0"
+              title="Masuk sebagai Administrator HCMS"
+            >
+              <i class="fas fa-lock text-med-blue"></i>
+              <span>Login Admin</span>
+            </button>
+
+            <!-- Admin Profile Widget (visible when logged in) -->
+            <div
+              id="adminProfileWidget"
+              class="hidden items-center gap-2 xl:gap-2.5 bg-slate-50 border border-slate-200 hover:border-slate-300 rounded-xl px-2.5 xl:px-3 h-[44px] transition shadow-xs shrink-0"
+            >
+              <div
+                class="w-7 h-7 xl:w-8 xl:h-8 rounded-lg bg-gradient-to-br from-med-blue to-med-dark text-white flex items-center justify-center text-xs shadow-xs shrink-0"
+              >
+                <i class="fas fa-user-shield"></i>
+              </div>
+              <div class="flex flex-col justify-center leading-tight">
+                <div class="flex items-center gap-1">
+                  <span
+                    class="font-bold text-slate-800 text-[11px] xl:text-xs truncate max-w-[85px] xl:max-w-[110px] inline-block"
+                    id="navAdminUsername"
+                    title="Administrator"
+                    >Admin</span
+                  >
+                  <span
+                    class="bg-blue-100 text-med-blue text-[8px] font-extrabold px-1 py-0.2 rounded shrink-0"
+                    >ADMIN</span
+                  >
+                </div>
+                <button
+                  type="button"
+                  onclick="handleAdminLogout()"
+                  class="inline-flex items-center gap-1 text-[10px] font-bold text-rose-600 hover:text-rose-800 hover:underline transition self-start leading-none mt-0.5"
+                  title="Keluar dari sesi administrator"
+                >
+                  <i class="fas fa-sign-out-alt text-[9px]"></i>
+                  <span>Logout</span>
+                </button>
+              </div>
+            </div>
+
+            <!-- Ambil Antrean -->
             <a
               href="fitur-sistem.html"
-              class="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl text-sm font-bold text-white bg-gradient-to-r from-med-blue to-blue-700 hover:from-blue-700 hover:to-med-dark shadow-md shadow-blue-500/25 transition transform active:scale-95"
+              class="inline-flex items-center justify-center gap-1.5 xl:gap-2 px-3.5 xl:px-4 h-[44px] rounded-xl text-xs xl:text-sm font-bold text-white bg-gradient-to-r from-med-blue to-blue-700 hover:from-blue-700 hover:to-med-dark shadow-md shadow-blue-500/25 transition transform active:scale-95 shrink-0 whitespace-nowrap"
             >
               <i class="fas fa-calendar-check"></i>
               <span>Ambil Antrean</span>
@@ -220,52 +255,48 @@
       </div>
 
       <!-- Mobile Dropdown Menu -->
-      <div
-        id="mobileMenu"
-        class="hidden lg:hidden border-t border-slate-100 bg-white px-4 pt-3 pb-5 space-y-1 shadow-lg"
-      >
-        <a
-          href="index.html"
-          class="block px-3 py-2.5 rounded-xl text-base font-bold text-med-blue bg-blue-50 flex items-center gap-3"
-        >
-          <i class="fas fa-home w-5 text-med-blue"></i> Beranda & Portal Hub
-        </a>
-        <a
-          href="dashboard.html"
-          class="block px-3 py-2.5 rounded-xl text-base font-medium text-slate-700 hover:bg-slate-50 flex items-center gap-3"
-        >
-          <i class="fas fa-chart-line w-5 text-slate-400"></i> Dashboard Sistem
-        </a>
-        <a
-          href="fitur-sistem.html"
-          class="block px-3 py-2.5 rounded-xl text-base font-medium text-slate-700 hover:bg-slate-50 flex items-center gap-3"
-        >
-          <i class="fas fa-user-plus w-5 text-slate-400"></i> Pendaftaran &
-          Antrean
-        </a>
-        <a
-          href="detail-layanan.html"
-          class="block px-3 py-2.5 rounded-xl text-base font-medium text-slate-700 hover:bg-slate-50 flex items-center gap-3"
-        >
-          <i class="fas fa-calculator w-5 text-slate-400"></i> Layanan & Tarif
-          Medis
-        </a>
-        <a
-          href="laporan-data.html"
-          class="block px-3 py-2.5 rounded-xl text-base font-medium text-slate-700 hover:bg-slate-50 flex items-center gap-3"
-        >
-          <i class="fas fa-file-invoice-dollar w-5 text-slate-400"></i>
-          Rekapitulasi Laporan
-        </a>
-        <div class="pt-3">
-          <a
-            href="fitur-sistem.html"
-            class="w-full flex items-center justify-center gap-2 py-3 rounded-xl text-sm font-bold text-white bg-med-blue shadow-md shadow-blue-500/20"
-          >
-            <i class="fas fa-ticket-alt"></i> Ambil Nomor Antrean Online
-          </a>
+      <div id="mobileMenu" class="hidden lg:hidden border-t border-slate-100 bg-white px-4 pt-3 pb-5 space-y-1 shadow-lg">
+  <a href="index.html" class="block px-3 py-2.5 rounded-xl text-base font-bold text-med-blue bg-blue-50 flex items-center gap-3">
+    <i class="fas fa-home w-5 text-med-blue"></i> Beranda & Portal Hub
+  </a>
+  <!-- Admin-only: Dashboard -->
+  <a href="dashboard.html" id="mobileNavDashboard" class="hidden px-3 py-2.5 rounded-xl text-base font-medium text-slate-700 hover:bg-slate-50 items-center gap-3">
+    <i class="fas fa-chart-line w-5 text-slate-400"></i> Dashboard Sistem
+    <span class="ml-auto bg-blue-100 text-med-blue text-[9px] font-extrabold px-1.5 py-0.5 rounded">ADMIN</span>
+  </a>
+  <a href="fitur-sistem.html" class="block px-3 py-2.5 rounded-xl text-base font-medium text-slate-700 hover:bg-slate-50 flex items-center gap-3">
+    <i class="fas fa-user-plus w-5 text-slate-400"></i> Pendaftaran & Antrean
+  </a>
+  <a href="detail-layanan.html" class="block px-3 py-2.5 rounded-xl text-base font-medium text-slate-700 hover:bg-slate-50 flex items-center gap-3">
+    <i class="fas fa-calculator w-5 text-slate-400"></i> Layanan & Tarif Medis
+  </a>
+  <!-- Admin-only: Rekapitulasi -->
+  <a href="laporan-data.html" id="mobileNavLaporan" class="hidden px-3 py-2.5 rounded-xl text-base font-medium text-slate-700 hover:bg-slate-50 items-center gap-3">
+    <i class="fas fa-file-invoice-dollar w-5 text-slate-400"></i> Rekapitulasi Laporan
+    <span class="ml-auto bg-blue-100 text-med-blue text-[9px] font-extrabold px-1.5 py-0.5 rounded">ADMIN</span>
+  </a>
+  <!-- Mobile Login / Profile -->
+  <div class="pt-3 space-y-2">
+    <button type="button" id="mobileLoginBtn" onclick="openAdminLoginModal()" class="w-full flex items-center justify-center gap-2 py-3 rounded-xl text-sm font-bold text-slate-700 bg-slate-100 hover:bg-blue-50 hover:text-med-blue border border-slate-200 transition">
+      <i class="fas fa-lock text-med-blue"></i> Login Admin
+    </button>
+    <div id="mobileAdminBox" class="hidden bg-blue-50 rounded-xl p-3 border border-blue-200">
+      <div class="flex items-center gap-2 mb-2">
+        <div class="w-8 h-8 rounded-lg bg-med-blue text-white flex items-center justify-center text-xs font-bold"><i class="fas fa-user-shield"></i></div>
+        <div>
+          <p class="text-xs font-bold text-slate-800" id="mobileAdminUsername">Admin</p>
+          <p class="text-[10px] text-slate-500" id="mobileAdminRole">Administrator</p>
         </div>
       </div>
+      <button type="button" onclick="handleAdminLogout()" class="w-full text-center py-2 rounded-lg text-xs font-bold text-rose-600 bg-white border border-rose-200 hover:bg-rose-50 transition">
+        <i class="fas fa-sign-out-alt"></i> Keluar dari Admin
+      </button>
+    </div>
+    <a href="fitur-sistem.html" class="w-full flex items-center justify-center gap-2 py-3 rounded-xl text-sm font-bold text-white bg-med-blue shadow-md shadow-blue-500/20">
+      <i class="fas fa-ticket-alt"></i> Ambil Nomor Antrean Online
+    </a>
+  </div>
+</div>
     </header>
 
     <!-- 3. STUDENT IDENTITY & NETLIFY LIVE STATUS BANNER (Elemen Wajib Rubrik Akademik) -->
@@ -395,13 +426,11 @@
               <div
                 class="flex flex-wrap items-center justify-center lg:justify-start gap-3.5 pt-2"
               >
-                <a
-                  href="dashboard.html"
-                  class="px-6 py-3.5 rounded-xl font-bold text-white bg-med-blue hover:bg-blue-700 shadow-lg shadow-blue-500/25 transition transform active:scale-95 flex items-center gap-2.5"
-                >
-                  <i class="fas fa-chart-pie"></i>
-                  <span>Buka Dashboard Sistem</span>
-                </a>
+                <a href="#" id="heroBtnDashboard" onclick="handleProtectedLink('dashboard.html'); return false;" class="px-6 py-3.5 rounded-xl font-bold text-white bg-med-blue hover:bg-blue-700 shadow-lg shadow-blue-500/25 transition transform active:scale-95 flex items-center gap-2.5">
+  <i class="fas fa-chart-pie"></i>
+  <span>Buka Dashboard Sistem</span>
+  <i class="fas fa-lock text-[10px] opacity-60" id="heroBtnDashboardLock"></i>
+</a>
                 <a
                   href="fitur-sistem.html"
                   class="px-6 py-3.5 rounded-xl font-bold text-med-dark bg-white hover:bg-slate-50 border border-slate-200 shadow-sm transition flex items-center gap-2.5 hover:border-med-blue"
@@ -675,39 +704,18 @@
 
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
           <!-- Hub Card 1 -->
-          <a
-            href="dashboard.html"
-            class="group bg-white rounded-2xl p-6 border border-slate-200 hover:border-med-blue hover:shadow-xl transition flex flex-col justify-between"
-          >
-            <div class="space-y-3">
-              <div
-                class="w-12 h-12 rounded-xl bg-blue-50 group-hover:bg-med-blue group-hover:text-white text-med-blue flex items-center justify-center text-xl transition"
-              >
-                <i class="fas fa-chart-line"></i>
-              </div>
-              <span
-                class="text-[11px] font-bold uppercase tracking-wider text-slate-400"
-                >Modul 2</span
-              >
-              <h3
-                class="font-heading font-bold text-lg text-med-dark group-hover:text-med-blue transition"
-              >
-                Dashboard Utama
-              </h3>
-              <p class="text-xs text-slate-500 leading-relaxed">
-                Tampilan antarmuka eksekutif memantau metrik kunjungan, BOR
-                tempat tidur, dan antrean live.
-              </p>
-            </div>
-            <div
-              class="mt-6 pt-4 border-t border-slate-100 flex items-center justify-between text-xs font-semibold text-med-blue"
-            >
-              <span>Buka Dashboard</span>
-              <i
-                class="fas fa-arrow-right transform group-hover:translate-x-1 transition"
-              ></i>
-            </div>
-          </a>
+          <a href="#" id="hubCardDashboard" onclick="handleProtectedLink('dashboard.html'); return false;" class="group bg-white rounded-2xl p-6 border border-slate-200 hover:border-med-blue hover:shadow-xl transition flex flex-col justify-between">
+  <div class="space-y-3">
+    <div class="w-12 h-12 rounded-xl bg-blue-50 group-hover:bg-med-blue group-hover:text-white text-med-blue flex items-center justify-center text-xl transition"><i class="fas fa-chart-line"></i></div>
+    <span class="text-[11px] font-bold uppercase tracking-wider text-slate-400">Modul 2</span>
+    <h3 class="font-heading font-bold text-lg text-med-dark group-hover:text-med-blue transition">Dashboard Utama</h3>
+    <p class="text-xs text-slate-500 leading-relaxed">Tampilan antarmuka eksekutif memantau metrik kunjungan, BOR tempat tidur, dan antrean live.</p>
+  </div>
+  <div class="mt-6 pt-4 border-t border-slate-100 flex items-center justify-between text-xs font-semibold text-med-blue">
+    <span id="hubCtaDashboard">Login Admin & Buka Dashboard</span>
+    <span id="hubBadgeDashboard" class="text-[10px] font-bold px-2 py-0.5 rounded-full bg-amber-100 text-amber-800 flex items-center gap-1"><i class="fas fa-lock"></i> Khusus Admin</span>
+  </div>
+</a>
 
           <!-- Hub Card 2 -->
           <a
@@ -780,39 +788,18 @@
           </a>
 
           <!-- Hub Card 4 -->
-          <a
-            href="laporan-data.html"
-            class="group bg-white rounded-2xl p-6 border border-slate-200 hover:border-med-blue hover:shadow-xl transition flex flex-col justify-between"
-          >
-            <div class="space-y-3">
-              <div
-                class="w-12 h-12 rounded-xl bg-amber-50 group-hover:bg-med-amber group-hover:text-white text-med-amber flex items-center justify-center text-xl transition"
-              >
-                <i class="fas fa-file-invoice-dollar"></i>
-              </div>
-              <span
-                class="text-[11px] font-bold uppercase tracking-wider text-slate-400"
-                >Modul 5 (Rekapitulasi)</span
-              >
-              <h3
-                class="font-heading font-bold text-lg text-med-dark group-hover:text-med-blue transition"
-              >
-                Laporan & Rekapitulasi
-              </h3>
-              <p class="text-xs text-slate-500 leading-relaxed">
-                Tabel rekapitulasi data pasien, riwayat transaksi billing,
-                invoice kuitansi, dan ekspor CSV.
-              </p>
-            </div>
-            <div
-              class="mt-6 pt-4 border-t border-slate-100 flex items-center justify-between text-xs font-semibold text-med-amber"
-            >
-              <span>Buka Laporan Transaksi</span>
-              <i
-                class="fas fa-arrow-right transform group-hover:translate-x-1 transition"
-              ></i>
-            </div>
-          </a>
+          <a href="#" id="hubCardLaporan" onclick="handleProtectedLink('laporan-data.html'); return false;" class="group bg-white rounded-2xl p-6 border border-slate-200 hover:border-med-blue hover:shadow-xl transition flex flex-col justify-between">
+  <div class="space-y-3">
+    <div class="w-12 h-12 rounded-xl bg-amber-50 group-hover:bg-med-amber group-hover:text-white text-med-amber flex items-center justify-center text-xl transition"><i class="fas fa-file-invoice-dollar"></i></div>
+    <span class="text-[11px] font-bold uppercase tracking-wider text-slate-400">Modul 5 (Rekapitulasi)</span>
+    <h3 class="font-heading font-bold text-lg text-med-dark group-hover:text-med-blue transition">Laporan & Rekapitulasi</h3>
+    <p class="text-xs text-slate-500 leading-relaxed">Tabel rekapitulasi data pasien, riwayat transaksi billing, invoice kuitansi, dan ekspor CSV.</p>
+  </div>
+  <div class="mt-6 pt-4 border-t border-slate-100 flex items-center justify-between text-xs font-semibold text-med-amber">
+    <span id="hubCtaLaporan">Login Admin & Buka Laporan</span>
+    <span id="hubBadgeLaporan" class="text-[10px] font-bold px-2 py-0.5 rounded-full bg-amber-100 text-amber-800 flex items-center gap-1"><i class="fas fa-lock"></i> Khusus Admin</span>
+  </div>
+</a>
         </div>
       </section>
 
@@ -2082,5 +2069,291 @@
       document.addEventListener("DOMContentLoaded", syncHeroMetrics);
       window.addEventListener("klinika_data_updated", syncHeroMetrics);
     </script>
+
+<!-- ============================================ -->
+<!-- ADMIN LOGIN MODAL DIALOG -->
+<!-- ============================================ -->
+<div id="adminLoginModal" class="hidden fixed inset-0 z-[999] flex items-center justify-center p-4">
+  <div class="absolute inset-0 bg-slate-900/60 backdrop-blur-sm" onclick="closeAdminLoginModal()"></div>
+  <div class="relative bg-white rounded-3xl shadow-2xl border border-slate-200 w-full max-w-md overflow-hidden transform transition-all">
+    <!-- Modal Header -->
+    <div class="bg-gradient-to-r from-med-dark to-med-blue p-6 text-white relative">
+      <button onclick="closeAdminLoginModal()" class="absolute top-4 right-4 w-8 h-8 rounded-xl bg-white/10 hover:bg-white/20 text-white flex items-center justify-center transition" title="Tutup"><i class="fas fa-times"></i></button>
+      <div class="flex items-center gap-3">
+        <div class="w-12 h-12 rounded-2xl bg-white/15 flex items-center justify-center text-2xl"><i class="fas fa-shield-alt"></i></div>
+        <div><h3 class="font-heading font-bold text-lg">Login Administrator</h3><p class="text-blue-200 text-xs">Klinika.id Hospital Management System</p></div>
+      </div>
+    </div>
+    <!-- Modal Body -->
+    <div class="p-6 space-y-5">
+      <div id="loginErrorBox" class="hidden bg-rose-50 border border-rose-200 text-rose-700 rounded-xl p-3 text-xs font-medium flex items-center gap-2">
+        <i class="fas fa-exclamation-circle text-rose-500"></i>
+        <span id="loginErrorMsg">Username atau password salah.</span>
+      </div>
+      <div>
+        <label class="block text-xs font-bold text-slate-700 mb-1.5">Username</label>
+        <div class="relative">
+          <span class="absolute inset-y-0 left-0 pl-3.5 flex items-center text-slate-400"><i class="fas fa-user text-sm"></i></span>
+          <input type="text" id="adminUsernameInput" placeholder="Masukkan username" class="w-full pl-10 pr-4 py-3 rounded-xl border border-slate-200 focus:border-med-blue focus:ring-2 focus:ring-blue-100 text-sm transition outline-none" autocomplete="username" />
+        </div>
+      </div>
+      <div>
+        <label class="block text-xs font-bold text-slate-700 mb-1.5">Password</label>
+        <div class="relative">
+          <span class="absolute inset-y-0 left-0 pl-3.5 flex items-center text-slate-400"><i class="fas fa-key text-sm"></i></span>
+          <input type="password" id="adminPasswordInput" placeholder="Masukkan password" class="w-full pl-10 pr-12 py-3 rounded-xl border border-slate-200 focus:border-med-blue focus:ring-2 focus:ring-blue-100 text-sm transition outline-none" autocomplete="current-password" />
+          <button type="button" onclick="togglePasswordVisibility()" class="absolute inset-y-0 right-0 pr-3.5 flex items-center text-slate-400 hover:text-med-blue transition" title="Tampilkan/Sembunyikan password"><i class="fas fa-eye" id="togglePwdIcon"></i></button>
+        </div>
+      </div>
+      <button type="button" onclick="handleAdminLoginSubmit()" class="w-full py-3 rounded-xl font-bold text-white bg-gradient-to-r from-med-blue to-blue-700 hover:from-blue-700 hover:to-med-dark shadow-md shadow-blue-500/25 transition transform active:scale-[0.98] text-sm flex items-center justify-center gap-2">
+        <i class="fas fa-sign-in-alt"></i> Masuk sebagai Admin
+      </button>
+      <div class="bg-blue-50 rounded-xl p-3 border border-blue-200">
+        <p class="text-[11px] font-bold text-med-blue mb-1"><i class="fas fa-info-circle"></i> Kredensial Demo:</p>
+        <div class="flex gap-4 text-[11px] text-slate-600">
+          <span>Username: <code class="font-mono font-bold text-med-dark bg-white px-1.5 py-0.5 rounded border">admin</code></span>
+          <span>Password: <code class="font-mono font-bold text-med-dark bg-white px-1.5 py-0.5 rounded border">admin123</code></span>
+        </div>
+        <button type="button" onclick="quickFillCredentials()" class="mt-2 text-[10px] font-bold text-med-blue hover:text-blue-800 underline transition"><i class="fas fa-magic"></i> Autofill Kredensial Demo</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- TOAST NOTIFICATION -->
+<div id="adminToast" class="hidden fixed top-6 right-6 z-[9999] bg-white rounded-2xl shadow-2xl border border-slate-200 p-4 flex items-start gap-3 max-w-sm animate-in fade-in slide-in-from-top-2 duration-300">
+  <div id="adminToastIcon" class="w-8 h-8 rounded-xl bg-emerald-100 text-emerald-600 flex items-center justify-center shrink-0"><i class="fas fa-check-circle"></i></div>
+  <div><p class="text-sm font-bold text-slate-800" id="adminToastTitle">Berhasil</p><p class="text-xs text-slate-500 mt-0.5" id="adminToastMessage">Operasi berhasil.</p></div>
+  <button onclick="hideAdminToast()" class="text-slate-400 hover:text-slate-600 transition ml-2 shrink-0"><i class="fas fa-times text-xs"></i></button>
+</div>
+
+<!-- ADMIN AUTH SCRIPTS -->
+<script>
+  // ==========================================
+  // ADMIN AUTHENTICATION UI CONTROLLER
+  // ==========================================
+  let _loginRedirectTarget = null;
+
+  function openAdminLoginModal(target) {
+    _loginRedirectTarget = target || null;
+    const modal = document.getElementById('adminLoginModal');
+    const errBox = document.getElementById('loginErrorBox');
+    if (errBox) errBox.classList.add('hidden');
+    if (modal) modal.classList.remove('hidden');
+    const usernameInput = document.getElementById('adminUsernameInput');
+    if (usernameInput) setTimeout(() => usernameInput.focus(), 100);
+  }
+
+  function closeAdminLoginModal() {
+    const modal = document.getElementById('adminLoginModal');
+    if (modal) modal.classList.add('hidden');
+    _loginRedirectTarget = null;
+  }
+
+  function togglePasswordVisibility() {
+    const input = document.getElementById('adminPasswordInput');
+    const icon = document.getElementById('togglePwdIcon');
+    if (!input || !icon) return;
+    if (input.type === 'password') {
+      input.type = 'text';
+      icon.className = 'fas fa-eye-slash';
+    } else {
+      input.type = 'password';
+      icon.className = 'fas fa-eye';
+    }
+  }
+
+  function quickFillCredentials() {
+    const u = document.getElementById('adminUsernameInput');
+    const p = document.getElementById('adminPasswordInput');
+    if (u) u.value = 'admin';
+    if (p) p.value = 'admin123';
+  }
+
+  function handleAdminLoginSubmit() {
+    const username = (document.getElementById('adminUsernameInput')?.value || '').trim();
+    const password = (document.getElementById('adminPasswordInput')?.value || '').trim();
+    const errBox = document.getElementById('loginErrorBox');
+    const errMsg = document.getElementById('loginErrorMsg');
+
+    if (!username || !password) {
+      if (errBox) errBox.classList.remove('hidden');
+      if (errMsg) errMsg.textContent = 'Username dan password wajib diisi.';
+      return;
+    }
+
+    if (!window.KlinikaEngine) {
+      if (errBox) errBox.classList.remove('hidden');
+      if (errMsg) errMsg.textContent = 'Engine belum siap. Muat ulang halaman.';
+      return;
+    }
+
+    const result = window.KlinikaEngine.loginAdmin(username, password);
+    if (!result.success) {
+      if (errBox) errBox.classList.remove('hidden');
+      if (errMsg) errMsg.textContent = result.message;
+      return;
+    }
+
+    closeAdminLoginModal();
+    syncAdminUIState();
+    showAdminToast('Login Berhasil', 'Selamat datang, ' + result.session.name + '!', 'success');
+
+    if (_loginRedirectTarget) {
+      setTimeout(() => { window.location.href = _loginRedirectTarget; }, 800);
+    }
+  }
+
+  function handleAdminLogout() {
+    if (confirm('Apakah Anda yakin ingin keluar dari sesi administrator?')) {
+      if (window.KlinikaEngine) window.KlinikaEngine.logoutAdmin();
+      syncAdminUIState();
+      showAdminToast('Berhasil Keluar', 'Anda telah keluar dari akun administrator.', 'info');
+    }
+  }
+
+  function handleProtectedLink(targetUrl) {
+    if (window.KlinikaEngine && window.KlinikaEngine.isAdminLoggedIn()) {
+      window.location.href = targetUrl;
+    } else {
+      openAdminLoginModal(targetUrl);
+      showAdminToast('Login Diperlukan', 'Silakan login sebagai admin untuk mengakses modul ini.', 'warning');
+    }
+  }
+
+  function syncAdminUIState() {
+    const isLoggedIn = window.KlinikaEngine && window.KlinikaEngine.isAdminLoggedIn();
+    const session = isLoggedIn ? window.KlinikaEngine.getAdminSession() : null;
+
+    // Desktop nav links
+    const navDashboard = document.getElementById('navLinkDashboard');
+    const navLaporan = document.getElementById('navLinkLaporan');
+    const btnLogin = document.getElementById('btnOpenLoginAdmin');
+    const profileWidget = document.getElementById('adminProfileWidget');
+    const navUsername = document.getElementById('navAdminUsername');
+
+    if (isLoggedIn) {
+      if (navDashboard) { navDashboard.classList.remove('hidden'); navDashboard.classList.add('flex'); }
+      if (navLaporan) { navLaporan.classList.remove('hidden'); navLaporan.classList.add('flex'); }
+      if (btnLogin) btnLogin.classList.add('hidden');
+      if (profileWidget) { profileWidget.classList.remove('hidden'); profileWidget.classList.add('flex'); }
+      if (navUsername && session) {
+        const parts = session.name.split(',')[0].trim().split(' ');
+        const shortName = parts.length >= 2 && parts[0].toLowerCase().startsWith('dr') 
+          ? `${parts[0]} ${parts[1]}` 
+          : parts[0];
+        navUsername.textContent = shortName;
+        navUsername.title = session.name;
+      }
+    } else {
+      if (navDashboard) { navDashboard.classList.add('hidden'); navDashboard.classList.remove('flex'); }
+      if (navLaporan) { navLaporan.classList.add('hidden'); navLaporan.classList.remove('flex'); }
+      if (btnLogin) btnLogin.classList.remove('hidden');
+      if (profileWidget) { profileWidget.classList.add('hidden'); profileWidget.classList.remove('flex'); }
+    }
+
+    // Mobile nav
+    const mobileDash = document.getElementById('mobileNavDashboard');
+    const mobileLaporan = document.getElementById('mobileNavLaporan');
+    const mobileLoginBtn = document.getElementById('mobileLoginBtn');
+    const mobileAdminBox = document.getElementById('mobileAdminBox');
+    const mobileUsername = document.getElementById('mobileAdminUsername');
+    const mobileRole = document.getElementById('mobileAdminRole');
+
+    if (isLoggedIn) {
+      if (mobileDash) { mobileDash.classList.remove('hidden'); mobileDash.classList.add('flex'); }
+      if (mobileLaporan) { mobileLaporan.classList.remove('hidden'); mobileLaporan.classList.add('flex'); }
+      if (mobileLoginBtn) mobileLoginBtn.classList.add('hidden');
+      if (mobileAdminBox) mobileAdminBox.classList.remove('hidden');
+      if (mobileUsername && session) mobileUsername.textContent = session.name;
+      if (mobileRole && session) mobileRole.textContent = session.role;
+    } else {
+      if (mobileDash) { mobileDash.classList.add('hidden'); mobileDash.classList.remove('flex'); }
+      if (mobileLaporan) { mobileLaporan.classList.add('hidden'); mobileLaporan.classList.remove('flex'); }
+      if (mobileLoginBtn) mobileLoginBtn.classList.remove('hidden');
+      if (mobileAdminBox) mobileAdminBox.classList.add('hidden');
+    }
+
+    // Hero button lock icon
+    const heroLock = document.getElementById('heroBtnDashboardLock');
+    if (heroLock) heroLock.classList.toggle('hidden', isLoggedIn);
+
+    // Hub cards badges
+    const hubBadgeDash = document.getElementById('hubBadgeDashboard');
+    const hubCtaDash = document.getElementById('hubCtaDashboard');
+    if (hubBadgeDash && hubCtaDash) {
+      if (isLoggedIn) {
+        hubBadgeDash.className = 'text-[10px] font-bold px-2 py-0.5 rounded-full bg-emerald-100 text-emerald-800 flex items-center gap-1';
+        hubBadgeDash.innerHTML = '<i class="fas fa-check-circle"></i> Terbuka (Admin)';
+        hubCtaDash.textContent = 'Buka Dashboard Utama';
+      } else {
+        hubBadgeDash.className = 'text-[10px] font-bold px-2 py-0.5 rounded-full bg-amber-100 text-amber-800 flex items-center gap-1';
+        hubBadgeDash.innerHTML = '<i class="fas fa-lock"></i> Khusus Admin';
+        hubCtaDash.textContent = 'Login Admin & Buka Dashboard';
+      }
+    }
+    const hubBadgeLap = document.getElementById('hubBadgeLaporan');
+    const hubCtaLap = document.getElementById('hubCtaLaporan');
+    if (hubBadgeLap && hubCtaLap) {
+      if (isLoggedIn) {
+        hubBadgeLap.className = 'text-[10px] font-bold px-2 py-0.5 rounded-full bg-emerald-100 text-emerald-800 flex items-center gap-1';
+        hubBadgeLap.innerHTML = '<i class="fas fa-check-circle"></i> Terbuka (Admin)';
+        hubCtaLap.textContent = 'Buka Laporan Transaksi';
+      } else {
+        hubBadgeLap.className = 'text-[10px] font-bold px-2 py-0.5 rounded-full bg-amber-100 text-amber-800 flex items-center gap-1';
+        hubBadgeLap.innerHTML = '<i class="fas fa-lock"></i> Khusus Admin';
+        hubCtaLap.textContent = 'Login Admin & Buka Laporan';
+      }
+    }
+  }
+
+  function showAdminToast(title, message, type) {
+    const toast = document.getElementById('adminToast');
+    const titleEl = document.getElementById('adminToastTitle');
+    const msgEl = document.getElementById('adminToastMessage');
+    const iconEl = document.getElementById('adminToastIcon');
+    if (!toast) return;
+    if (titleEl) titleEl.textContent = title;
+    if (msgEl) msgEl.textContent = message;
+    if (iconEl) {
+      if (type === 'warning') {
+        iconEl.className = 'w-8 h-8 rounded-xl bg-amber-100 text-amber-600 flex items-center justify-center shrink-0';
+        iconEl.innerHTML = '<i class="fas fa-lock"></i>';
+      } else if (type === 'info') {
+        iconEl.className = 'w-8 h-8 rounded-xl bg-blue-100 text-blue-600 flex items-center justify-center shrink-0';
+        iconEl.innerHTML = '<i class="fas fa-info-circle"></i>';
+      } else {
+        iconEl.className = 'w-8 h-8 rounded-xl bg-emerald-100 text-emerald-600 flex items-center justify-center shrink-0';
+        iconEl.innerHTML = '<i class="fas fa-check-circle"></i>';
+      }
+    }
+    toast.classList.remove('hidden');
+    setTimeout(hideAdminToast, 4000);
+  }
+
+  function hideAdminToast() {
+    const toast = document.getElementById('adminToast');
+    if (toast) toast.classList.add('hidden');
+  }
+
+  function checkUrlAuthParams() {
+    const params = new URLSearchParams(window.location.search);
+    if (params.get('auth') === 'required') {
+      openAdminLoginModal();
+      showAdminToast('Akses Ditolak', 'Silakan login sebagai admin terlebih dahulu.', 'warning');
+    } else if (params.get('logged_out') === '1') {
+      showAdminToast('Berhasil Keluar', 'Anda telah keluar dari akun administrator.', 'info');
+    }
+  }
+
+  // Enter key on password field
+  document.addEventListener('DOMContentLoaded', () => {
+    syncAdminUIState();
+    checkUrlAuthParams();
+    const pwdInput = document.getElementById('adminPasswordInput');
+    if (pwdInput) pwdInput.addEventListener('keydown', (e) => { if (e.key === 'Enter') handleAdminLoginSubmit(); });
+  });
+  window.addEventListener('klinika_auth_changed', syncAdminUIState);
+</script>
   </body>
 </html>

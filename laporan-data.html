@@ -83,6 +83,15 @@
   <body
     class="bg-slate-50 font-sans text-slate-700 antialiased flex flex-col min-h-screen"
   >
+    <!-- PROTEKSI AKSES: Modal Akses Ditolak -->
+    <div id="accessDeniedModal" class="hidden fixed inset-0 z-[999] flex items-center justify-center p-4 bg-slate-900/70 backdrop-blur-sm">
+      <div class="bg-white rounded-3xl shadow-2xl p-8 text-center max-w-sm">
+        <div class="w-16 h-16 rounded-2xl bg-rose-100 text-rose-500 flex items-center justify-center text-3xl mx-auto mb-4"><i class="fas fa-shield-alt"></i></div>
+        <h3 class="font-heading font-bold text-xl text-med-dark mb-2">Akses Terbatas</h3>
+        <p class="text-sm text-slate-500 mb-6">Halaman ini memerlukan login administrator. Silakan kembali ke beranda dan login terlebih dahulu.</p>
+        <a href="index.html?auth=required" class="inline-flex items-center gap-2 px-6 py-3 rounded-xl font-bold text-white bg-med-blue hover:bg-blue-700 shadow-md transition text-sm"><i class="fas fa-arrow-left"></i> Kembali & Login</a>
+      </div>
+    </div>
     <!-- TOP HEADER STRIP -->
     <div
       class="bg-med-dark text-slate-200 text-xs py-2 px-4 border-b border-slate-700"
@@ -194,6 +203,15 @@
             >
               <i class="fas fa-undo-alt text-med-blue"></i>
               <span>Reset Data</span>
+            </button>
+            <button
+              id="topbarAdminBox"
+              type="button"
+              onclick="handleReportAdminLogout()"
+              class="px-3.5 py-2 rounded-xl text-xs font-semibold text-rose-600 bg-rose-50 hover:bg-rose-100 transition flex items-center gap-1.5"
+              title="Logout Administrator"
+            >
+              <i class="fas fa-sign-out-alt"></i>
             </button>
           </div>
 
@@ -1413,9 +1431,34 @@
       }
 
       // ==========================================
+      // Auth Guard - Cek login admin sebelum menampilkan konten
+      // ==========================================
+      function checkReportAdminAuth() {
+        if (typeof KlinikaEngine !== 'undefined' && KlinikaEngine.isAdminLoggedIn) {
+          if (!KlinikaEngine.isAdminLoggedIn()) {
+            const modal = document.getElementById('accessDeniedModal');
+            if (modal) modal.classList.remove('hidden');
+            return false;
+          }
+          return true;
+        }
+        // Engine not loaded, redirect
+        window.location.href = 'index.html?auth=required';
+        return false;
+      }
+
+      function handleReportAdminLogout() {
+        if (confirm('Apakah Anda yakin ingin keluar dari sesi administrator?')) {
+          if (typeof KlinikaEngine !== 'undefined') KlinikaEngine.logoutAdmin();
+          window.location.href = 'index.html?logged_out=1';
+        }
+      }
+
+      // ==========================================
       // 6. INITIALIZATION ON DOM READY
       // ==========================================
       document.addEventListener("DOMContentLoaded", () => {
+        if (!checkReportAdminAuth()) return;
         updateFinancialSummary();
         renderReportTable();
       });
